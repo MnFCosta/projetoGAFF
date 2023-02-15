@@ -1,0 +1,16 @@
+<header class="main-header-container">
+    <div class="main-header container">
+        <h1>    
+            <a class="main-logo" href="{% url 'home' %}">
+                <i class="fa-solid fa-book-open main-logo-icon"></i>
+                <span class="main-logo-text">
+                    {% if is_detail_page %}
+                        {% comment %} Receita do usuário {{recipe.author.first_name}} {% endcomment %}
+                    {% else %}
+                         GAFF
+                    {% endif %}
+                </span> 
+            </a>
+        </h1>
+    </div>
+</header>
