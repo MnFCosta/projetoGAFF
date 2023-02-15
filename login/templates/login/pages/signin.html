@@ -1,0 +1,13 @@
+{% extends 'global/base.html' %}
+{% block content %}
+<div class="main-content main-content-list container">
+    {% for recipe in recipes%}
+        {% comment %} {%include 'recipes/partials/_recipes.html'%} {% endcomment %}
+    {% empty %}
+        <div class="no-content-container">
+            <h1>SIGNIN</h1>
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}
+
