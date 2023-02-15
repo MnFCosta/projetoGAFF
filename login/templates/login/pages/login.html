@@ -1,18 +1,14 @@
-{% extends "global/base.html" %}
-
-{% block title %} Home {% endblock title %}
-
+{% extends 'global/base.html' %}
+{% block title %}Login{% endblock title %}Login
 {% block content %}
-
-{% comment %} {% include 'recipes/partials/_messages.html' %} {% endcomment %}
-
 <div class="main-content main-content-list container">
     {% for recipe in recipes%}
         {% comment %} {%include 'recipes/partials/_recipes.html'%} {% endcomment %}
     {% empty %}
         <div class="no-content-container">
-            <h1>TESTANDO</h1>
+            <h1>LOGUE AQUI</h1>
         </div>
     {% endfor %}
 </div>
 {% endblock content %}
+
