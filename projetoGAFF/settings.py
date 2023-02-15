@@ -48,7 +48,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'teste.urls'
+ROOT_URLCONF = 'projetoGAFF.urls'
 
 TEMPLATES = [
     {
