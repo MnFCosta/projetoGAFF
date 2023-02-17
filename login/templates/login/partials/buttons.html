@@ -1,5 +1,5 @@
 <div class="button-container">
-    <a class="generic-button" href="{% url 'login:register' %}"> NOVO USUÁRIO </a>
+    <a class="generic-button" href="{% url 'login:register' %}"> CADASTRE-SE </a>
     <a class="generic-button" href="{% url 'login:signin' %}"> LOGIN </a>
     {% if user.is_authenticated %}
         <a class="generic-button" href="{% url 'login:signout' %}"> LOGOUT </a>

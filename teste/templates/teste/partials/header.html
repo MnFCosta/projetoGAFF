@@ -1,16 +1,21 @@
+{% comment %} <header class="main-header-container">  
+        <div class="developer">
+            <a href="https://www.linkedin.com/in/manoel-costa/" target="_blank" rel="noreferrer noopener">By Manoel Costa</a>
+        </div>
+        <div class="powered">
+            <a href="https://www.djangoproject.com/" target="_blank" rel="noreferrer noopener">Powered by Django</a>
+        </div>
+</header> {% endcomment %}
+
 <header class="main-header-container">
-    <div class="main-header container">
-        <h1>    
-            <a class="main-logo" href="{% url 'teste:home' %}">
-                <i class="fa-solid fa-book-open main-logo-icon"></i>
-                <span class="main-logo-text">
-                    {% if is_detail_page %}
-                        {% comment %} Receita do usuário {{recipe.author.first_name}} {% endcomment %}
-                    {% else %}
-                         GAFF
-                    {% endif %}
-                </span> 
-            </a>
-        </h1>
+    <div class="">
+        <i class="fa-solid fa-book-open main-logo-icon"></i>
+        <span>GAFF</span>
+    </div>
+    <div class="">
+        {% if user.is_authenticated %}
+        <span>Bem vindo {{user.first_name}} {{user.last_name}}</span>
+        {% endif %}
     </div>
 </header>
+
