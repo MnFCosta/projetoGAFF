@@ -2,12 +2,31 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
-def login(request):
+def log(request):
     return render(request, "login/pages/login.html")
 
 def signin(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            fname = user.first_name
+            lname = user.last_name
+            return render(request, 'teste/pages/home.html', context={
+                'fname': fname.upper(),
+                'lname': lname.upper(),
+            })
+        else:
+            messages.error(request, "Usuário ou senha incorretos!")
+            return redirect("login:signin")
+        
     return render(request, "login/pages/signin.html")
 
 def register(request):
@@ -32,4 +51,5 @@ def register(request):
     return render(request, "login/pages/register.html")
 
 def signout(request):
-    pass
+    logout(request)
+    return redirect('login:signin')

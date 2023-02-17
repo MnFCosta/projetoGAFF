@@ -1,18 +1,13 @@
 {% extends 'global/base.html' %}
 {% block title %}Login{% endblock title %}Login
 {% block content %}
-<div class="button-container">
-    <a class="generic-button" href="{% url 'login:register' %}"> NOVO USUÁRIO </a>
-    <a class="generic-button" href="{% url 'login:signin' %}"> LOGIN </a>
-    <a class="generic-button" href="{% url 'login:signout' %}"> LOGOUT </a>
-</div>
+
 <div class="main-content main-content-list container">
     {% for recipe in recipes%}
         {% comment %} {%include 'recipes/partials/_recipes.html'%} {% endcomment %}
     {% empty %}
         <div class="no-content-container">
             <h1>LOGUE AQUI</h1>
-            
         </div>
     {% endfor %}
 </div>

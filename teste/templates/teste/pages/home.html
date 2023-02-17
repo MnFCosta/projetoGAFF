@@ -7,12 +7,11 @@
 {% comment %} {% include 'recipes/partials/_messages.html' %} {% endcomment %}
 
 <div class="main-content main-content-list container">
-    {% for recipe in recipes%}
-        {% comment %} {%include 'recipes/partials/_recipes.html'%} {% endcomment %}
-    {% empty %}
+    {% if user.is_authenticated%}
         <div class="no-content-container">
-            <h1>TESTANDO</h1>
+            <h1>BEM VINDO {{ user.first_name | upper }} {{ user.last_name | upper}}</h1>
         </div>
-    {% endfor %}
+    {% endif %}
+        
 </div>
 {% endblock content %}
