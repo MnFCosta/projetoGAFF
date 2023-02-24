@@ -1,36 +1,28 @@
 {% extends 'global/base.html' %}
 {% block content %}
 <div class="main-content main-content-list container">
-    {% for recipe in recipes%}
-        {% comment %} {%include 'recipes/partials/_recipes.html'%} {% endcomment %}
-    {% empty %}
         <div class="no-content-container">
-            
-            <h1>CRIE SUA CONTA</h1>
-            <form action="/register" method='post'>
+            <h1>CADASTRE-SE</h1>
+            <form class="form" action="/signin" method='post'>
                 {% csrf_token %}
                 <label for="">Username</label>
                 <input type="text" id="username" name='username' placeholder='Seu username' Required>
-                <br>
                 <label for="">Nome</label>
                 <input type="text" id="fname" name='fname' placeholder='Seu nome' Required>
-                <br>
                 <label for="">Sobrenome</label>
                 <input type="text" id="lname" name='lname' placeholder='Seu sobrenome' Required>
-                <br>
                 <label for="">Email</label>
                 <input type="email" id="email" name='email' placeholder='Seu email' Required>
-                <br>
                 <label for="">Senha</label>
                 <input type="password" id="password" name='password' placeholder='Sua senha' Required>
-                <br>
                 <label for="">Confirme sua senha</label>
                 <input type="password" id="cpassword" name='cpassword' placeholder='Confirme sua senha' Required>
-                <br>
                 <button type = 'submit'>Criar Conta</button>
             </form>
-        </div>
-    {% endfor %}
+    </div>
 </div>
 {% endblock content %}
 
+
+
+                

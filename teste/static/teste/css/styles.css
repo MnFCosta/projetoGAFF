@@ -334,7 +334,27 @@ img {
     border-radius: 10px;
     margin: 0 auto;
     padding: 200px;
+    border: 2px solid red;
+    text-align: center;
 }
+
+.form_div{
+    border: 2px solid red;
+    padding: 10px;
+    white-space: pre;   
+    display: inline-block;
+}
+
+.form{
+    border: 2px solid red ;
+    padding: var(--spacing-gutter-medium);
+}
+
+.form input{
+    display: block;
+}
+
+
 
 /* Messages */
 .message{
@@ -516,9 +536,10 @@ td{
 
 .button-container{
     padding: 10px;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     width: 100%;
     text-align: center;
+
 }
 
 .generic-button{
@@ -536,4 +557,6 @@ td{
 .generic-button:hover{
     background-color: var(--color-gray-1);
 }
+
+
 

@@ -13,8 +13,12 @@
         <span>GAFF</span>
     </div>
     <div class="">
+        {% if user.is_authenticated is False %}
+            {% include 'login/partials/buttons.html'%}
+        {% endif %}
         {% if user.is_authenticated %}
-        <span>Bem vindo {{user.first_name}} {{user.last_name}}</span>
+            <span>Bem vindo {{user.first_name}} {{user.last_name}}</span>
+           <a href="{% url 'login:signout' %}"> Sair </a>
         {% endif %}
     </div>
 </header>

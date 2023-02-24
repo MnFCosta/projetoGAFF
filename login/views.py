@@ -3,11 +3,13 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from utils.utils import login_excluded
 
 # Create your views here.
 def log(request):
     return render(request, "login/pages/login.html")
 
+@login_excluded('teste:home')
 def signin(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -26,9 +28,11 @@ def signin(request):
         else:
             messages.error(request, "Usuário ou senha incorretos!")
             return redirect("login:signin")
-        
+
+    
     return render(request, "login/pages/signin.html")
 
+@login_excluded('teste:home')
 def register(request):
     if request.method == "POST":
         username = request.POST.get("username")
