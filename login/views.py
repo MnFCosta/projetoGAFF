@@ -19,6 +19,7 @@ def signin(request):
 
         if user is not None:
             login(request, user)
+            print(user.first_name)
             fname = user.first_name
             lname = user.last_name
             return render(request, 'teste/pages/home.html', context={
@@ -32,26 +33,28 @@ def signin(request):
     
     return render(request, "login/pages/signin.html")
 
-@login_excluded('teste:home')
+# @login_excluded('teste:home')
 def register(request):
-    if request.method == "POST":
-        username = request.POST.get("username")
-        fname = request.POST.get("fname")
-        lname = request.POST.get("lname")
-        email = request.POST.get("email")
-        password = request.POST.get("password")
-        cpassword = request.POST.get("cpassword")
+    if request.user.is_superuser:
+        if request.method == "POST":
+            username = request.POST.get("username")
+            fname = request.POST.get("fname")
+            lname = request.POST.get("lname")
+            email = request.POST.get("email")
+            password = request.POST.get("password")
+            cpassword = request.POST.get("cpassword")
         
-        user = User.objects.create_user(username, email, password)
-        user.first_name = fname
-        user.last_name = lname
+            user = User.objects.create_user(username, email, password)
+            user.first_name = fname
+            user.last_name = lname
 
-        user.save()
+            user.save()
 
-        messages.success(request, "Conta criada com sucesso!")
+            messages.success(request, "Novo técnico cadastrado!")
 
-        return redirect("login:signin")
-
+            return redirect("teste:home")
+    else:
+        return redirect("teste:home")
     return render(request, "login/pages/register.html")
 
 def signout(request):
