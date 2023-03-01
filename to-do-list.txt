@@ -1,0 +1,6 @@
+-Sistema de permissões
+-Cadastro de pessoas
+-Sistema de familias
+-Sistema de estoque
+-Sistema de montagem de cestas
+-Sistema de entregas

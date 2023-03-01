@@ -84,7 +84,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '3306',
         'USER': 'root',
-        'PASSWORD': 'info2k21',
+        'PASSWORD': '',
     }
 }
 
@@ -134,7 +134,7 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
-LOGIN_URL = "/login"
+LOGIN_URL = "/signin"
 
 
 # Default primary key field type

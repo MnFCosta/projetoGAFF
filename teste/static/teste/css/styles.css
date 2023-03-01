@@ -78,7 +78,7 @@ h1,h2,h3,h4,h5,h6{
     justify-content: space-between;
     background: var(--color-primary);
     color: var(--color-white);
-    padding: var(--spacing-gutter-medium);
+    padding: var(--spacing-gutter-small);
 }
 
 .main-logo{
@@ -334,7 +334,27 @@ img {
     border-radius: 10px;
     margin: 0 auto;
     padding: 200px;
+    border: 2px solid red;
+    text-align: center;
 }
+
+.form_div{
+    border: 2px solid red;
+    padding: 10px;
+    white-space: pre;   
+    display: inline-block;
+}
+
+.form{
+    border: 2px solid red ;
+    padding: var(--spacing-gutter-medium);
+}
+
+.form input{
+    display: block;
+}
+
+
 
 /* Messages */
 .message{
@@ -516,9 +536,10 @@ td{
 
 .button-container{
     padding: 10px;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     width: 100%;
     text-align: center;
+
 }
 
 .generic-button{
@@ -530,10 +551,22 @@ td{
     color: var(--color-black);
     transition: 0.5s; 
     position: relative;
-    right: 25px;
+    /* right: 25px; */
+    text-align: center;
+    display:inline-block;
+    margin:0 auto;
 }
 
 .generic-button:hover{
     background-color: var(--color-gray-1);
 }
+
+.headiv{
+    width: 20%;
+    text-align: center;
+    border: 2px solid red;;
+    margin: 0 auto;
+}
+
+
 

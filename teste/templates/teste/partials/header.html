@@ -12,10 +12,15 @@
         <i class="fa-solid fa-book-open main-logo-icon"></i>
         <span>GAFF</span>
     </div>
-    <div class="">
+    <div class="headiv">
+        {% include 'login/partials/buttons.html'%}
+    </div>
+    <div>
         {% if user.is_authenticated %}
-        <span>Bem vindo {{user.first_name}} {{user.last_name}}</span>
+            <span>Bem vindo {{user.first_name}} {{user.last_name}}</span>
+           <a href="{% url 'login:signout' %}"> Sair </a>
         {% endif %}
     </div>
+        
 </header>
 
