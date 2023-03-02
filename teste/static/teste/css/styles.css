@@ -568,5 +568,19 @@ td{
     margin: 0 auto;
 }
 
+.modal{
+    width: 300px;
+}
+
+.modal-content{
+    width: 300px;
+}
+
+.list-group-item:hover{
+    background-color: var(--color-primary-light);
+}
+
+
+
 
 
