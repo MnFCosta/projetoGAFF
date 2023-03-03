@@ -1,7 +1,7 @@
 <div class="button-container">
-    {% if user.is_superuser %}
+    {% comment %} {% if user.is_superuser %}
     <a class="generic-button" href="{% url 'login:register' %}"> CADASTRE NOVO TÉCNICO </a>
-    {% endif %}
+    {% endif %} {% endcomment %}
     {% if user.is_authenticated is False %}
         {% comment %} <a class="generic-button" href="{% url 'login:signin' %}"> LOGIN </a> {% endcomment %}
     {% endif %}

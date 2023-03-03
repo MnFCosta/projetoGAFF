@@ -65,7 +65,7 @@ h1,h2,h3,h4,h5,h6{
     font-family: var(--font-headings);
 }
 
-.container {
+.container-custom {
     max-width: 144rem;
     margin: 0 auto;
     padding: var(--spacing-gutter-medium);
@@ -75,10 +75,15 @@ h1,h2,h3,h4,h5,h6{
     background: var(--color-primary);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     background: var(--color-primary);
     color: var(--color-white);
     padding: var(--spacing-gutter-small);
+    border: 2px solid red;
+}
+
+.logout-margin{
+    margin-right: 10px;
 }
 
 .main-logo{
@@ -561,25 +566,34 @@ td{
     background-color: var(--color-gray-1);
 }
 
-.headiv{
-    width: 20%;
+.title{
+    font-size: 30px;
+}
+
+.title-container{
     text-align: center;
-    border: 2px solid red;;
-    margin: 0 auto;
+    border: 2px solid red;
 }
 
-.modal{
+.modal-dialog{
     width: 300px;
 }
 
-.modal-content{
+/* .modal-content{
     width: 300px;
-}
+} */
 
+
+.navbar{
+    border: 2px solid red;
+    max-width: 300px;
+    position: relative;
+    right: 890px;
+    /* background-color: var(--color-primary); */
+}
 .list-group-item:hover{
     background-color: var(--color-primary-light);
 }
-
 
 
 

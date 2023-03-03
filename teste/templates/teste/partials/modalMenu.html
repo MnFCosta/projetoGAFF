@@ -1,4 +1,4 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
     <div class="modal-dialog modal-fullscreen">
     <div class="modal-content ">
         <div class="modal-header text-center">
@@ -8,14 +8,16 @@
         <div class="modal-body">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><a class="stretched-link text-decoration-none" href="{% url 'teste:home' %}">Inicio</a></li>
-                <li class="list-group-item">ESTOQUE</li>
-                <li class="list-group-item">ENTREGAS</li>
-                <li class="list-group-item">FAMILIAS</li>
-                <li class="list-group-item">USUARIO</li>
+                {% if  user.is_superuser%}
+                    <li class="list-group-item"><a class="stretched-link text-decoration-none" href="{% url 'login:register' %}">Cadastre novo técnico</a></li>
+                {% endif %}
+                <li class="list-group-item">Estoque</li>
+                <li class="list-group-item">Entregas</li>
+                <li class="list-group-item">Familias</li>
+                <li class="list-group-item">Usuarios</li>
               </ul>
         </div>
         <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
     </div>
     </div>
