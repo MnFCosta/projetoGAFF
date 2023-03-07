@@ -8,9 +8,7 @@
         <div class="modal-body">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><a class="stretched-link text-decoration-none" href="{% url 'teste:home' %}">Inicio</a></li>
-                {% if  user.is_superuser%}
-                    <li class="list-group-item"><a class="stretched-link text-decoration-none" href="{% url 'login:register' %}">Cadastre novo técnico</a></li>
-                {% endif %}
+                <li class="list-group-item"><a class="stretched-link text-decoration-none" href="{% url 'login:register' %}">Cadastre novo técnico</a></li>
                 <li class="list-group-item">Estoque</li>
                 <li class="list-group-item">Entregas</li>
                 <li class="list-group-item">Familias</li>

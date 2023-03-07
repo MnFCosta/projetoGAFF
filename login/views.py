@@ -35,25 +35,22 @@ def signin(request):
 
 # @login_excluded('teste:home')
 def register(request):
-    if request.user.is_superuser:
-        if request.method == "POST":
-            username = request.POST.get("username")
-            fname = request.POST.get("fname")
-            lname = request.POST.get("lname")
-            email = request.POST.get("email")
-            password = request.POST.get("password")
-            cpassword = request.POST.get("cpassword")
+    if request.method == "POST":
+        username = request.POST.get("username")
+        fname = request.POST.get("fname")
+        lname = request.POST.get("lname")
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+        cpassword = request.POST.get("cpassword")
         
-            user = User.objects.create_user(username, email, password)
-            user.first_name = fname
-            user.last_name = lname
+        user = User.objects.create_user(username, email, password)
+        user.first_name = fname
+        user.last_name = lname
 
-            user.save()
+        user.save()
 
-            messages.success(request, "Novo técnico cadastrado!")
+        messages.success(request, "Novo técnico cadastrado!")
 
-            return redirect("teste:home")
-    else:
         return redirect("teste:home")
     return render(request, "login/pages/register.html")
 

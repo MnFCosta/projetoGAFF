@@ -2,7 +2,7 @@ from django.shortcuts import redirect
 
 
 def login_excluded(redirect_to):
-    """ This decorator kicks authenticated users out of a view """ 
+    #decorator para tirar usuasrios autenticados de uma view
     def _method_wrapper(view_method):
         def _arguments_wrapper(request, *args, **kwargs):
             if request.user.is_authenticated:
