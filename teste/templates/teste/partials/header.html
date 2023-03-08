@@ -8,17 +8,35 @@
 </header> {% endcomment %}
 
 <header class="main-header-container">
-    {% include 'teste/partials/navbar.html'%}
-    <i class="fa-solid fa-book-open main-logo-icon position-absolute top-5 start-2" style="margin-right: 10rem;"></i>
-    <span class="position-absolute top-5 fs-1" >GAFF</span>
-    <div class="headiv">
-        {% include 'login/partials/buttons.html'%}
+    <div class="position-fixed top-9 start-0 m-3">
+        {% include 'teste/partials/sidenav.html'%}
     </div>
-    <div class = "position-absolute top-5 end-0 logout-margin">
+    <div class="d-flex justify-content-center align-items-center">
+        <i class="fa-solid fa-book-open main-logo-icon " style="margin-right: 10rem;"></i>
+        <span class="position-absolute top-5 fs-1" >GAFF</span>
+    </div>
+    {% comment %} <div class="headiv">
+        {% include 'login/partials/buttons.html'%}
+    </div> {% endcomment %}
+    <div class = "position-fixed top-9 end-0 m-5">
         {% if user.is_authenticated %}
-            <span>Bem vindo {{user.first_name}} {{user.last_name}}</span>
-           <a href="{% url 'login:signout' %}"> Sair </a>
-        {% endif %}
+        <div class="dropdown">
+            <i class="fa-solid fa-user main-logo-icon"></i>
+            <a class="user-dropdown" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{user.first_name}} {{user.last_name}}
+            </a>
+          
+            <ul class="dropdown-menu dropdown-menu-lg-end">
+                <li>
+                    <a class="dropdown-item" href="{% url 'login:signout' %}">
+                        <i class="fas fa-sign-out-alt main-logo-icon"> </i>
+                        <span>Sair</span>
+                    </a>
+                </li> 
+            </ul>
+            
+        </div>            
+      {% endif %}
     </div>
 </header>
 

@@ -9,7 +9,7 @@
 <div class="main-content main-content-list container">
     {% if user.is_authenticated%}
         <div class="no-content-container">
-            <h1>BEM VINDO {{ user.first_name | upper }} {{ user.last_name | upper}}</h1>
+            <h1> {{ user.first_name | upper }} {{ user.last_name | upper}}</h1>
         </div>
     {% endif %}
         
