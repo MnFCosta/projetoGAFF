@@ -54,6 +54,9 @@ def register(request):
         return redirect("teste:home")
     return render(request, "login/pages/register.html")
 
+def teste(request):
+    return render(request, "login/pages/login.html")
+
 def signout(request):
     logout(request)
     return redirect('login:signin')

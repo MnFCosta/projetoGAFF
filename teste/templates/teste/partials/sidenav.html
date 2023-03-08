@@ -24,16 +24,19 @@
 </button>
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
 <div class="offcanvas-header">
-    <h5 class="offcanvas-title mx-auto" id="offcanvasExampleLabel">Menu</h5>
+    <span class="offcanvas-title mx-auto" id="offcanvasExampleLabel">Menu</span>    
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 </div>
 <div class="offcanvas-body">
     <div>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="#">Inicio</a>
+                <a class="nav-link" href="{% url 'teste:home' %}">Inicio</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{% url 'login:centerteste' %}">Teste</a>
+            </li> 
+            {% comment %} <li class="nav-item">
                 <a class="nav-link" href="#">Familias</a>
             </li>
             <li class="nav-item">
@@ -47,7 +50,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Estoque</a>
-            </li>
+            </li> {% endcomment %}
         </ul>
     </div>
 </div>

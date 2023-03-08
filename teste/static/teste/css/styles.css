@@ -52,9 +52,11 @@
 
 html {
     font-size: 62.5%;
+    height: 100%;
 }
 
 body {
+    height: 100%;
     font-size: 1.6rem;
     font-family: var(--font-primary);
     background-color: var(--color-white);
@@ -79,11 +81,17 @@ h1,h2,h3,h4,h5,h6{
     background: var(--color-primary);
     color: var(--color-white);
     padding: var(--spacing-gutter-small);
-    border: 2px solid red;
+    /* border: 2px solid red; */
 }
 
 .offcanvas{
-    color: var(--color-dark-text);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    width: 240px;
+}
+
+.offcanvas-body{
+    background-color: var(--color-white);
 }
 
 .main-logo-icon{
@@ -413,6 +421,6 @@ img {
     border-radius: 10px;
     margin: 0 auto;
     padding: 200px;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     text-align: center;
 }
