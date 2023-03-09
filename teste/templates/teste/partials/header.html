@@ -23,7 +23,11 @@
         <div class="dropdown">
             <i class="fa-solid fa-user main-logo-icon"></i>
             <a class="user-dropdown" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{user.first_name}} {{user.last_name}}
+                {% if user.nome == "" or user.nome is None %}
+                    {{user.email}}
+                {% else %}
+                    {{user.nome}}
+                {% endif %}
             </a>
           
             <ul class="dropdown-menu dropdown-menu-lg-end">

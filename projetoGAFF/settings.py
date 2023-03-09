@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'teste',
     'login',
+    'colaboradores',
 ]
+
+AUTH_USER_MODEL = 'colaboradores.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -80,11 +83,11 @@ WSGI_APPLICATION = 'projetoGAFF.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'gaff',
+        'NAME': 'gaff_teste',
         'HOST': 'localhost',
         'PORT': '3306',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'info2k21',
     }
 }
 

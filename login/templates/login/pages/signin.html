@@ -5,8 +5,8 @@
             <h1>LOGIN</h1>
             <form class="form" action="/signin" method='post'>
                 {% csrf_token %}
-                <label for="">Username</label>
-                <input type="text" id="username" name='username' placeholder='Seu username' Required>
+                <label for="">Email</label>
+                <input type="text" id="email" name='email' placeholder='Seu email' Required>
                 <label for="">Senha</label>
                 <input type="password" id="password" name='password' placeholder='Sua senha' Required>
                 <button type = 'submit'>Login</button>
