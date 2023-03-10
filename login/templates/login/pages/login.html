@@ -1,34 +1,14 @@
 {% extends 'global/base.html' %}
 {% block title %}Login{% endblock title %}Login
 {% block content %}
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Center Div in Middle of Screen</title>
-	<!-- Add Bootstrap stylesheet -->
-	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	    <style>
-		/* Set height of body and html to 100% to allow centering */
-		html, body {
-			height: 100%;
-		}
-	    </style>
-    </head>
-    
-    <body>
 	<div class="d-flex justify-content-center align-items-center h-100">
 		<div>
-			<!-- Content of div goes here -->
-			<h1>Hello, World!</h1>
-			<p>This is a centered div using Bootstrap.</p>
+			<h1>TÉCNICOS</h1>
+			{% for users in usuarios %}
+				<span>{{users.nome}}</span><br>
+			{% endfor %}
 		</div>
 	</div>
-	<!-- Add Bootstrap script -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    </body>
 </html>
 {% endblock content %}
 

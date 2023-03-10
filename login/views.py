@@ -72,7 +72,11 @@ def register_superuser(request):
     return render(request, "login/pages/register.html")
 
 def teste(request):
-    return render(request, "login/pages/login.html")
+    users = User.objects.order_by("id")
+    
+    return render(request, "login/pages/login.html", context={
+        "usuarios": users,
+    })
 
 def signout(request):
     logout(request)
