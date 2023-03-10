@@ -424,3 +424,25 @@ img {
     /* border: 2px solid red; */
     text-align: center;
 }
+
+.clickable {
+    cursor: pointer;
+}
+  
+.clickable:hover a {
+    text-decoration: none;
+}
+  
+.clickable a {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+.link{
+    color: var(--color-white);
+}
+
+.link:hover {
+    color: var(--color-white);
+}
