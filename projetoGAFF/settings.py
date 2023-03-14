@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'teste',
     'login',
     'colaboradores',
+    'familias'
 ]
 
 AUTH_USER_MODEL = 'colaboradores.User'
@@ -83,7 +84,7 @@ WSGI_APPLICATION = 'projetoGAFF.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'gaff_teste',
+        'NAME': 'gaff',
         'HOST': 'localhost',
         'PORT': '3306',
         'USER': 'root',
