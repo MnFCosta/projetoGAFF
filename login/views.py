@@ -5,6 +5,7 @@ from colaboradores.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from utils.utils import login_excluded
+from .forms import LoginForm
 
 # Create your views here.
 def log(request):
@@ -12,32 +13,32 @@ def log(request):
 
 @login_excluded('teste:home')
 def signin(request):
+
     if request.method == "POST":
-        email = request.POST.get("email")
-        password = request.POST.get("password")
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('senha')
+            user = authenticate(email=email, password=password)
 
-        user = authenticate(email=email, password=password)
-
-        if user is not None:
-            print(f"Seu nome é {user.nome}")
-            login(request, user)
-            if ' ' in user.nome:
-                fname, lname = user.nome.split(' ', 1)
+            if user is not None:
+                login(request, user)
+                if ' ' in user.nome:
+                    fname, lname = user.nome.split(' ', 1)
+                else:
+                    fname = user.nome 
+                    lname = ""
+                return render(request, 'teste/pages/home.html', context={
+                    'fname': fname,
+                    'lname': lname,
+                })
             else:
-                fname = user.nome 
-                lname = ""
-            print(fname)
-            print(lname)
-            return render(request, 'teste/pages/home.html', context={
-                'fname': fname,
-                'lname': lname,
-            })
-        else:
-            messages.error(request, "Usuário ou senha incorretos!")
-            return redirect("login:signin")
-
-    
-    return render(request, "login/pages/signin.html")
+                messages.error(request, "Usuário ou senha incorretos!")
+                return redirect("login:signin")  
+    else:
+        form = LoginForm()
+        
+    return render(request, "login/pages/signin.html", {'form': form})
 
 # @login_excluded('teste:home')
 def register_superuser(request):

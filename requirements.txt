@@ -1,5 +1,6 @@
 asgiref==3.6.0
 Django==4.1.6
+django-crispy-forms==2.0
 mccabe==0.7.0
 mypy==1.0.0
 mypy-extensions==1.0.0

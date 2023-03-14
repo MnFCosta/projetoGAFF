@@ -12,7 +12,7 @@ admin.site.register(componenteFamilia, ComponenteAdmin)
 class FamiliaAdmin(admin.ModelAdmin):
     list_display = ('id','nome')
     list_display_links = ('id','nome')
-    search_fields = ('nome',)
+    search_fields = ('nome','id')
     filter_horizontal = ('componentes',)
 
 
