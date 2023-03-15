@@ -2,25 +2,21 @@ from django.db import models
 from django.db.models import CASCADE
 from django.utils import timezone
 
+ESCOLHAS_PAPEL = (
+        ('Pai', 'Pai'),
+        ('Mãe', 'Mãe'),
+        ('Filho/Filha', 'Filho/Filha'),
+)
 
 # Create your models here.
 class componenteFamilia(models.Model):
     nome = models.CharField(max_length=200, default=None)
     cpf = models.CharField(max_length=45, default=None, verbose_name="CPF")
     rg = models.CharField(max_length=45,default=None,verbose_name="RG")
-    #variáveis de papéis
-    PAI = 'PAI'
-    MAE = 'MÃE'
-    FILHO = 'FILHO/FILHA'
-    ESCOLHAS_PAPEL = [
-        (PAI, 'Pai'),
-        (MAE, 'Mãe'),
-        (FILHO, 'Filho/Filha'),
-    ]
     papel = models.CharField(
         max_length=11,
         choices=ESCOLHAS_PAPEL,
-        default=PAI,
+        default='Pai',
     )
     nascimento = models.DateField(default=None)
     NR_calcado = models.CharField(max_length=50)
