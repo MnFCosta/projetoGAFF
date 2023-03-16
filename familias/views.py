@@ -22,6 +22,21 @@ def cadastroComponente(request):
         else:   
             messages.error(request, "Dados inválidos!")
             return redirect("familias:cadastro")
+        
     else:
         form = ComponenteForm()
     return render(request, "familias/pages/cadastro.html", {'form': form})
+
+def cadastroFamilia(request):
+    if request.method == 'POST':
+        form = FamiliaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Familia Criada!")
+        else:   
+            messages.error(request, "Dados inválidos!")
+            return redirect("familias:cadastro_familia") 
+        
+    else:
+        form = FamiliaForm()
+    return render(request, "familias/pages/cadastro_familia.html", {'form': form})
