@@ -4,6 +4,13 @@ from .forms import *
 from .models import *
 
 # Create your views here.
+def familias(request):
+    familias = Familia.objects.order_by("id")
+    
+    return render(request, "familias/pages/familias.html", context={
+        "familias": familias,
+    })
+
 
 def cadastroComponente(request):
     if request.method == 'POST':
@@ -33,6 +40,7 @@ def cadastroFamilia(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Familia Criada!")
+            return redirect("familias:familias") 
         else:   
             messages.error(request, "Dados inválidos!")
             return redirect("familias:cadastro_familia") 
