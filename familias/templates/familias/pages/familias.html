@@ -4,11 +4,25 @@
 	<div class="d-flex justify-content-center align-items-center h-100">
 		<div>
 			<h1>Familias</h1>
-			{% for familias in familias %}
-                <div class="d-block" style="border: 2px solid blue; margin-bottom: 10px">
-                    <a href="#" style="text-decoration:none; color: light-blue">{{familias.nome}} {{familias.rua}}</a>
-                </div>
-			{% endfor %}
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Rua</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for familias in familias %}
+                    <div>
+                        <tr>
+                            <td><a href="#" style="text-decoration:none; color: light-blue">{{familias.nome}}</a></td>
+                            <td><a href="#" style="text-decoration:none; color: light-blue">{{familias.rua}}</a></td>
+                        </tr> 
+                    </div>
+                    {% endfor %}
+                </tbody>
+              </table>
+			
             <a href="{% url 'familias:cadastro' %}">Novo Membro</a>
             <a href="{% url 'familias:cadastro_familia' %}">Nova Familia</a>
 		</div>
