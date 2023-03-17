@@ -1,0 +1,16 @@
+{% extends 'global/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="main-content main-content-list container">
+        <div class="no-content-container">
+            <h1>Nova Renda</h1>
+            <form class="form" action="/renda" method='post'>
+                {% csrf_token %}               
+                {{ form | crispy }}
+                <button type = 'submit'>Criar</button>
+            </form>
+        </div>
+</div>
+{% endblock content %}
+
+

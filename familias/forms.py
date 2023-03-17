@@ -29,3 +29,8 @@ class FamiliaForm(forms.ModelForm):
         if commit:
             instance.save() #salva a instancia com todos os dados na db
         return instance
+    
+class   RendaForm(forms.ModelForm):
+    class Meta:
+        model = RendaFamiliar
+        fields = '__all__'

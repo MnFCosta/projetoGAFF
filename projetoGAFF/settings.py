@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'teste',
     'login',
     'colaboradores',
-    'familias'
+    'familias',
+    'visitas'
 ]
 
 AUTH_USER_MODEL = 'colaboradores.User'

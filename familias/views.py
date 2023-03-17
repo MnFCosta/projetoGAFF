@@ -48,3 +48,23 @@ def cadastroFamilia(request):
     else:
         form = FamiliaForm()
     return render(request, "familias/pages/cadastro_familia.html", {'form': form})
+
+def cadastroRenda(request):
+    if request.method == 'POST':
+        form = RendaForm(request.POST)
+        if form.is_valid():
+            nova_renda= RendaFamiliar(familia=form.cleaned_data.get("familia"),
+                                                origem_renda=form.cleaned_data.get("origem_renda"),
+                                                valor=form.cleaned_data.get("valor"),)
+
+            nova_renda.save()
+            messages.success(request, "Renda Cadastrada!")
+        else:   
+            messages.error(request, "Dados inválidos!")
+            return redirect("familias:renda")
+        
+    else:
+        form = RendaForm()
+    return render(request, "familias/pages/cadastro_renda.html", {'form': form})
+
+

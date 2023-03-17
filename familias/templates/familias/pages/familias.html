@@ -22,9 +22,12 @@
                     {% endfor %}
                 </tbody>
               </table>
-			
-            <a href="{% url 'familias:cadastro' %}">Novo Membro</a>
-            <a href="{% url 'familias:cadastro_familia' %}">Nova Familia</a>
+            <div>
+              <a href="{% url 'familias:cadastro' %}">Novo Membro</a>
+              <a href="{% url 'familias:cadastro_familia' %}">Nova Familia</a>
+              <a href="{% url 'familias:renda' %}">Nova Renda Familiar</a>
+            </div>
+            
 		</div>
 	</div>
 </html>
