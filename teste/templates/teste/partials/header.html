@@ -9,7 +9,9 @@
 
 <header class="main-header-container">
     <div class="position-absolute top-9 start-0 m-3">
-        {% include 'teste/partials/sidenav.html'%}
+        {% if user.is_authenticated %}
+            {% include 'teste/partials/sidenav.html'%}
+        {% endif %}
     </div>
     <a class="link" href="{% url 'teste:home' %}">
         <div class="d-flex justify-content-center align-items-center clickable">    

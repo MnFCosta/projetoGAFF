@@ -1,9 +1,10 @@
 {% extends 'global/base.html' %}
+{% block title %}Cadastro de componente familiar{% endblock title %}Login
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="main-content main-content-list container">
         <div class="no-content-container">
-            <h1>Novo Membro de Familia</h1>
+            <h1>Novo Membro da Familia</h1>
             <form class="form" action="/cadastro" method='post'>
                 {% csrf_token %}               
                 {{ form | crispy }}
