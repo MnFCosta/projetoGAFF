@@ -1,0 +1,19 @@
+{% extends 'global/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="main-content main-content-list container">
+        <div class="no-content-container">
+            <h1>Visita a {{visita.familia}}</h1>
+            {% if colaboradores.exists%}
+            <h2>Participantes</h2>
+            {% for participante in colaboradores %}
+                {% for i in participante.participantes.all %}
+                    <span>{{i.nome}}</span><br>
+                {% endfor %}
+            {% endfor %}
+            {% endif %} 
+            <a href="{% url 'visitas:cadastro_participantes' visita.id %}" style="text-decoration:none; color: light-blue">Cadastre novos participantes</a>
+
+        </div>
+</div>
+{% endblock content %}

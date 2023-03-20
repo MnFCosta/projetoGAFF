@@ -15,8 +15,8 @@
                     {% for visitas in visitas %}
                     <div>
                         <tr>
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{visitas.familia}}</a></td>
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{visitas.data}}</a></td>
+                            <td><a href="{% url 'visitas:visita_detail' visitas.id %}" style="text-decoration:none; color: light-blue">{{visitas.familia}}</a></td>
+                            <td><a href="{% url 'visitas:visita_detail' visitas.id %}" style="text-decoration:none; color: light-blue">{{visitas.data}}</a></td>
                         </tr> 
                     </div>
                     {% endfor %}
