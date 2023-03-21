@@ -1,0 +1,19 @@
+Geral
+
+1 - Remover código inútil de templates
+
+2 - Mover códigos para seus apps corretos
+
+3 - Renomear o app teste
+
+Familias
+
+1 - Nome da familia deve ser unico
+
+
+Criar model de Doaçoes
+
+Criar model de entregas
+
+Criar model de items
+
