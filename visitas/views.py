@@ -2,7 +2,7 @@ from django.shortcuts import get_list_or_404, get_object_or_404, render, redirec
 from django.contrib import messages
 from .forms import *
 from .models import *
-from utils.utils import common_data
+from utils.utils import checar_repeticao
 
 # Create your views here.
 
@@ -61,11 +61,8 @@ def participantesVisita(request, id):
         if form.is_valid():
             
             novos=form.cleaned_data.get("participantes")    
-            print(participam)
-            print(novos)
-            print(common_data(participam,novos))
 
-            if common_data(participam,novos) == True:
+            if checar_repeticao(participam,novos) == True:
                  messages.error(request, "Os mesmos participantes já foram adicionados anteriormente!")
             else:
                 novos_participantes = VisitaParticipantes(visita=visita)
