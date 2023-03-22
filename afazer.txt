@@ -1,11 +1,3 @@
-Geral
-
-2 - Mover códigos para seus apps corretos
-
-Familias
-
-1 - Nome da familia deve ser unico
-
 
 Criar model de Doaçoes
 
