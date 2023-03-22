@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'visitas',
     'entregas',
     'doacoes',
-    'estoque'
+    'estoque',
+    'estoque.templatetags.custom_filters',
 ]
 
 AUTH_USER_MODEL = 'colaboradores.User'

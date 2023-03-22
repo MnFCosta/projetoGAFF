@@ -1,7 +1,4 @@
 
-Criar model de Doaçoes
 
-Criar model de entregas
 
-Criar model de items
 
