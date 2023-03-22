@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'familias',
     'visitas',
     'entregas',
-    'doacoes'
+    'doacoes',
+    'estoque'
 ]
 
 AUTH_USER_MODEL = 'colaboradores.User'

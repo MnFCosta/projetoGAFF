@@ -6,6 +6,6 @@ from .models import User
 def colaboradores(request):
     users = User.objects.order_by("id")
     
-    return render(request, "login/pages/login.html", context={
+    return render(request, "colaboradores/pages/colaboradores.html", context={
         "usuarios": users,
     })

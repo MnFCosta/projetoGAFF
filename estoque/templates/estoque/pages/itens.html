@@ -1,0 +1,37 @@
+{% extends 'global/base.html' %}
+{% block title %}Estoque{% endblock title %}
+{% block content %}
+	<div class="d-flex justify-content-center align-items-center h-100">
+		<div>
+			<h1>Estoque</h1>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Unidades disponíveis para entrega</th>
+                    <th scope="col">Multiplicador</th>
+                    <th scope="col">Quantidade disponível (em gramas)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for item in itens %}
+                    <div>
+                        <tr>
+                            <td><a href="#" style="text-decoration:none; color: light-blue">{{item.nome}}</a></td>
+                            <td><a href="#" style="text-decoration:none; color: light-blue">{{item.unidade}}</a></td>
+                            <td><a href="#" style="text-decoration:none; color: light-blue">{{item.multiplicador |floatformat:"0" }}x</a></td>
+                            <td><a href="#" style="text-decoration:none; color: light-blue">{{item.estoque_atual |floatformat:"0" }}g</a></td>
+                        </tr> 
+                    </div>
+                    {% endfor %}
+                </tbody>
+              </table>
+            <div>
+              {% comment %} <a href="{% url 'visitas:cadastro_visita' %}">Nova Visita</a> {% endcomment %}
+            </div>
+            
+		</div>
+	</div>
+</html>
+{% endblock content %}
+

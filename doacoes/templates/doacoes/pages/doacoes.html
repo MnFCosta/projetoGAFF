@@ -1,0 +1,33 @@
+{% extends 'global/base.html' %}
+{% block title %}Doacoes{% endblock title %}
+{% block content %}
+	<div class="d-flex justify-content-center align-items-center h-100">
+		<div>
+			<h1>Doacoes</h1>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Doador</th>
+                    <th scope="col">Data</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for doacao in doacoes %}
+                    <div>
+                        <tr>
+                            <td><a href="#" style="text-decoration:none; color: light-blue">{{doacao.doador}}</a></td>
+                            <td><a href="#" style="text-decoration:none; color: light-blue">{{doacao.data_doacao}}</a></td>
+                        </tr> 
+                    </div>
+                    {% endfor %}
+                </tbody>
+              </table>
+            <div>
+              {% comment %} <a href="{% url 'visitas:cadastro_visita' %}">Nova Visita</a> {% endcomment %}
+            </div>
+            
+		</div>
+	</div>
+</html>
+{% endblock content %}
+

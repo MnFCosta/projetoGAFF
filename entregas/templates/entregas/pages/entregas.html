@@ -1,22 +1,22 @@
 {% extends 'global/base.html' %}
-{% block title %}Colaboradores{% endblock title %}
+{% block title %}Entregas{% endblock title %}
 {% block content %}
 	<div class="d-flex justify-content-center align-items-center h-100">
 		<div>
-			<h1>Colaboradores</h1>
+			<h1>Entregas</h1>
             <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Contato</th>
+                    <th scope="col">Familia</th>
+                    <th scope="col">Data</th>
                   </tr>
                 </thead>
                 <tbody>
-                    {% for users in usuarios %}
+                    {% for entrega in entregas %}
                     <div>
                         <tr>
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{users.nome}}</a></td>
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{users.celular}}</a></td>
+                            <td><a href="#" style="text-decoration:none; color: light-blue">{{entrega.familia}}</a></td>
+                            <td><a href="#" style="text-decoration:none; color: light-blue">{{entrega.data_entrega}}</a></td>
                         </tr> 
                     </div>
                     {% endfor %}
