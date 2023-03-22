@@ -1,7 +1,5 @@
 Geral
 
-1 - Remover código inútil de templates
-
 2 - Mover códigos para seus apps corretos
 
 Familias

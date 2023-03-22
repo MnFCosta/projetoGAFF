@@ -1,0 +1,33 @@
+{% extends 'global/base.html' %}
+{% block title %}Colaboradores{% endblock title %}
+{% block content %}
+	<div class="d-flex justify-content-center align-items-center h-100">
+		<div>
+			<h1>Colaboradores</h1>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Contato</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for users in usuarios %}
+                    <div>
+                        <tr>
+                            <td><a href="#" style="text-decoration:none; color: light-blue">{{users.nome}}</a></td>
+                            <td><a href="#" style="text-decoration:none; color: light-blue">{{users.celular}}</a></td>
+                        </tr> 
+                    </div>
+                    {% endfor %}
+                </tbody>
+              </table>
+            <div>
+              {% comment %} <a href="{% url 'visitas:cadastro_visita' %}">Nova Visita</a> {% endcomment %}
+            </div>
+            
+		</div>
+	</div>
+</html>
+{% endblock content %}
+
