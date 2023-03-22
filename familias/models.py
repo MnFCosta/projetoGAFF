@@ -30,7 +30,7 @@ class componenteFamilia(models.Model):
         verbose_name_plural = "Integrantes de Família"
 
 class Familia(models.Model):
-    nome = models.CharField(max_length=200, default=None)
+    nome = models.CharField(max_length=200, default=None, unique=True)
     componentes = models.ManyToManyField(componenteFamilia, verbose_name="Composição")
     rua = models.CharField(max_length=200)
     numero = models.CharField(max_length=30)

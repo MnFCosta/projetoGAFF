@@ -11,7 +11,7 @@ from .forms import *
 def log(request):
     return render(request, "login/pages/login.html")
 
-@login_excluded('teste:home')
+@login_excluded('home:home')
 def signin(request):
 
     if request.method == "POST":
@@ -28,7 +28,7 @@ def signin(request):
                 else:
                     fname = user.nome 
                     lname = ""
-                return render(request, 'teste/pages/home.html', context={
+                return render(request, 'home/pages/home.html', context={
                     'fname': fname,
                     'lname': lname,
                 })
@@ -40,7 +40,7 @@ def signin(request):
         
     return render(request, "login/pages/signin.html", {'form': form})
 
-# @login_excluded('teste:home')
+# @login_excluded('home:home')
 def register_superuser(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -67,7 +67,7 @@ def register_superuser(request):
                 user.unidade_federativa = unidade_federativa
                 user.save()
                 messages.success(request, "Novo técnico cadastrado!")
-                return redirect("teste:home")
+                return redirect("home:home")
             else:
                 messages.error(request, "Senhas não são iguais!")
                 return redirect("login:register")

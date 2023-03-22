@@ -10,10 +10,10 @@
 <header class="main-header-container">
     <div class="position-absolute top-9 start-0 m-3">
         {% if user.is_authenticated %}
-            {% include 'teste/partials/sidenav.html'%}
+            {% include 'home/partials/sidenav.html'%}
         {% endif %}
     </div>
-    <a class="link" href="{% url 'teste:home' %}">
+    <a class="link" href="{% url 'home:home' %}">
         <div class="d-flex justify-content-center align-items-center clickable">    
             <i class="fa-solid fa-book-open main-logo-icon " style="margin-right: 10rem;"></i>
             <span class="position-absolute top-5 fs-1" >GAFF</span>

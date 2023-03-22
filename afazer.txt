@@ -4,8 +4,6 @@ Geral
 
 2 - Mover códigos para seus apps corretos
 
-3 - Renomear o app teste
-
 Familias
 
 1 - Nome da familia deve ser unico
