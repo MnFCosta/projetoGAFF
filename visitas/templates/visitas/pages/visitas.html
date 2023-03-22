@@ -1,0 +1,33 @@
+{% extends 'global/base.html' %}
+{% block title %}Visitas{% endblock title %}
+{% block content %}
+	<div class="d-flex justify-content-center align-items-center h-100">
+		<div>
+			<h1>Visitas</h1>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Familia</th>
+                    <th scope="col">Data</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for visitas in visitas %}
+                    <div>
+                        <tr>
+                            <td><a href="{% url 'visitas:visita_detail' visitas.id %}" style="text-decoration:none; color: light-blue">{{visitas.familia}}</a></td>
+                            <td><a href="{% url 'visitas:visita_detail' visitas.id %}" style="text-decoration:none; color: light-blue">{{visitas.data}}</a></td>
+                        </tr> 
+                    </div>
+                    {% endfor %}
+                </tbody>
+              </table>
+            <div>
+              <a href="{% url 'visitas:cadastro_visita' %}">Nova Visita</a>
+            </div>
+            
+		</div>
+	</div>
+</html>
+{% endblock content %}
+

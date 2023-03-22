@@ -35,9 +35,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'teste',
+    'crispy_forms',
+    'crispy_bootstrap4',
+    'home',
     'login',
+    'colaboradores',
+    'familias',
+    'visitas'
 ]
+
+AUTH_USER_MODEL = 'colaboradores.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -134,6 +141,9 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
+LOGIN_URL = "/signin"
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -145,3 +155,5 @@ MESSAGE_TAGS = {
     constants.SUCCESS: 'message-succ',
     constants.WARNING: 'message-warn',
 }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

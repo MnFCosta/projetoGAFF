@@ -1,0 +1,35 @@
+{% extends 'global/base.html' %}
+{% block title %}Familias{% endblock title %}Login
+{% block content %}
+	<div class="d-flex justify-content-center align-items-center h-100">
+		<div>
+			<h1>Familias</h1>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Rua</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for familias in familias %}
+                    <div>
+                        <tr>
+                            <td><a href="#" style="text-decoration:none; color: light-blue">{{familias.nome}}</a></td>
+                            <td><a href="#" style="text-decoration:none; color: light-blue">{{familias.rua}}</a></td>
+                        </tr> 
+                    </div>
+                    {% endfor %}
+                </tbody>
+              </table>
+            <div>
+              <a href="{% url 'familias:cadastro' %}">Novo Membro</a>
+              <a href="{% url 'familias:cadastro_familia' %}">Nova Familia</a>
+              <a href="{% url 'familias:renda' %}">Nova Renda Familiar</a>
+            </div>
+            
+		</div>
+	</div>
+</html>
+{% endblock content %}
+

@@ -1,0 +1,15 @@
+{% extends "global/base.html" %}
+
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+
+<div class="main-content main-content-list container">
+    {% if user.is_authenticated%}
+        <div class="no-content-container">
+            <h1> {{ user.first_name | upper }} {{ user.last_name | upper}}</h1>
+        </div>
+    {% endif %}
+        
+</div>
+{% endblock content %}

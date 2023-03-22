@@ -1,0 +1,50 @@
+{% comment %} <header class="main-header-container">  
+        <div class="developer">
+            <a href="https://www.linkedin.com/in/manoel-costa/" target="_blank" rel="noreferrer noopener">By Manoel Costa</a>
+        </div>
+        <div class="powered">
+            <a href="https://www.djangoproject.com/" target="_blank" rel="noreferrer noopener">Powered by Django</a>
+        </div>
+</header> {% endcomment %}
+
+<header class="main-header-container">
+    <div class="position-absolute top-9 start-0 m-3">
+        {% if user.is_authenticated %}
+            {% include 'home/partials/sidenav.html'%}
+        {% endif %}
+    </div>
+    <a class="link" href="{% url 'home:home' %}">
+        <div class="d-flex justify-content-center align-items-center clickable">    
+            <i class="fa-solid fa-book-open main-logo-icon " style="margin-right: 10rem;"></i>
+            <span class="position-absolute top-5 fs-1" >GAFF</span>
+        </div>
+    </a>  
+    {% comment %} <div class="headiv">
+        {% include 'login/partials/buttons.html'%}
+    </div> {% endcomment %}
+    <div class = "position-absolute top-9 end-0 m-5">
+        {% if user.is_authenticated %}
+        <div class="dropdown">
+            <i class="fa-solid fa-user main-logo-icon"></i>
+            <a class="link user-dropdown" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {% if user.nome == "" or user.nome is None %}
+                    {{user.email}}
+                {% else %}
+                    {{user.nome}}
+                {% endif %}
+            </a>
+          
+            <ul class="dropdown-menu dropdown-menu-lg-end">
+                <li>
+                    <a class="dropdown-item" href="{% url 'login:signout' %}">
+                        <i class="fas fa-sign-out-alt main-logo-icon"> </i>
+                        <span>Sair</span>
+                    </a>
+                </li> 
+            </ul>
+            
+        </div>            
+      {% endif %}
+    </div>
+</header>
+
