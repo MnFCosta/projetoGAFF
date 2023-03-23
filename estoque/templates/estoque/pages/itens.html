@@ -58,7 +58,7 @@
                               {% endif %}
                               {{movimentacao.item}}
                             </a></td>
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{movimentacao.quantidade |floatformat:"0"}} (unidades)</a></td>
+                            <td><a href="#" style="text-decoration:none; color: light-blue">{{movimentacao.quantidade |floatformat:"0"}}g</a></td>
                             <td><a href="#" style="text-decoration:none; color: light-blue">{{movimentacao.data_movimento}}</a></td>
                             {% if movimentacao.tipo.model == "itemdoacao" %}
                               <td><a href="#" style="text-decoration:none; color: light-blue">Doação</a></td>
