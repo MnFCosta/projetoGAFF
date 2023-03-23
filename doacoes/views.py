@@ -23,6 +23,7 @@ def cadastroDoacao(request):
                                                 )
             nova_doacao.save()
             messages.success(request, "Doação Criada, adicione items!")
+            return redirect(f"/cadastro_itens/{nova_doacao.id}")
         else:   
             messages.error(request, "Dados inválidos!")
             return redirect("doacao:cadastro_items")

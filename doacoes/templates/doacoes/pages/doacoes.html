@@ -15,15 +15,15 @@
                     {% for doacao in doacoes %}
                     <div>
                         <tr>
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{doacao.doador}}</a></td>
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{doacao.data_doacao}}</a></td>
+                            <td><a href="{% url 'doacoes:doacao_detail' doacao.id %}" style="text-decoration:none; color: light-blue">{{doacao.doador}}</a></td>
+                            <td><a href="{% url 'doacoes:doacao_detail' doacao.id %}" style="text-decoration:none; color: light-blue">{{doacao.data_doacao}}</a></td>
                         </tr> 
                     </div>
                     {% endfor %}
                 </tbody>
               </table>
             <div>
-              {% comment %} <a href="{% url 'visitas:cadastro_visita' %}">Nova Visita</a> {% endcomment %}
+              <a href="{% url 'doacoes:cadastro_doacao' %}">Nova Doacao</a>
             </div>
             
 		</div>
