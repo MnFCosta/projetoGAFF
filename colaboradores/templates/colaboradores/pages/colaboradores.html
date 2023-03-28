@@ -15,8 +15,8 @@
                     {% for users in usuarios %}
                     <div>
                         <tr>
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{users.nome}}</a></td>
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{users.celular}}</a></td>
+                            <td><a href="{% url 'colaboradores:colaborador_detail' users.id %}" style="text-decoration:none; color: light-blue">{{users.nome}}</a></td>
+                            <td><a href="{% url 'colaboradores:colaborador_detail' users.id %}" style="text-decoration:none; color: light-blue">{{users.celular}}</a></td>
                         </tr> 
                     </div>
                     {% endfor %}
