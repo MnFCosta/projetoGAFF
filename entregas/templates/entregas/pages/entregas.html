@@ -15,15 +15,15 @@
                     {% for entrega in entregas %}
                     <div>
                         <tr>
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{entrega.familia}}</a></td>
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{entrega.data_entrega}}</a></td>
+                            <td><a href="{% url 'entregas:entregas_detail' entrega.id %}" style="text-decoration:none; color: light-blue">{{entrega.familia}}</a></td>
+                            <td><a href="{% url 'entregas:entregas_detail' entrega.id %}" style="text-decoration:none; color: light-blue">{{entrega.data_entrega}}</a></td>
                         </tr> 
                     </div>
                     {% endfor %}
                 </tbody>
               </table>
             <div>
-              {% comment %} <a href="{% url 'visitas:cadastro_visita' %}">Nova Visita</a> {% endcomment %}
+              <a href="{% url 'entregas:cadastro_entregas' %}">Nova Entrega</a>
             </div>
             
 		</div>

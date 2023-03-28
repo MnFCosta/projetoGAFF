@@ -1,0 +1,15 @@
+{% extends 'global/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="main-content main-content-list container">
+        <div class="no-content-container">
+            <h1>Adicionando itens a entrega de {{entrega.familia}} do dia {{entrega.data_entrega}}</h1>
+            <form class="form" action="/cadastro_itens_entrega/{{entrega.id}}" method='post'>
+                {% csrf_token %}               
+                {{ form | crispy }}
+                <button type = 'submit'>Criar</button>
+            </form>
+        </div>
+</div>
+
+{% endblock content %}

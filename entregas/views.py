@@ -1,5 +1,10 @@
-from django.shortcuts import render
+from email.headerregistry import ContentTypeHeader
+from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib import messages
+from django.contrib.contenttypes.models import ContentType
+from estoque.models import Movimentacao
 from .models import *
+from .forms import *
 
 # Create your views here.
 def entregas(request):
@@ -8,3 +13,73 @@ def entregas(request):
     return render(request, "entregas/pages/entregas.html", context={
         "entregas": entregas,
     })
+
+def cadastroEntrega(request):
+    if request.method == 'POST':
+        form = EntregaForm(request.POST)
+        if form.is_valid():
+            nova_entrega = Entrega(data_entrega=form.cleaned_data.get("data_entrega"),
+                                 familia=form.cleaned_data.get("familia"),
+                                                )
+            nova_entrega.save()
+            messages.success(request, "Entrega Criada, adicione items!")
+            return redirect(f"/cadastro_itens_entrega/{nova_entrega.id}")
+        else:   
+            messages.error(request, "Dados inválidos!")
+            return redirect("entregas:cadastro_entregas")
+        
+    else:
+        form = EntregaForm()
+    return render(request, "entregas/pages/cadastro_entregas.html", {'form': form})
+
+def entregaDetail(request, id):
+    entrega = get_object_or_404(Entrega,
+        pk=id
+    )
+    itens = ItemEntrega.objects.filter(
+        entrega=id
+        ).order_by("-id")
+
+    return render(request, 'entregas/pages/entregas_detail.html', context={
+        "entrega": entrega,
+        "itens": itens,
+        "is_detail_page": True,
+    })
+
+
+def itensEntrega(request, id):
+    entrega = Entrega.objects.get(id=id)
+    itens = ItemEntrega.objects.filter(entrega_id=id)
+
+    items_adicionados = []
+    for item in itens:
+        var = item.item.nome
+        items_adicionados.append(var)
+    if request.method == 'POST':
+        form = ItensForm(request.POST)
+        if form.is_valid():
+            novos=form.cleaned_data.get("item") 
+            print(novos) 
+            print(items_adicionados)
+            if (f'{novos}' in items_adicionados):
+                 messages.error(request, "Os mesmos itens já foram adicionados anteriormente!")
+            else:
+                novos_itens = ItemEntrega(entrega=entrega, item=novos, quantidade=form.cleaned_data.get("quantidade"))
+                novos_itens.save()
+                movimentacao = Movimentacao(item=novos, 
+                                            data_movimento=timezone.now(),
+                                            quantidade=form.cleaned_data.get("quantidade"),
+                                            tipo = ContentType.objects.get_for_model(ItemEntrega),
+                                            por = request.user,
+                                            object_id = novos_itens.id)
+                movimentacao.save()
+                messages.success(request, "Itens adicionados!")
+
+            return redirect(f"/entregas/{entrega.id}")
+        else:   
+            messages.error(request, "Dados inválidos!")
+            return redirect("entregas:entregas")
+        
+    else:
+        form = ItensForm()
+    return render(request, "entregas/pages/cadastro_itens_entrega.html", {'form': form, 'entrega': entrega})
