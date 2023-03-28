@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from .forms import *
 from .models import *
@@ -68,3 +68,15 @@ def cadastroRenda(request):
     return render(request, "familias/pages/cadastro_renda.html", {'form': form})
 
 
+def familiaDetail(request, id):
+    familia = get_object_or_404(Familia,
+        pk=id
+    )
+    """ itens = ItemDoacao.objects.filter(
+        doacao=id
+        ).order_by("-id") """
+
+    return render(request, 'familias/pages/familia_detail.html', context={
+        "familia": familia,
+        "is_detail_page": True,
+    })
