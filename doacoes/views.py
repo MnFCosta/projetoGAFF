@@ -58,7 +58,7 @@ def itensDoacao(request, id):
         form = ItensForm(request.POST)
         if form.is_valid():
             novos=form.cleaned_data.get("item") 
-            print(novos) 
+            print(novos.id) 
             print(items_adicionados)
             if (f'{novos}' in items_adicionados):
                  messages.error(request, "Os mesmos itens já foram adicionados anteriormente!")
@@ -72,6 +72,9 @@ def itensDoacao(request, id):
                                             por = request.user,
                                             object_id = novos_itens.id)
                 movimentacao.save()
+                atualizar_valor = Item.objects.get(id=novos.id)
+                atualizar_valor.estoque_atual =  atualizar_valor.estoque_atual + form.cleaned_data.get("quantidade")
+                atualizar_valor.save()
                 messages.success(request, "Itens adicionados!")
 
             return redirect(f"/doacoes/{doacao.id}/")

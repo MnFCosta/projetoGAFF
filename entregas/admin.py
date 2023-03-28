@@ -23,13 +23,18 @@ class ItemAdmin(admin.ModelAdmin):
 admin.site.register(Item, ItemAdmin)
 
 class EntregaItensAdmin(admin.ModelAdmin):
-    list_display = ('id','item', 'entrega', 'quantidade_display')
-    list_display_links = ('id','item', 'entrega', 'quantidade_display')
-    search_fields = ('id','item', 'entrega', 'quantidade_display')
+    list_display = ('id','item', 'entrega', 'entrega_data', 'quantidade_display')
+    list_display_links = ('id','item', 'entrega', 'entrega_data', 'quantidade_display')
+    search_fields = ('id','item', 'entrega', 'entrega_data', 'quantidade_display')
 
     def quantidade_display(self, obj):
         return f"{math.trunc(obj.quantidade)}g"
     
     quantidade_display.short_description = 'Quantidade' # type: ignore
+
+    def entrega_data(self, obj):
+        return obj.entrega.data_entrega  # assuming the `Cliente` model has a `nome` field
+    
+    entrega_data.short_description = 'Data da Entrega' # type: ignore
 
 admin.site.register(ItemEntrega, EntregaItensAdmin)

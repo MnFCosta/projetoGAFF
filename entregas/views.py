@@ -64,17 +64,24 @@ def itensEntrega(request, id):
             if (f'{novos}' in items_adicionados):
                  messages.error(request, "Os mesmos itens já foram adicionados anteriormente!")
             else:
-                novos_itens = ItemEntrega(entrega=entrega, item=novos, quantidade=form.cleaned_data.get("quantidade"))
-                novos_itens.save()
-                movimentacao = Movimentacao(item=novos, 
+                atualizar_valor = Item.objects.get(id=novos.id)
+                if form.cleaned_data.get("quantidade") <= atualizar_valor.estoque_atual: 
+                    novos_itens = ItemEntrega(entrega=entrega, item=novos, quantidade=form.cleaned_data.get("quantidade"))
+                    novos_itens.save()
+                    movimentacao = Movimentacao(item=novos, 
                                             data_movimento=timezone.now(),
                                             quantidade=form.cleaned_data.get("quantidade"),
                                             tipo = ContentType.objects.get_for_model(ItemEntrega),
                                             por = request.user,
                                             object_id = novos_itens.id)
-                movimentacao.save()
-                messages.success(request, "Itens adicionados!")
-
+                    movimentacao.save()
+                    atualizar_valor.estoque_atual =  atualizar_valor.estoque_atual - form.cleaned_data.get("quantidade")
+                    atualizar_valor.save()
+                    messages.success(request, "Itens adicionados!")
+                else:
+                    qtd_solicitada = form.cleaned_data.get("quantidade")
+                    qtd_estoque = atualizar_valor.estoque_atual
+                    messages.error(request, f"A quantidade solicitada ({qtd_solicitada}g) é maior do que se há disponível em estoque ({qtd_estoque}g)")
             return redirect(f"/entregas/{entrega.id}")
         else:   
             messages.error(request, "Dados inválidos!")
