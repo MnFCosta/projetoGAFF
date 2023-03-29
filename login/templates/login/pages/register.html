@@ -3,14 +3,26 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="main-content main-content-list container">
-        <div class="no-content-container">
-            <h1>CADASTRE-SE</h1>
-            <form class="form" action="/register" method='post'>
-                {% csrf_token %}               
-                {{ form | crispy }}
-                <button type = 'submit'>Criar Conta</button>
-            </form>
-    </div>
+        
+</div>
+<div class="main-content main-content-list container">
+        <form class="form-container" action="/register" method='post'>
+            <div class="form-title">
+                <h1>CADASTRE-SE</h1>
+            </div>
+            {% csrf_token %}
+            <div class="form-row">
+            {% for field in form %}
+                    <div class="form-col">
+                        {{ field|as_crispy_field }}
+                    </div>
+            {% endfor %}               
+            </div>
+            {% comment %} {{ form | crispy }} {% endcomment %}
+            <div class="form-buttons">
+                <button class="form-button" type="submit">Criar Perfil</button>
+            </div>
+        </form>
 </div>
 {% endblock content %}
 

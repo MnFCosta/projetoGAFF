@@ -2,13 +2,20 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="main-content main-content-list container">
-        <div class="login-container">
+        <div class="form-container">
             <h1>LOGIN</h1>
             <form method="post" action={% url 'login:signin' %}>
                 {% csrf_token %}
-                {{ form | crispy }}
-                <button type="submit">Entrar</button>
-                <a class="text-decoration-none" href="{% url 'login:register' %}">Cadastre-se</a>
+                {% for field in form %}
+                    <div class="form-group">
+                        <label  class = "login-field"for="{{ field.id_for_label }}">{{ field.name | capfirst }}:</label>
+                        {{ field|as_crispy_field }}
+                    </div>
+                {% endfor %}
+                <div class="form-buttons">
+                    <button class="form-button" type="submit">Entrar</button>
+                    <button class="form-button"><a href="{% url 'login:register' %}">Cadastre-se</a></button>
+                </div>
             </form>     
         </div>
 </div>
