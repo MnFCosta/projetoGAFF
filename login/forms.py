@@ -1,6 +1,6 @@
 from django import forms
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, HTML, Row, Column, Div
+from crispy_forms.layout import Layout, Field, HTML, Row, Column, Div, Submit
 from django.contrib.auth.forms import AuthenticationForm
 
 
@@ -28,3 +28,39 @@ class RegisterForm(forms.Form):
     email = forms.EmailField(label='Email:', max_length=100)
     senha = forms.CharField(label='Sua senha:', widget=forms.PasswordInput())
     senha_confirmar = forms.CharField(label='Confirme sua senha:', widget=forms.PasswordInput())
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+                HTML('<h1>Dados Pessoais:</h1>'),
+            Row(
+                Div(
+                Column('nome', css_class='col-md-5'),
+                Column('telefone', css_class='col-md-5'),
+                css_class='form-row form-div-info'
+                ),
+            ),
+                HTML('<h1>Endereço: </h1>'),
+            Row(
+                Div(
+                'rua',
+                'bairro',
+                'numero_casa',
+                'cidade',
+                'unidade_federativa',
+                css_class='form-row form-div-endereco'
+                ),
+            ),
+                HTML('<h1>Credencias Login: </h1>'),
+            Row(
+                Div(
+                'email',
+                'senha',
+                'senha_confirmar',
+                css_class='form-row form-div-credenciais'
+                ),
+            ),
+                HTML('<div class="form-buttons"><button class="form-button" type="submit">Criar Perfil</button></div>'),
+        )

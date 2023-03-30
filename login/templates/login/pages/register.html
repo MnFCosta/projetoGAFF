@@ -1,29 +1,19 @@
 {% extends 'global/base.html' %}
 {% block title %}Cadastro de Colaborador{% endblock title %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block content %}
+
 <div class="main-content main-content-list container">
+    <form class="form-container" action="/register" method='post'>
+        <div class="form-title">
+            <h1>CADASTRE-SE</h1>
+        </div>
+        {% csrf_token %}
+        {% crispy form %}
         
-</div>
-<div class="main-content main-content-list container">
-        <form class="form-container" action="/register" method='post'>
-            <div class="form-title">
-                <h1>CADASTRE-SE</h1>
-            </div>
-            {% csrf_token %}
-            <div class="form-row">
-            {% for field in form %}
-                    <div class="form-col">
-                        {{ field|as_crispy_field }}
-                    </div>
-            {% endfor %}               
-            </div>
-            {% comment %} {{ form | crispy }} {% endcomment %}
-            <div class="form-buttons">
-                <button class="form-button" type="submit">Criar Perfil</button>
-            </div>
-        </form>
-</div>
+    </form>
+    </div>
 {% endblock content %}
 
 
