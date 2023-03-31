@@ -1,9 +1,10 @@
 {% extends 'global/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+<div class="d-flex justify-content-center align-items-center" style="height:800px;">
 <div class="main-content main-content-list container">
         <div class="form-container-login">
-            <h1 class="mb-3">LOGIN</h1>
+            <h1 style="margin-bottom: 50px">LOGIN</h1>
             <form method="post" action={% url 'login:signin' %}>
                 {% csrf_token %}
                 {% for field in form %}
@@ -21,5 +22,6 @@
             </form>     
         </div>
 </div> 
+</div>
 {% endblock content %}
 
