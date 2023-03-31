@@ -1,33 +1,46 @@
 {% extends 'global/base.html' %}
 {% block title %}Colaboradores{% endblock title %}
 {% block content %}
-	<div class="d-flex justify-content-center align-items-center h-100">
-		<div>
-			<h1>Colaboradores</h1>
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Contato</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    {% for users in usuarios %}
-                    <div>
-                        <tr>
-                            <td><a href="{% url 'colaboradores:colaborador_detail' users.id %}" style="text-decoration:none; color: light-blue">{{users.nome}}</a></td>
-                            <td><a href="{% url 'colaboradores:colaborador_detail' users.id %}" style="text-decoration:none; color: light-blue">{{users.celular}}</a></td>
-                        </tr> 
-                    </div>
-                    {% endfor %}
-                </tbody>
-              </table>
-            <div>
-              {% comment %} <a href="{% url 'visitas:cadastro_visita' %}">Nova Visita</a> {% endcomment %}
-            </div>
-            
-		</div>
-	</div>
+  <div class="container-lista">
+    <h1 style="margin-bottom:10px;">Colaboradores</h1>
+    <div class="search-container">
+          <form action="" class="search-form">
+              <input type="search" class="search-input" name="search">
+              <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+          </form>
+    </div>
+    {% comment %} <div class="d-flex justify-content-center align-items-center h-100"> {% endcomment %}
+      <div>
+              <table class="table">
+                  <thead> 
+                    <tr>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Contato</th>
+                      <th scope="col">Endereço</th>
+                      <th scope="col">Teste</th>
+                      <th scope="col">Teste</th>
+                      <th scope="col">Teste</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for users in usuarios %}
+                      <div>
+                          <tr>
+                              <td><a href="{% url 'colaboradores:colaborador_detail' users.id %}" style="text-decoration:none; color: light-blue">{{users.nome}}</a></td>
+                              <td><a href="{% url 'colaboradores:colaborador_detail' users.id %}" style="text-decoration:none; color: light-blue">{{users.celular}}</a></td>
+                              <td><a href="{% url 'colaboradores:colaborador_detail' users.id %}" style="text-decoration:none; color: light-blue">{{users.rua}} {{users.bairro}} {{users.cidade}}-{{users.unidade_federativa | upper}}</a></td>
+                          </tr> 
+                      </div>
+                      {% endfor %}
+                  </tbody>
+                </table>
+              <div>
+                {% comment %} <a href="{% url 'visitas:cadastro_visita' %}">Nova Visita</a> {% endcomment %}
+              </div>
+              
+      </div>
+    {% comment %} </div> {% endcomment %}
+  </div>
 </html>
 {% endblock content %}
 

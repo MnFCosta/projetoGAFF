@@ -1,0 +1,56 @@
+{% extends 'global/base.html' %}
+{% block title %}Estoque{% endblock title %}
+{% load custom_filters %}
+{% block content %}
+  <div class="container-lista">
+    <h1 style="margin-bottom:10px;">Movimentações de estoque</h1>
+      <div class="search-container">
+        <form action="" class="search-form">
+            <input type="search" class="search-input" name="search">
+            <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Tipo de movimento</th>
+                    <th scope="col">Por:</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for movimentacao in movimentacoes %}
+                    <div>
+                        <tr>
+                          
+                            <td><a href="#" style="text-decoration:none; color: light-blue">
+                              {% if movimentacao.tipo.model == "itemdoacao" %}
+                                +
+                              {% else %}
+                                -
+                              {% endif %}
+                              {{movimentacao.item}}
+                            </a></td>
+                            <td><a href="#" style="text-decoration:none; color: light-blue">{{movimentacao.quantidade |floatformat:"0"}}g</a></td>
+                            <td><a href="#" style="text-decoration:none; color: light-blue">{{movimentacao.data_movimento}}</a></td>
+                            {% if movimentacao.tipo.model == "itemdoacao" %}
+                              <td><a href="#" style="text-decoration:none; color: light-blue">Doação</a></td>
+                            {% else %}
+                            <td><a href="#" style="text-decoration:none; color: light-blue">Entrega</a></td>
+                            {% endif %}
+                            <td><a href="#" style="text-decoration:none; color: light-blue">{{movimentacao.por}}</a></td>
+                        </tr> 
+                    </div>
+                    {% endfor %}
+                </tbody>
+              </table>
+            <div>
+              {% comment %} <a href="{% url 'visitas:cadastro_visita' %}">Nova Visita</a> {% endcomment %}
+            </div>
+		</div>
+	</div>
+</html>
+{% endblock content %}
+

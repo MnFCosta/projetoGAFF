@@ -1,9 +1,14 @@
 {% extends 'global/base.html' %}
 {% block title %}Visitas{% endblock title %}
 {% block content %}
-	<div class="d-flex justify-content-center align-items-center h-100">
-		<div>
-			<h1>Visitas</h1>
+<div class="container-lista">
+  <h1 style="margin-bottom:10px;">Visitas</h1>
+    <div class="search-container">
+      <form action="" class="search-form">
+          <input type="search" class="search-input" name="search">
+          <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+      </form>
+    </div>
             <table class="table">
                 <thead>
                   <tr>

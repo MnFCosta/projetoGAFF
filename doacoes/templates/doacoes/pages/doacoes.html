@@ -1,9 +1,14 @@
 {% extends 'global/base.html' %}
 {% block title %}Doacoes{% endblock title %}
 {% block content %}
-	<div class="d-flex justify-content-center align-items-center h-100">
-		<div>
-			<h1>Doacoes</h1>
+		<div class="container-lista">
+			<h1 style="margin-bottom:10px;">Doações</h1>
+      <div class="search-container">
+        <form action="" class="search-form">
+            <input type="search" class="search-input" name="search">
+            <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
             <table class="table">
                 <thead>
                   <tr>
@@ -24,10 +29,8 @@
               </table>
             <div>
               <a href="{% url 'doacoes:cadastro_doacao' %}">Nova Doacao</a>
-            </div>
-            
+            </div>   
 		</div>
-	</div>
 </html>
 {% endblock content %}
 
