@@ -41,7 +41,11 @@ INSTALLED_APPS = [
     'login',
     'colaboradores',
     'familias',
-    'visitas'
+    'visitas',
+    'entregas',
+    'doacoes',
+    'estoque',
+    'estoque.templatetags.custom_filters',
 ]
 
 AUTH_USER_MODEL = 'colaboradores.User'

@@ -1,0 +1,36 @@
+{% extends 'global/base.html' %}
+{% block title %}Doacoes{% endblock title %}
+{% block content %}
+		<div class="container-lista">
+			<h1 style="margin-bottom:10px;">Doações</h1>
+      <div class="search-container">
+        <form action="" class="search-form">
+            <input type="search" class="search-input" name="search">
+            <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Doador</th>
+                    <th scope="col">Data</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for doacao in doacoes %}
+                    <div>
+                        <tr>
+                            <td><a href="{% url 'doacoes:doacao_detail' doacao.id %}" style="text-decoration:none; color: light-blue">{{doacao.doador}}</a></td>
+                            <td><a href="{% url 'doacoes:doacao_detail' doacao.id %}" style="text-decoration:none; color: light-blue">{{doacao.data_doacao}}</a></td>
+                        </tr> 
+                    </div>
+                    {% endfor %}
+                </tbody>
+              </table>
+            <div>
+              <a href="{% url 'doacoes:cadastro_doacao' %}">Nova Doacao</a>
+            </div>   
+		</div>
+</html>
+{% endblock content %}
+

@@ -1,6 +1,6 @@
-<button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-    <span style="margin-right: 5px">Menu</span>
-    <i class="fa-solid fa-bars"></i>
+<button class="btn btn-light" style="padding: 11px; width: 239.5px;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+    <span style="margin-right: 5px; font-size: 20px;">Menu</span>
+    <i class="fa-solid fa-bars" style="font-size: 15px;"></i>
 </button>
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
 <div class="offcanvas-header">
@@ -26,13 +26,16 @@
                 <a class="nav-link" href="{% url 'visitas:visita' %}">Visitas</a>
             </li> 
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'colaboradores:colaboradores' %}">Entregas</a>
+                <a class="nav-link" href="{% url 'entregas:entregas' %}">Entregas</a>
             </li> 
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'colaboradores:colaboradores' %}">Doações</a>
+                <a class="nav-link" href="{% url 'doacoes:doacoes' %}">Doações</a>
             </li> 
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'colaboradores:colaboradores' %}">Movimentação de estoque</a>
+                <a class="nav-link" href="{% url 'estoque:estoque' %}">Estoque</a>
+            </li> 
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'estoque:movimentacoes' %}">Movimentações de Estoque</a>
             </li> 
         </ul>
     </div>

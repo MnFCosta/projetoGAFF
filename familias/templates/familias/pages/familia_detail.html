@@ -1,0 +1,17 @@
+{% extends 'global/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="main-content main-content-list container">
+        <div class="no-content-container">
+            <h1>Familia: {{familia}}</h1>
+            {% if familia.componentes.exists%}
+            <h2>Componentes</h2>
+            {% for i in familia.componentes.all %}
+                <span>{{i.nome}}</span><br>
+            {% endfor %}
+            {% endif %} 
+
+    
+        </div>
+</div>
+{% endblock content %}

@@ -8,8 +8,6 @@ from utils.utils import login_excluded
 from .forms import *
 
 # Create your views here.
-def log(request):
-    return render(request, "login/pages/login.html")
 
 @login_excluded('home:home')
 def signin(request):

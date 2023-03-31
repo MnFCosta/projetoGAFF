@@ -1,0 +1,18 @@
+{% extends 'global/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="main-content main-content-list container">
+        <div class="no-content-container">
+            <h1>Colaborador: {{colaboradores.nome}}</h1>
+
+            <h2>Info</h2>
+            <span>{{colaboradores.email}}</span><br>
+            <span>{{colaboradores.celular}}</span><br>
+            <span>Endereço: {{colaboradores.rua}} {{colaboradores.bairro}} {{colaboradores.cidade}} - {{colaboradores.unidade_federativa}}</span><br>
+            <span>Cadastrado em: {{colaboradores.data_de_ingresso}}</span>
+
+            {% comment %} <a href="{% url 'doacoes:cadastro_itens' doacao.id %}" style="text-decoration:none; color: light-blue">Cadastre novos itens</a> {% endcomment %}
+
+        </div>
+</div>
+{% endblock content %}
