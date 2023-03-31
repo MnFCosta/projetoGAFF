@@ -2,8 +2,8 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="main-content main-content-list container">
-        <div class="form-container">
-            <h1>LOGIN</h1>
+        <div class="form-container-login">
+            <h1 class="mb-3">LOGIN</h1>
             <form method="post" action={% url 'login:signin' %}>
                 {% csrf_token %}
                 {% for field in form %}
@@ -12,12 +12,14 @@
                         {{ field|as_crispy_field }}
                     </div>
                 {% endfor %}
-                <div class="form-buttons">
+                <div class="form-buttons d-flex justify-content-center align-items-center">
                     <button class="form-button" type="submit">Entrar</button>
-                    <button class="form-button"><a href="{% url 'login:register' %}">Cadastre-se</a></button>
+                </div>
+                <div class="d-flex justify-content-end" style="margin-top: -50.5px">
+                    <span style="margin-top:13px">Não possui uma conta? <a class="cadastro-link" href="{% url 'login:register' %}"><span>Cadastre-se aqui!</span></a></span> 
                 </div>
             </form>     
         </div>
-</div>
+</div> 
 {% endblock content %}
 

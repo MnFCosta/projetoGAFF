@@ -24,7 +24,7 @@ class RegisterForm(forms.Form):
     bairro = forms.CharField(label='Bairro:', max_length=100, required=False)
     numero_casa = forms.CharField(label='Numero da Casa:', max_length=100, required=False)
     cidade = forms.CharField(label='Cidade:', max_length=100, required=False)
-    unidade_federativa = forms.CharField(label='Unidade Federativa:', max_length=100, required=False)
+    unidade_federativa = forms.CharField(label='Unidade Federativa:', max_length=2, required=False)
     email = forms.EmailField(label='Email:', max_length=100)
     senha = forms.CharField(label='Sua senha:', widget=forms.PasswordInput())
     senha_confirmar = forms.CharField(label='Confirme sua senha:', widget=forms.PasswordInput())
@@ -37,8 +37,8 @@ class RegisterForm(forms.Form):
                 HTML('<h1>Dados Pessoais:</h1>'),
             Row(
                 Div(
-                Column('nome', css_class='col-md-5'),
-                Column('telefone', css_class='col-md-5'),
+                'nome',
+                'telefone',
                 css_class='form-row form-div-info'
                 ),
             ),
@@ -56,9 +56,9 @@ class RegisterForm(forms.Form):
                 HTML('<h1>Credencias Login: </h1>'),
             Row(
                 Div(
-                'email',
-                'senha',
-                'senha_confirmar',
+                Field('email', autocomplete='off'),
+                Field('senha', autocomplete='off'),
+                Field('senha_confirmar', autocomplete='off'),
                 css_class='form-row form-div-credenciais'
                 ),
             ),

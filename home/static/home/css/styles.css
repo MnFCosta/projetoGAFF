@@ -295,14 +295,46 @@ img {
 .form-container{
     border-radius: 10px;
     color: white;
+    font-size: 20px;
     border: 3px solid black;
     background-color: var(--color-primary-form);
-    margin: 0 auto;
     margin-top: 20px;
     padding: 20px;
+}
+
+.form-container-login{
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    border: 3px solid black;
+    background-color: var(--color-primary-form);
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+
+}
+
+.form-container-login #div_id_email{
+    display: flex;
     justify-content: center;
-    /* border: 2px solid red; */
-    /* text-align: center; */
+}
+
+.form-container-login #div_id_senha{
+    display: flex;
+    justify-content: center;
+}
+
+.cadastro-link{
+    color: var(--color-white);
+}
+
+.cadastro-link:hover{
+    color: var(--color-black);
+    text-decoration-color: black;
+}
+
+.form-container-login .form-control{
+    margin: 5px;
 }
 
 .form-div{
@@ -311,32 +343,31 @@ img {
     /* padding: 20px; */
 }
 
-.form-row{
-    justify-content: center;
-}
 
 .form-div-info .form-group{
-    border: 2px solid blue;
-    padding: 20px;
-    width: 100%;
-    justify-content: center;
-    margin-left: 20px;
-}
-
-.form-div-endereco .form-group{
-    border: 2px solid blue;
-    /* margin-bottom: 20px; */
-    margin-left: 20px;
-    padding: 20px;
-}
-
-.form-div-credenciais .form-group{
-    border: 2px solid blue;
     margin-bottom: 20px;
     margin-left: 20px;
     padding: 20px;
 }
 
+.form-div-endereco .form-group{
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding: 20px;
+}
+
+.form-div-credenciais .form-group{
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding: 20px;
+}
+
+.form-control{
+    border: 2px solid black;
+    border-radius: 8px;
+    width: 250px;
+    font-size: 20px;
+}
 
 .custom-column {
     width: 30%;
@@ -362,16 +393,23 @@ button {
 
 .form-button{
     border: 3px solid black;
+    display: inline-block;
     background-color: white;
     padding: 8px 8px 8px 8px;
     border-radius: 4px;
     text-decoration: none;
-    margin: 5px;
-    color: var(--color-primary-form);
+    color: var(--color-black);
 }
 
+.form-button:hover {
+    background-color: #0062cc;
+    text-decoration: none;
+    color: black;
+  }
+
 .form-button a{
-    color: var(--color-primary-form);
+    border: 2px solid red;
+    color: var(--color-black);
     text-decoration: none;
 }
 
