@@ -9,10 +9,18 @@
 <body>
     {% include 'home/partials/header.html'%}
     {% include 'home/partials/messages.html' %}
-
-
-    {% comment %} <main> {% endcomment %}
-    {% block content %}{% endblock content %}
+    {% if pagination %}
+        <div class="container-lista">
+            {% block contentpaginator %}
+            {% endblock %}        
+            {% include 'home/partials/paginator.html'%}
+        </div>    
+    {% else %}
+        {% block content %} {% endblock %}
+    {% endif %}
+    
+    
+    
     {% comment %} </main>    {% endcomment %}
   
     {% include 'home/partials/footer.html'%}

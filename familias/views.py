@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib import messages
 from .forms import *
 from .models import *
@@ -6,10 +7,20 @@ from .models import *
 # Create your views here.
 def familias(request):
     familias = Familia.objects.order_by("id")
+    paginator = Paginator(familias, 19)
+    page_number = request.GET.get('page')
+
+    try:
+        current_page = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        current_page = paginator.get_page(1)
+    except EmptyPage:
+        current_page = paginator.get_page(paginator.num_pages)
+    context = {
+        'pagination': current_page,
+    } 
     
-    return render(request, "familias/pages/familias.html", context={
-        "familias": familias,
-    })
+    return render(request, "familias/pages/familias.html", context)
 
 
 def cadastroComponente(request):
