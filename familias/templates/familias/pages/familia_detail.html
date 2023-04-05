@@ -10,6 +10,15 @@
                 <span>{{i.nome}}</span><br>
             {% endfor %}
             {% endif %} 
+            {% if renda.exists%}
+            Rendas da Familia:
+            {% for i in renda%}
+                Origem: <span>{{i.origem_renda}}</span><br>
+                Valor: <span>{{i.valor}}</span><br>
+            {% endfor %}
+            {% endif %} 
+            <a href="{% url 'familias:cadastro' familia.id%}">Novo Membro</a>
+            <a href="{% url 'familias:renda' familia.id%}">Nova Renda Familiar</a>
 
     
         </div>

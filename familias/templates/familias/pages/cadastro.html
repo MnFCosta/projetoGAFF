@@ -5,7 +5,7 @@
 <div class="main-content main-content-list container">
         <div class="no-content-container">
             <h1>Novo Membro da Familia</h1>
-            <form class="form" action="/cadastro" method='post'>
+            <form class="form" action="/cadastro/{{id}}" method='post'>
                 {% csrf_token %}               
                 {{ form | crispy }}
                 <button type = 'submit'>Criar</button>

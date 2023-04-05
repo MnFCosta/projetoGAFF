@@ -378,7 +378,7 @@ img {
 .form-container-login #div_id_email{
     display: flex;
     justify-content: center;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .form-container-login #div_id_senha{
@@ -541,6 +541,15 @@ button {
     border: 1px solid var(--color-error-dark);
     background-color: var(--color-error-light);
     color: var(--color-error-dark);
+    display: inline-block;
+    margin: 0 auto;
+    width: fit-content;
+
+}
+
+.message-warn{
+    background-color: rgb(255, 197, 88);
+    color: black;
     display: inline-block;
     margin: 0 auto;
     width: fit-content;
