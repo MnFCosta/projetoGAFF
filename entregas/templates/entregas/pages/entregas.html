@@ -1,7 +1,6 @@
 {% extends 'global/base.html' %}
 {% block title %}Entregas{% endblock title %}
-{% block content %}
-  <div class="container-lista">
+{% block contentpaginator %}
     <h1 style="margin-bottom:10px;">Entregas</h1>
       <div class="search-container">
         <form action="" class="search-form">
@@ -17,7 +16,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                    {% for entrega in entregas %}
+                    {% for entrega in pagination %}
                     <div>
                         <tr>
                             <td><a href="{% url 'entregas:entregas_detail' entrega.id %}" style="text-decoration:none; color: light-blue">{{entrega.familia}}</a></td>
@@ -31,8 +30,6 @@
               <a href="{% url 'entregas:cadastro_entregas' %}">Nova Entrega</a>
             </div>
             
-		</div>
-	</div>
 </html>
-{% endblock content %}
+{% endblock contentpaginator %}
 

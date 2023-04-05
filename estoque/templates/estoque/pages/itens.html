@@ -1,8 +1,7 @@
 {% extends 'global/base.html' %}
 {% block title %}Estoque{% endblock title %}
 {% load custom_filters %}
-{% block content %}
-<div class="container-lista">
+{% block contentpaginator %}
   <h1 style="margin-bottom:10px;">Estoque</h1>
     <div class="search-container">
       <form action="" class="search-form">
@@ -20,7 +19,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                    {% for item in itens %}
+                    {% for item in pagination %}
                     <div>
                         <tr>
                             <td><a href="#" style="text-decoration:none; color: light-blue">{{item.nome}}</a></td>
@@ -35,8 +34,6 @@
             <div>
               {% comment %} <a href="{% url 'visitas:cadastro_visita' %}">Nova Visita</a> {% endcomment %}
             </div>
-		</div>
-	</div>
 </html>
-{% endblock content %}
+{% endblock contentpaginator %}
 

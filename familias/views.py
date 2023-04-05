@@ -7,7 +7,7 @@ from .models import *
 # Create your views here.
 def familias(request):
     familias = Familia.objects.order_by("id")
-    paginator = Paginator(familias, 19)
+    paginator = Paginator(familias, 21)
     page_number = request.GET.get('page')
 
     try:

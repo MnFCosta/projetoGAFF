@@ -1,7 +1,6 @@
 {% extends 'global/base.html' %}
 {% block title %}Doacoes{% endblock title %}
-{% block content %}
-		<div class="container-lista">
+{% block contentpaginator %}
 			<h1 style="margin-bottom:10px;">Doações</h1>
       <div class="search-container">
         <form action="" class="search-form">
@@ -17,7 +16,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                    {% for doacao in doacoes %}
+                    {% for doacao in pagination %}
                     <div>
                         <tr>
                             <td><a href="{% url 'doacoes:doacao_detail' doacao.id %}" style="text-decoration:none; color: light-blue">{{doacao.doador}}</a></td>
@@ -29,8 +28,6 @@
               </table>
             <div>
               <a href="{% url 'doacoes:cadastro_doacao' %}">Nova Doacao</a>
-            </div>   
-		</div>
 </html>
-{% endblock content %}
+{% endblock contentpaginator %}
 

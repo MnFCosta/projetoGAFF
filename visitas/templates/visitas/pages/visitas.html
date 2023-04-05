@@ -1,7 +1,6 @@
 {% extends 'global/base.html' %}
 {% block title %}Visitas{% endblock title %}
-{% block content %}
-<div class="container-lista">
+{% block contentpaginator %}
   <h1 style="margin-bottom:10px;">Visitas</h1>
     <div class="search-container">
       <form action="" class="search-form">
@@ -17,7 +16,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                    {% for visitas in visitas %}
+                    {% for visitas in pagination %}
                     <div>
                         <tr>
                             <td><a href="{% url 'visitas:visita_detail' visitas.id %}" style="text-decoration:none; color: light-blue">{{visitas.familia}}</a></td>
@@ -30,9 +29,6 @@
             <div>
               <a href="{% url 'visitas:cadastro_visita' %}">Nova Visita</a>
             </div>
-            
-		</div>
-	</div>
 </html>
-{% endblock content %}
+{% endblock contentpaginator %}
 

@@ -6,7 +6,7 @@ from .models import User
 
 def colaboradores(request):
     users = User.objects.order_by("id")
-    paginator = Paginator(users, 3)
+    paginator = Paginator(users, 21)
     page_number = request.GET.get('page')
 
     try:
