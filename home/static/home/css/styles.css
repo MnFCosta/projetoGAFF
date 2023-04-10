@@ -86,6 +86,11 @@ button {
     cursor: pointer;
   }
 
+.new-button a{
+    color: white;
+
+}
+
 /* Containers */
 .container-custom {
     max-width: 144rem;
@@ -113,7 +118,7 @@ button {
     background-color: var(--color-primary-form);
     margin-top: 20px;
     padding: 20px;
-    height: 1230px;
+    height: 1275px;
     margin-left: 240px;
     margin-right: 20px;
     margin-bottom: 20px;

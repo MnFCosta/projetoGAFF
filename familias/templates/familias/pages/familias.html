@@ -8,6 +8,9 @@
           <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
       </form>
     </div>
+    <div class="new-button">
+      <a href="{% url 'familias:cadastro_familia' %}">Nova Familia</a>
+    </div>
           <table class="table">
                 <thead>
                   <tr>
@@ -27,7 +30,6 @@
                 </tbody>
               </table>
             <div>
-              <a href="{% url 'familias:cadastro_familia' %}">Nova Familia</a>
     </div>          
 </html>
 {% endblock contentpaginator %}

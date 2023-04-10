@@ -43,7 +43,7 @@ def cadastroItem(request):
 
 def movimentacoes(request):
     movimentacoes = Movimentacao.objects.order_by("-id")
-    paginator = Paginator(movimentacoes, 21)
+    paginator = Paginator(movimentacoes, 22)
     page_number = request.GET.get('page')
 
     try:
