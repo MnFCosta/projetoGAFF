@@ -57,7 +57,9 @@ html {
 }
 
 body {
-    height: 100%;
+    position: relative;
+    padding-bottom: 50px;
+    min-height: 100%;
     font-size: 1.6rem;
     font-family: var(--font-primary);
     background-color: white;
@@ -69,6 +71,27 @@ h1,h2,h3,h4,h5,h6{
     font-family: var(--font-headings);
 }
 
+img {
+    width: 100%;
+    height: 100%;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+
+.new-button a{
+    color: white;
+
+}
+
+/* Containers */
 .container-custom {
     max-width: 144rem;
     margin: 0 auto;
@@ -86,6 +109,147 @@ h1,h2,h3,h4,h5,h6{
     border: 2px solid black;
 }
 
+.container-lista{
+    position: relative;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    border: 3px solid black;
+    background-color: var(--color-primary-form);
+    margin-top: 20px;
+    padding: 20px;
+    height: 1275px;
+    margin-left: 240px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+
+
+/* Forms */
+
+.form-container{
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    border: 3px solid black;
+    background-color: var(--color-primary-form);
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.form-container-login{
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    border: 3px solid black;
+    background-color: var(--color-primary-form);
+    padding: 20px;
+    text-align: center;
+
+}
+
+.form-container-login #div_id_email{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.form-container-login #div_id_senha{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.form-container-login .form-control{
+    margin: 5px;
+}
+
+.form-div{
+    border: 2px solid red;
+    margin-bottom: 20px;
+    /* padding: 20px; */
+}
+
+
+.form-div-info .form-group{
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding: 20px;
+}
+
+.form-div-endereco .form-group{
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding: 20px;
+}
+
+.form-div-credenciais .form-group{
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding: 20px;
+}
+
+.form-control{
+    border: 2px solid black;
+    border-radius: 8px;
+    width: 250px;
+    font-size: 20px;
+}
+
+.form-buttons{
+    margin-top: 10px;
+    text-align: center;
+}
+.form-title{
+    text-align: center;
+}
+
+.form-button{
+    border: 3px solid black;
+    display: inline-block;
+    background-color: white;
+    padding: 8px 8px 8px 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--color-black);
+}
+
+.form-button:hover {
+    background-color: #0062cc;
+    text-decoration: none;
+    color: black;
+  }
+
+.form-button a{
+    border: 2px solid red;
+    color: var(--color-black);
+    text-decoration: none;
+}
+
+.asteriskField {
+    display: none;
+}
+
+.form_div{
+    border: 2px solid red;
+    padding: 10px;
+    white-space: pre;   
+    display: inline-block;
+}
+
+.form{
+    border: 2px solid red ;
+    padding: var(--spacing-gutter-medium);
+}
+
+.form input{
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Offcanvas */
+
 .offcanvas{
     background-color: var(--color-primary);
     color: var(--color-white);
@@ -96,13 +260,16 @@ h1,h2,h3,h4,h5,h6{
     background-color: var(--color-white);
 }
 
+/* Header */
+
 .main-logo-icon{
     margin-right: 0.5rem;
 }
 
+
+/* Busca */
 .search-form{
     border: .3rem solid var(--color-primary-dark);
-    max-width: 200rem;
     margin: 0 auto;
     margin-bottom:20px;
     border-radius: 4px;
@@ -149,6 +316,20 @@ h1,h2,h3,h4,h5,h6{
     background: rgba(0,0,0,.05);
 
 }
+
+/* Paginação */
+.paginator-div{
+    margin-top: 20px;
+}
+
+.paginator-div a{
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: white;
+}
+
 
 .main-content{
     padding-top: 0;
@@ -208,10 +389,7 @@ h1,h2,h3,h4,h5,h6{
     height: 300px;
 } */
 
-img {
-    width: 100%;
-    height: 100%;
-}
+
 
 /* .recipe-author-item{
     color: var(--color-gray-4);
@@ -263,6 +441,7 @@ img {
     filter: brightness(2);
 } */
 
+/* Footer */
 .main-footer{
     display: flex;
     align-items: center;
@@ -270,11 +449,10 @@ img {
     background: var(--color-primary);
     color: var(--color-white);
     padding: var(--spacing-gutter-small);
-    margin-top: 18px;
-    position: absolute; /* Set the position of the footer to absolute */
-    bottom: 0; /* Set the bottom property to 0 to stick the footer at the bottom */
-    width: 100%; /* Set the width of the footer to 100% */
-    height: 50px; /* Set the height of the footer */
+    position: absolute;
+    bottom: 0; 
+    width: 100%; 
+    height: 50px; 
     border: 2px solid black;
 }
 
@@ -298,31 +476,16 @@ img {
     box-shadow: -5px 5px 15px rgba(0,0,0,0.2);
 } */
 
-.form-container{
-    border-radius: 10px;
-    color: white;
-    font-size: 20px;
-    border: 3px solid black;
-    background-color: var(--color-primary-form);
-    margin-top: 20px;
-    padding: 20px;
-}
 
-.container-lista{
-    border-radius: 10px;
-    color: white;
-    font-size: 20px;
-    border: 3px solid black;
-    background-color: var(--color-primary-form);
-    margin-top: 20px;
-    padding: 20px;
-    height: 87%;
-    margin-left: 240px;
-}
-
+/* Tables */
 .table a{
     color: black;
+    text-decoration:none;
+    display: block;
+    width: 100%;
+    height: 100%; 
 }
+
 .table td{
     background-color: rgb(243, 243, 243);
     border-right: 2px solid black;
@@ -331,30 +494,15 @@ img {
 .table th{
     background-color: rgb(180, 221, 255);
     border: 2px solid black;
+
 }
 
-.form-container-login{
-    border-radius: 10px;
-    color: white;
-    font-size: 20px;
-    border: 3px solid black;
-    background-color: var(--color-primary-form);
-    /* ma-rgin-top: 50px; */
-    padding: 20px;
+.table .td-delete{
+    background-color: red;
     text-align: center;
-
-}
-
-.form-container-login #div_id_email{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
-}
-
-.form-container-login #div_id_senha{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
+    border: 2px solid black;
+    width: 100px;
+    height: 45px;
 }
 
 .cadastro-link{
@@ -364,42 +512,6 @@ img {
 .cadastro-link:hover{
     color: var(--color-black);
     text-decoration-color: black;
-}
-
-.form-container-login .form-control{
-    margin: 5px;
-}
-
-.form-div{
-    border: 2px solid red;
-    margin-bottom: 20px;
-    /* padding: 20px; */
-}
-
-
-.form-div-info .form-group{
-    margin-bottom: 20px;
-    margin-left: 20px;
-    padding: 20px;
-}
-
-.form-div-endereco .form-group{
-    margin-bottom: 20px;
-    margin-left: 20px;
-    padding: 20px;
-}
-
-.form-div-credenciais .form-group{
-    margin-bottom: 20px;
-    margin-left: 20px;
-    padding: 20px;
-}
-
-.form-control{
-    border: 2px solid black;
-    border-radius: 8px;
-    width: 250px;
-    font-size: 20px;
 }
 
 .custom-column {
@@ -421,72 +533,6 @@ img {
     background-color: #7cbbff;
     color: black;
     font-size: 20px;
-}
-
-button {
-    border: none;
-    background-color: transparent;
-    padding: 0;
-    margin: 0;
-    font: inherit;
-    color: inherit;
-    cursor: pointer;
-  }
-
-.form-buttons{
-    margin-top: 10px;
-    text-align: center;
-}
-.form-title{
-    text-align: center;
-}
-
-.form-button{
-    border: 3px solid black;
-    display: inline-block;
-    background-color: white;
-    padding: 8px 8px 8px 8px;
-    border-radius: 4px;
-    text-decoration: none;
-    color: var(--color-black);
-}
-
-.form-button:hover {
-    background-color: #0062cc;
-    text-decoration: none;
-    color: black;
-  }
-
-.form-button a{
-    border: 2px solid red;
-    color: var(--color-black);
-    text-decoration: none;
-}
-
-/* .login-field{
-    position: relative;
-    right: 80px;
-} */
-
-.asteriskField {
-    display: none;
-}
-
-.form_div{
-    border: 2px solid red;
-    padding: 10px;
-    white-space: pre;   
-    display: inline-block;
-}
-
-.form{
-    border: 2px solid red ;
-    padding: var(--spacing-gutter-medium);
-}
-
-.form input{
-    display: block;
-    margin-bottom: 10px;
 }
 
 /* Messages */
@@ -511,6 +557,15 @@ button {
     border: 1px solid var(--color-error-dark);
     background-color: var(--color-error-light);
     color: var(--color-error-dark);
+    display: inline-block;
+    margin: 0 auto;
+    width: fit-content;
+
+}
+
+.message-warn{
+    background-color: rgb(255, 197, 88);
+    color: black;
     display: inline-block;
     margin: 0 auto;
     width: fit-content;

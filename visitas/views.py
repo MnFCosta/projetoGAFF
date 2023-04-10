@@ -1,4 +1,5 @@
 from django.shortcuts import get_list_or_404, get_object_or_404, render, redirect
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib import messages
 from .forms import *
 from .models import *
@@ -7,11 +8,22 @@ from utils.utils import checar_repeticao
 # Create your views here.
 
 def visitas(request):
-    visitas = Visita.objects.order_by("id")
+    visitas = Visita.objects.order_by("-id")
+    paginator = Paginator(visitas, 21)
+    page_number = request.GET.get('page')
+
+    try:
+        current_page = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        current_page = paginator.get_page(1)
+    except EmptyPage:
+        current_page = paginator.get_page(paginator.num_pages)
+    context = {
+        'pagination': current_page,
+    } 
     
-    return render(request, "visitas/pages/visitas.html", context={
-        "visitas": visitas,
-    })
+    return render(request, "visitas/pages/visitas.html", context)
+
 
 
 def visitaDetail(request, id):

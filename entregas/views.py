@@ -1,17 +1,29 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from estoque.models import Movimentacao
 from .models import *
 from .forms import *
 
 # Create your views here.
 def entregas(request):
-    entregas = Entrega.objects.order_by("id")
+    entregas = Entrega.objects.order_by("-id")
+    paginator = Paginator(entregas, 21)
+    page_number = request.GET.get('page')
+
+    try:
+        current_page = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        current_page = paginator.get_page(1)
+    except EmptyPage:
+        current_page = paginator.get_page(paginator.num_pages)
+    context = {
+        'pagination': current_page,
+    } 
     
-    return render(request, "entregas/pages/entregas.html", context={
-        "entregas": entregas,
-    })
+    return render(request, "entregas/pages/entregas.html", context)
+
 
 def cadastroEntrega(request):
     if request.method == 'POST':

@@ -1,15 +1,15 @@
 {% extends 'global/base.html' %}
 {% block title %}Estoque{% endblock title %}
 {% load custom_filters %}
-{% block content %}
-  <div class="container-lista">
+
+{% block contentpaginator %}
     <h1 style="margin-bottom:10px;">Movimentações de estoque</h1>
       <div class="search-container">
         <form action="" class="search-form">
             <input type="search" class="search-input" name="search">
             <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
         </form>
-      </div>
+      <div>
             <table class="table">
                 <thead>
                   <tr>
@@ -21,10 +21,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                    {% for movimentacao in movimentacoes %}
+                    {% for movimentacao in pagination %}
                     <div>
                         <tr>
-                          
                             <td><a href="#" style="text-decoration:none; color: light-blue">
                               {% if movimentacao.tipo.model == "itemdoacao" %}
                                 +
@@ -46,11 +45,9 @@
                     {% endfor %}
                 </tbody>
               </table>
-            <div>
-              {% comment %} <a href="{% url 'visitas:cadastro_visita' %}">Nova Visita</a> {% endcomment %}
             </div>
 		</div>
-	</div>
 </html>
-{% endblock content %}
+{% endblock contentpaginator %}
+
 

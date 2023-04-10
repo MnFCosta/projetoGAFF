@@ -1,13 +1,15 @@
 {% extends 'global/base.html' %}
 {% block title %}Visitas{% endblock title %}
-{% block content %}
-<div class="container-lista">
+{% block contentpaginator %}
   <h1 style="margin-bottom:10px;">Visitas</h1>
     <div class="search-container">
       <form action="" class="search-form">
           <input type="search" class="search-input" name="search">
           <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
       </form>
+    </div>
+    <div class="new-button">
+      <a href="{% url 'visitas:cadastro_visita' %}">Nova Visita</a>
     </div>
             <table class="table">
                 <thead>
@@ -17,7 +19,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                    {% for visitas in visitas %}
+                    {% for visitas in pagination %}
                     <div>
                         <tr>
                             <td><a href="{% url 'visitas:visita_detail' visitas.id %}" style="text-decoration:none; color: light-blue">{{visitas.familia}}</a></td>
@@ -27,12 +29,6 @@
                     {% endfor %}
                 </tbody>
               </table>
-            <div>
-              <a href="{% url 'visitas:cadastro_visita' %}">Nova Visita</a>
-            </div>
-            
-		</div>
-	</div>
 </html>
-{% endblock content %}
+{% endblock contentpaginator %}
 

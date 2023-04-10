@@ -1,18 +1,28 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib import messages
 from .models import *
 from estoque.models import *
 from .forms import *
-from utils.utils import checar_repeticao
 from django.contrib.contenttypes.models import ContentType
 
 # Create your views here.
 def doacoes(request):
-    doacoes = Doacao.objects.order_by("id")
+    doacoes = Doacao.objects.order_by("-id")
+    paginator = Paginator(doacoes, 21)
+    page_number = request.GET.get('page')
+
+    try:
+        current_page = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        current_page = paginator.get_page(1)
+    except EmptyPage:
+        current_page = paginator.get_page(paginator.num_pages)
+    context = {
+        'pagination': current_page,
+    } 
     
-    return render(request, "doacoes/pages/doacoes.html", context={
-        "doacoes": doacoes,
-    })
+    return render(request, "doacoes/pages/doacoes.html", context)
 
 def cadastroDoacao(request):
     if request.method == 'POST':
@@ -73,8 +83,8 @@ def itensDoacao(request, id):
                                             object_id = novos_itens.id)
                 movimentacao.save()
                 atualizar_valor = Item.objects.get(id=novos.id)
-                atualizar_valor.estoque_atual =  atualizar_valor.estoque_atual + form.cleaned_data.get("quantidade")
-                atualizar_valor.save()
+                atualizar_valor.estoque_atual += form.cleaned_data.get("quantidade")
+                atualizar_valor.save() 
                 messages.success(request, "Itens adicionados!")
 
             return redirect(f"/doacoes/{doacao.id}/")

@@ -1,7 +1,6 @@
 {% extends 'global/base.html' %}
 {% block title %}Colaboradores{% endblock title %}
-{% block content %}
-  <div class="container-lista">
+{% block contentpaginator %}
     <h1 style="margin-bottom:10px;">Colaboradores</h1>
     <div class="search-container">
           <form action="" class="search-form">
@@ -9,38 +8,38 @@
               <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
           </form>
     </div>
+    <div class="new-button">
+      <a href="{% url 'login:register' %}">Novo Colaborador</a>
+    </div>
     {% comment %} <div class="d-flex justify-content-center align-items-center h-100"> {% endcomment %}
       <div>
-              <table class="table">
+            <table class="table">
                   <thead> 
                     <tr>
                       <th scope="col">Nome</th>
                       <th scope="col">Contato</th>
                       <th scope="col">Endereço</th>
                       <th scope="col">Teste</th>
-                      <th scope="col">Teste</th>
-                      <th scope="col">Teste</th>
+                      {% comment %} <th scope="col">Deletar</th> {% endcomment %}
                     </tr>
                   </thead>
                   <tbody>
-                      {% for users in usuarios %}
+                      {% for users in pagination %}
                       <div>
                           <tr>
-                              <td><a href="{% url 'colaboradores:colaborador_detail' users.id %}" style="text-decoration:none; color: light-blue">{{users.nome}}</a></td>
-                              <td><a href="{% url 'colaboradores:colaborador_detail' users.id %}" style="text-decoration:none; color: light-blue">{{users.celular}}</a></td>
-                              <td><a href="{% url 'colaboradores:colaborador_detail' users.id %}" style="text-decoration:none; color: light-blue">{{users.rua}} {{users.bairro}} {{users.cidade}}-{{users.unidade_federativa | upper}}</a></td>
+                              <td><a href="{% url 'colaboradores:colaborador_detail' users.id %}"> {{users.nome}}</a></td>
+                              <td><a href="{% url 'colaboradores:colaborador_detail' users.id %}">{{users.celular}}</a></td>
+                              <td><a href="{% url 'colaboradores:colaborador_detail' users.id %}">{{users.rua}} 
+                                {{users.bairro}} {{users.cidade}}-{{users.unidade_federativa | upper}}</a></td>
+                                <td><a href="{% url 'colaboradores:colaborador_detail' users.id %}">{{users.nome}}</a></td>  
+                              {% comment %} <td class = "td-delete"><a href="{% url 'colaboradores:colaborador_detail' users.id %}"><i class="fa-solid fa-trash"></i></a></td>   {% endcomment %}
                           </tr> 
                       </div>
                       {% endfor %}
                   </tbody>
-                </table>
-              <div>
-                {% comment %} <a href="{% url 'visitas:cadastro_visita' %}">Nova Visita</a> {% endcomment %}
-              </div>
-              
+            </table>
       </div>
     {% comment %} </div> {% endcomment %}
-  </div>
 </html>
-{% endblock content %}
+{% endblock contentpaginator %}
 

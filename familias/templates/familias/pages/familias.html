@@ -1,7 +1,6 @@
 {% extends 'global/base.html' %}
 {% block title %}Familias{% endblock title %}Login
-{% block content %}
-<div class="container-lista">
+{% block contentpaginator %}
   <h1 style="margin-bottom:10px;">Famílias</h1>
     <div class="search-container">
       <form action="" class="search-form">
@@ -9,7 +8,10 @@
           <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
       </form>
     </div>
-            <table class="table">
+    <div class="new-button">
+      <a href="{% url 'familias:cadastro_familia' %}">Nova Familia</a>
+    </div>
+          <table class="table">
                 <thead>
                   <tr>
                     <th scope="col">Nome</th>
@@ -17,7 +19,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                    {% for familias in familias %}
+                    {% for familias in pagination %}
                     <div>
                         <tr>
                             <td><a href="{% url 'familias:familia_detail' familias.id %}" style="text-decoration:none; color: light-blue">{{familias.nome}}</a></td>
@@ -28,13 +30,7 @@
                 </tbody>
               </table>
             <div>
-              <a href="{% url 'familias:cadastro' %}">Novo Membro</a>
-              <a href="{% url 'familias:cadastro_familia' %}">Nova Familia</a>
-              <a href="{% url 'familias:renda' %}">Nova Renda Familiar</a>
-            </div>
-            
-		</div>
-	</div>
+    </div>          
 </html>
-{% endblock content %}
+{% endblock contentpaginator %}
 

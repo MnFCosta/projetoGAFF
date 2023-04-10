@@ -1,7 +1,6 @@
 {% extends 'global/base.html' %}
 {% block title %}Entregas{% endblock title %}
-{% block content %}
-  <div class="container-lista">
+{% block contentpaginator %}
     <h1 style="margin-bottom:10px;">Entregas</h1>
       <div class="search-container">
         <form action="" class="search-form">
@@ -9,15 +8,18 @@
             <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
         </form>
       </div>
+      <div class="new-button">
+        <a href="{% url 'entregas:cadastro_entregas' %}">Nova Entrega</a>
+      </div>
             <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">Familia</th>
+                    <th scope="col">Para a familia:</th>
                     <th scope="col">Data</th>
                   </tr>
                 </thead>
                 <tbody>
-                    {% for entrega in entregas %}
+                    {% for entrega in pagination %}
                     <div>
                         <tr>
                             <td><a href="{% url 'entregas:entregas_detail' entrega.id %}" style="text-decoration:none; color: light-blue">{{entrega.familia}}</a></td>
@@ -26,13 +28,7 @@
                     </div>
                     {% endfor %}
                 </tbody>
-              </table>
-            <div>
-              <a href="{% url 'entregas:cadastro_entregas' %}">Nova Entrega</a>
-            </div>
-            
-		</div>
-	</div>
+              </table>    
 </html>
-{% endblock content %}
+{% endblock contentpaginator %}
 
