@@ -7,7 +7,7 @@ from .models import Movimentacao
 
 # Create your views here.
 def estoque(request):
-    itens = Item.objects.order_by("id")
+    itens = Item.objects.order_by("-id")
     paginator = Paginator(itens, 21)
     page_number = request.GET.get('page')
 

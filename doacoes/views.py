@@ -8,7 +8,7 @@ from django.contrib.contenttypes.models import ContentType
 
 # Create your views here.
 def doacoes(request):
-    doacoes = Doacao.objects.order_by("id")
+    doacoes = Doacao.objects.order_by("-id")
     paginator = Paginator(doacoes, 21)
     page_number = request.GET.get('page')
 

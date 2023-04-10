@@ -8,7 +8,7 @@ from .forms import *
 
 # Create your views here.
 def entregas(request):
-    entregas = Entrega.objects.order_by("id")
+    entregas = Entrega.objects.order_by("-id")
     paginator = Paginator(entregas, 21)
     page_number = request.GET.get('page')
 
