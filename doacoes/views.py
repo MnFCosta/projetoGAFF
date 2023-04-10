@@ -83,8 +83,8 @@ def itensDoacao(request, id):
                                             object_id = novos_itens.id)
                 movimentacao.save()
                 atualizar_valor = Item.objects.get(id=novos.id)
-                atualizar_valor.estoque_atual =  atualizar_valor.estoque_atual + form.cleaned_data.get("quantidade")
-                atualizar_valor.save()
+                atualizar_valor.estoque_atual += form.cleaned_data.get("quantidade")
+                atualizar_valor.save() 
                 messages.success(request, "Itens adicionados!")
 
             return redirect(f"/doacoes/{doacao.id}/")

@@ -1,6 +1,6 @@
 from django.db import models
 from familias.models import *
-from django.db.models import ExpressionWrapper, F, IntegerField, FloatField
+from django.db.models import F, Func, IntegerField
 import math
 
 
@@ -28,15 +28,14 @@ class Item(models.Model):
     )
     observacao = models.TextField()
 
+    class CalculaUnidade(Func):
+        function = 'FLOOR'
+        template = '%(function)s(%(expressions)s / %(multiplicador)s)'
+        output_field = IntegerField()
+
     def save(self, *args, **kwargs):
-        calculo = ExpressionWrapper(
-            F('estoque_atual') / F('multiplicador'),
-            output_field=FloatField()
-        )
-        resultado = self.__class__.objects.annotate(
-            valor=calculo
-        ).get(pk=self.pk).valor
-        self.unidade = math.floor(resultado)
+        if self.pk is not None:
+            self.unidade = self.CalculaUnidade(F('estoque_atual'), multiplicador=self.multiplicador)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -45,6 +44,7 @@ class Item(models.Model):
     class Meta:
         verbose_name = "Item"
         verbose_name_plural = "Itens"
+
 
 class ItemEntrega(models.Model):
     entrega = models.ForeignKey(Entrega, verbose_name="Entrega", on_delete=CASCADE)
