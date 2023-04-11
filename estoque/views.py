@@ -18,7 +18,7 @@ def estoque(request):
     except EmptyPage:
         current_page = paginator.get_page(paginator.num_pages)
     context = {
-        'pagination': current_page,
+        'pagination': current_page, 
     } 
     
     return render(request, "estoque/pages/itens.html", context)

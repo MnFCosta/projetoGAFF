@@ -34,7 +34,7 @@ def cadastroEntrega(request):
                                                 )
             nova_entrega.save()
             messages.success(request, "Entrega Criada, adicione items!")
-            return redirect(f"/cadastro_itens_entrega/{nova_entrega.id}")
+            return redirect(f"/cadastro_itens_entrega/{nova_entrega.id}") 
         else:   
             messages.error(request, "Dados inválidos!")
             return redirect("entregas:cadastro_entregas")
