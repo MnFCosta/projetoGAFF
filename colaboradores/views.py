@@ -1,9 +1,8 @@
 from django.shortcuts import get_object_or_404, render
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import User
+
 # Create your views here.
-
-
 def colaboradores(request):
     users = User.objects.order_by("-id")
     paginator = Paginator(users, 21)

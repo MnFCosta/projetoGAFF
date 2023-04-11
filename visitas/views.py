@@ -6,7 +6,6 @@ from .models import *
 from utils.utils import checar_repeticao
 
 # Create your views here.
-
 def visitas(request):
     visitas = Visita.objects.order_by("-id")
     paginator = Paginator(visitas, 21)

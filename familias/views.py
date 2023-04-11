@@ -56,7 +56,7 @@ def cadastroFamilia(request):
         form = FamiliaForm(request.POST)
         if form.is_valid():
             instance = form.save(commit=False)
-            instance.realizado_por = request.user  # Set the user field
+            instance.realizado_por = request.user  
             instance.save()
             form.save_m2m()
             messages.success(request, "Familia Criada!")

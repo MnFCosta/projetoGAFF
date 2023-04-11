@@ -8,7 +8,6 @@ from utils.utils import login_excluded
 from .forms import *
 
 # Create your views here.
-
 @login_excluded('home:home')
 def signin(request):
 
