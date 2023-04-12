@@ -54,6 +54,7 @@ class ItemEntrega(models.Model):
     def __str__(self):
         return self.item.nome
 
+
     class Meta:
         verbose_name = "Item da entrega"
         verbose_name_plural = "Itens de entregas"

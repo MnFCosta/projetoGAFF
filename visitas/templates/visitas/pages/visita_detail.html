@@ -1,19 +1,26 @@
 {% extends 'global/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="main-content main-content-list container">
-        <div class="no-content-container">
-            <h1>Visita a {{visita.familia}}</h1>
+<div class="container-detail">
+            <h2>Visita a {{visita.familia}} | Data: {{visita.data}}</h2> 
+            <h1>Participantes: </h1>
+            <div class="new-button"> 
+                <a href="{% url 'visitas:cadastro_participantes' visita.id %}">Cadastre novos participantes</a>
+            </div>
             {% if colaboradores.exists%}
-            <h2>Participantes</h2>
             {% for participante in colaboradores %}
                 {% for i in participante.participantes.all %}
                     <span>{{i.nome}}</span><br>
                 {% endfor %}
             {% endfor %}
             {% endif %} 
-            <a href="{% url 'visitas:cadastro_participantes' visita.id %}" style="text-decoration:none; color: light-blue">Cadastre novos participantes</a>
-
-        </div>
+            <h1>Pedidos:</h1>
+            <div class="text-detail">
+                <h1><p>{{visita.pedidos}}</p></h1>
+            </div>
+            <h1>Observação:</h1>
+            <div class="text-detail">
+                <h1><p>{{visita.observacao}}</p></h1>
+            </div>
 </div>
 {% endblock content %}

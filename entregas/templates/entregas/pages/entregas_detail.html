@@ -1,17 +1,16 @@
 {% extends 'global/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="main-content main-content-list container">
-        <div class="no-content-container">
-            <h1>Entrega para {{entrega.familia}}</h1>
+<div class="container-detail">
+            <h2>Entrega para {{entrega.familia}}</h2>
+            <h1>Itens entregues</h1>
+            <div class="new-button">
+                <a href="{% url 'entregas:cadastro_itens_entrega' entrega.id %}">Cadastre novos itens</a>
+            </div>
             {% if itens.exists%}
-            <h2>Itens doados</h2>
             {% for item in itens %}
-                <span>{{item.item}}</span> <span>{{item.quantidade}}g</span><br>
+                <span>{{item.item}} {{item.quantidade}}g</span><br>
             {% endfor %}
             {% endif %} 
-            <a href="{% url 'entregas:cadastro_itens_entrega' entrega.id %}" style="text-decoration:none; color: light-blue">Cadastre novos itens</a>
-
-        </div>
 </div>
 {% endblock content %}

@@ -1,3 +1,4 @@
+
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
@@ -56,6 +57,7 @@ def entregaDetail(request, id):
         "itens": itens,
         "is_detail_page": True,
     })
+
 
 
 def itensEntrega(request, id):

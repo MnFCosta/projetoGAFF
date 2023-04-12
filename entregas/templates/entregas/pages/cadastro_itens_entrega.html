@@ -6,9 +6,10 @@
             <h1>Adicionando itens a entrega de {{entrega.familia}} do dia {{entrega.data_entrega}}</h1>
             <form class="form" action="/cadastro_itens_entrega/{{entrega.id}}" method='post'>
                 {% csrf_token %}               
-                {{ form | crispy }}
-                <button type = 'submit'>Criar</button>
+                {% crispy form %}
             </form>
+            <div id="value"></div>
+            
         </div>
 </div>
 
