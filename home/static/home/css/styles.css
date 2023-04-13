@@ -196,6 +196,15 @@ button {
     padding: 20px;
 }
 
+#unidades{
+    color: black;
+    border: 2px solid black;
+    height: fit-content;
+    width: fit-content;
+    padding: 2px;
+    background-color: white;
+}
+
 .form-container-login{
     border-radius: 10px;
     color: white;

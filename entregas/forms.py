@@ -12,16 +12,25 @@ class EntregaForm(forms.ModelForm):
 class ItensForm(forms.ModelForm):
     item = forms.ModelChoiceField(
         queryset=Item.objects.all(),
-        widget=forms.Select(attrs={'id': 'item-select'})
+        widget=forms.Select(attrs={'id': 'item-select'}),
+        initial=None
     )
-    
+
     class Meta:
         model = ItemEntrega
         fields = '__all__'
         exclude = ['entrega']
 
+    def clean_quantidade(self):
+        quantidade = self.cleaned_data['quantidade']
+        if quantidade < 0:
+            raise forms.ValidationError("Quantidade não pode ser negativa.")
+        return quantidade
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        self.fields['quantidade'].widget.attrs['id'] = 'quantidade-input'
 
         self.helper = FormHelper()
         self.helper.layout = Layout(
@@ -29,12 +38,7 @@ class ItensForm(forms.ModelForm):
             Row(
                 Div(
                     'item',
-                    css_class='form-row form-div-info'
-                ),
-            ),
-            Row(
-                Div(
-                    HTML('<span id="unidades"></span>'),
+                    HTML('<span id="unidades">QTD em estoque: N/A</span>'),
                     css_class='form-row form-div-info'
                 ),
             ),
@@ -47,3 +51,15 @@ class ItensForm(forms.ModelForm):
             ),
             HTML('<div class="form-buttons"><button class="form-button" type="submit">Criar Perfil</button></div>'),
         )
+
+        self.helper.form_tag = False
+
+    def clean(self):
+        cleaned_data = super().clean()
+        item = cleaned_data.get('item')
+        quantidade = cleaned_data.get('quantidade')
+
+        if item and quantidade is not None:
+            if quantidade > item.quantidade_disponivel:
+                self.add_error('quantidade', 'A quantidade selecionada é maior que a quantidade em estoque.')
+        return cleaned_data

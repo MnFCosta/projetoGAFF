@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from estoque.models import Movimentacao
+from django.http import JsonResponse
 from .models import *
 from .forms import *
 
@@ -103,3 +104,16 @@ def itensEntrega(request, id):
     else:
         form = ItensForm()
     return render(request, "entregas/pages/cadastro_itens_entrega.html", {'form': form, 'entrega': entrega})
+
+
+
+def get_data(request):
+    data = Item.objects.all().values('nome','unidade') 
+    return JsonResponse(list(data), safe=False)
+
+def get_unidades(request):
+    if request.is_ajax() and request.method == 'GET':
+        item_id = request.GET.get('item_id')
+        item = Item.objects.get(id=item_id)
+        unidade = item.unidade
+        return JsonResponse({'unidades': unidade})
