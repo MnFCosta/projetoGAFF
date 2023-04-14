@@ -71,19 +71,32 @@ def itensDoacao(request, id):
             print(novos.id) 
             print(items_adicionados)
             if (f'{novos}' in items_adicionados):
-                 messages.error(request, "Os mesmos itens já foram adicionados anteriormente!")
+                atualizar_valor = Item.objects.get(id=novos.id)
+                atualizar_valor_item = ItemDoacao.objects.get(doacao_id=id, item=novos)
+                atualizar_valor_item.quantidade += form.cleaned_data.get("quantidade") * atualizar_valor.multiplicador
+                atualizar_valor_item.save()
+                movimentacao = Movimentacao(item=novos, 
+                                            data_movimento=timezone.now(),
+                                            quantidade=form.cleaned_data.get("quantidade") * atualizar_valor.multiplicador,
+                                            tipo = ContentType.objects.get_for_model(ItemDoacao),
+                                            por = request.user,
+                                            object_id = atualizar_valor_item.id)
+                movimentacao.save()
+                atualizar_valor.estoque_atual += form.cleaned_data.get("quantidade") * atualizar_valor.multiplicador
+                atualizar_valor.save()
+                messages.success(request, "Itens atualizados com sucesso!")
             else:
-                novos_itens = ItemDoacao(doacao=doacao, item=novos, quantidade=form.cleaned_data.get("quantidade"))
+                atualizar_valor = Item.objects.get(id=novos.id)
+                novos_itens = ItemDoacao(doacao=doacao, item=novos, quantidade=form.cleaned_data.get("quantidade") * atualizar_valor.multiplicador)
                 novos_itens.save()
                 movimentacao = Movimentacao(item=novos, 
                                             data_movimento=timezone.now(),
-                                            quantidade=form.cleaned_data.get("quantidade"),
+                                            quantidade=form.cleaned_data.get("quantidade") * atualizar_valor.multiplicador,
                                             tipo = ContentType.objects.get_for_model(ItemDoacao),
                                             por = request.user,
                                             object_id = novos_itens.id)
                 movimentacao.save()
-                atualizar_valor = Item.objects.get(id=novos.id)
-                atualizar_valor.estoque_atual += form.cleaned_data.get("quantidade")
+                atualizar_valor.estoque_atual += form.cleaned_data.get("quantidade") * atualizar_valor.multiplicador
                 atualizar_valor.save() 
                 messages.success(request, "Itens adicionados!")
 

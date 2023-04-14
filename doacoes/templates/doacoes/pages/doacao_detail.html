@@ -9,7 +9,11 @@
             </div>
             {% if itens.exists%}
             {% for item in itens %}
+            {% if item.item.multiplicador > 1 %}
                 <span>{{item.item}}: {{item.quantidade}}g</span><br>
+            {% else %}
+                <span>{{item.item}}: {{item.quantidade}} items</span><br>
+            {% endif %}
             {% endfor %}
             {% endif %} 
 </div>

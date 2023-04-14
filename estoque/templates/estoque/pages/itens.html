@@ -18,7 +18,7 @@
                     <th scope="col">Item</th>
                     <th scope="col">Unidades disponíveis para entrega</th>
                     <th scope="col">Multiplicador</th>
-                    <th scope="col">Quantidade disponível (em gramas)</th>
+                    <th scope="col">Quantidade total em estoque</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -28,7 +28,11 @@
                             <td><a href="#" style="text-decoration:none; color: light-blue">{{item.nome}}</a></td>
                             <td><a href="#" style="text-decoration:none; color: light-blue">{{item.unidade}}</a></td>
                             <td><a href="#" style="text-decoration:none; color: light-blue">{{item.multiplicador |floatformat:"0" }}x</a></td>
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{item.estoque_atual |floatformat:"0" }}g</a></td>
+                            {% if item.multiplicador > 1 %}
+                                <td><a href="#" style="text-decoration:none; color: light-blue">{{item.estoque_atual |floatformat:"0" }}g</a></td>
+                            {% else %}
+                            <td><a href="#" style="text-decoration:none; color: light-blue">{{item.estoque_atual |floatformat:"0" }} items</a></td>
+                            {% endif %}
                         </tr> 
                     </div>
                     {% endfor %}

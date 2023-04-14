@@ -87,6 +87,7 @@ def itensEntrega(request, id):
                  movimentacao.save()
                  atualizar_valor.estoque_atual =  atualizar_valor.estoque_atual - form.cleaned_data.get("quantidade") * atualizar_valor.multiplicador
                  atualizar_valor.save()
+                 messages.success(request, "Itens atualizados com sucesso!")
             else:
                 atualizar_valor = Item.objects.get(id=novos.id)
                 if form.cleaned_data.get("quantidade") * atualizar_valor.multiplicador <= atualizar_valor.estoque_atual: 
