@@ -53,13 +53,3 @@ class ItensForm(forms.ModelForm):
         )
 
         self.helper.form_tag = False
-
-    def clean(self):
-        cleaned_data = super().clean()
-        item = cleaned_data.get('item')
-        quantidade = cleaned_data.get('quantidade')
-
-        if item and quantidade is not None:
-            if quantidade > item.quantidade_disponivel:
-                self.add_error('quantidade', 'A quantidade selecionada é maior que a quantidade em estoque.')
-        return cleaned_data

@@ -73,23 +73,33 @@ def itensEntrega(request, id):
         form = ItensForm(request.POST)
         if form.is_valid():
             novos=form.cleaned_data.get("item") 
-            print(novos) 
-            print(items_adicionados)
             if (f'{novos}' in items_adicionados):
-                 messages.error(request, "Os mesmos itens já foram adicionados anteriormente!")
+                 atualizar_valor = Item.objects.get(id=novos.id)
+                 atualizar_valor_item = ItemEntrega.objects.get(entrega_id=id, item=novos)
+                 atualizar_valor_item.quantidade += form.cleaned_data.get("quantidade") * atualizar_valor.multiplicador
+                 atualizar_valor_item.save()
+                 movimentacao = Movimentacao(item=novos, 
+                                            data_movimento=timezone.now(),
+                                            quantidade=form.cleaned_data.get("quantidade") * atualizar_valor.multiplicador,
+                                            tipo = ContentType.objects.get_for_model(ItemEntrega),
+                                            por = request.user,
+                                            object_id = atualizar_valor_item.id)
+                 movimentacao.save()
+                 atualizar_valor.estoque_atual =  atualizar_valor.estoque_atual - form.cleaned_data.get("quantidade") * atualizar_valor.multiplicador
+                 atualizar_valor.save()
             else:
                 atualizar_valor = Item.objects.get(id=novos.id)
-                if form.cleaned_data.get("quantidade") <= atualizar_valor.estoque_atual: 
-                    novos_itens = ItemEntrega(entrega=entrega, item=novos, quantidade=form.cleaned_data.get("quantidade"))
+                if form.cleaned_data.get("quantidade") * atualizar_valor.multiplicador <= atualizar_valor.estoque_atual: 
+                    novos_itens = ItemEntrega(entrega=entrega, item=novos, quantidade=form.cleaned_data.get("quantidade") * atualizar_valor.multiplicador)
                     novos_itens.save()
                     movimentacao = Movimentacao(item=novos, 
                                             data_movimento=timezone.now(),
-                                            quantidade=form.cleaned_data.get("quantidade"),
+                                            quantidade=form.cleaned_data.get("quantidade") * atualizar_valor.multiplicador,
                                             tipo = ContentType.objects.get_for_model(ItemEntrega),
                                             por = request.user,
                                             object_id = novos_itens.id)
                     movimentacao.save()
-                    atualizar_valor.estoque_atual =  atualizar_valor.estoque_atual - form.cleaned_data.get("quantidade")
+                    atualizar_valor.estoque_atual =  atualizar_valor.estoque_atual - form.cleaned_data.get("quantidade") * atualizar_valor.multiplicador
                     atualizar_valor.save()
                     messages.success(request, "Itens adicionados!")
                 else:
@@ -112,7 +122,7 @@ def get_data(request):
     return JsonResponse(list(data), safe=False)
 
 def get_unidades(request):
-    if request.is_ajax() and request.method == 'GET':
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest' and request.method == 'GET':
         item_id = request.GET.get('item_id')
         item = Item.objects.get(id=item_id)
         unidade = item.unidade

@@ -32,7 +32,6 @@
 
     $(document).ready(function() {
         $('#item-select').change(function() {
-          console.log("working")  
           var item_id = $(this).val();
           $.ajax({
             url: '{% url "entregas:get_unidades" %}',
