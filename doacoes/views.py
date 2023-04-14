@@ -24,24 +24,55 @@ def doacoes(request):
     
     return render(request, "doacoes/pages/doacoes.html", context)
 
-def cadastroDoacao(request):
+def cadastroDoador(request):
     if request.method == 'POST':
-        form = DoacaoForm(request.POST)
+        form = DoadorForm(request.POST)
         if form.is_valid():
-            nova_doacao = Doacao(doador=form.cleaned_data.get("doador"),
-                                 data_doacao=timezone.now(),
+            novo_doador = Doador(nome=form.cleaned_data.get("data_entrega"),
+                                 celular=form.cleaned_data.get("celular"),
+                                 bairro=form.cleaned_data.get("bairro"),
+                                 rua=form.cleaned_data.get("rua"),
+                                 numero=form.cleaned_data.get("numero"),
+                                 cidade=form.cleaned_data.get("cidade"),
+                                 unidade_federativa=form.cleaned_data.get("unidade_federativa"),
                                                 )
-            nova_doacao.save()
-            messages.success(request, "Doação Criada, adicione items!")
-            return redirect(f"/cadastro_itens/{nova_doacao.id}")
+            novo_doador.save()
+            messages.success(request, "Doador criado!")
+            return redirect("doacoes:doadores") 
         else:   
             messages.error(request, "Dados inválidos!")
-            return redirect("doacao:cadastro_items")
+            return redirect("doacoes:cadastro_doador")
         
     else:
-        form = DoacaoForm()
-    return render(request, "doacoes/pages/cadastro_doacao.html", {'form': form})
+        form = DoadorForm()
+    return render(request, "entregas/pages/cadastro_entregas.html", {'form': form})
 
+def doadores(request):
+    doadores = Doador.objects.order_by("-id")
+    paginator = Paginator(doadores, 21)
+    page_number = request.GET.get('page')
+
+    try:
+        current_page = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        current_page = paginator.get_page(1)
+    except EmptyPage:
+        current_page = paginator.get_page(paginator.num_pages)
+    context = {
+        'pagination': current_page,
+    } 
+    
+    return render(request, "doacoes/pages/doadores.html", context)
+
+def cadastroDoacao(request, id):
+    doador = Doador.objects.get(id=id)
+    nova_doacao = Doacao(doador=doador,
+                                 data_doacao=timezone.now(),
+                                                )
+    nova_doacao.save()
+    messages.success(request, "Doação Criada, adicione items!")
+    return redirect(f"/cadastro_itens/{nova_doacao.id}")
+        
 def doacaoDetail(request, id):
     doacao = get_object_or_404(Doacao,
         pk=id
@@ -53,6 +84,16 @@ def doacaoDetail(request, id):
     return render(request, 'doacoes/pages/doacao_detail.html', context={
         "doacao": doacao,
         "itens": itens,
+        "is_detail_page": True,
+    })
+
+def doadoresDetail(request, id):
+    doador = get_object_or_404(Doador,
+        pk=id
+    )
+
+    return render(request, 'doacoes/pages/doador_detail.html', context={
+        "doador": doador,
         "is_detail_page": True,
     })
 

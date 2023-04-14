@@ -1,31 +1,31 @@
 {% extends 'global/base.html' %}
-{% block title %}Doacoes{% endblock title %}
+{% block title %}Doadores{% endblock title %}
 {% block contentpaginator %}
-			<h1 style="margin-bottom:10px;">Doações</h1>
+    <h1 style="margin-bottom:10px;">Doadores</h1>
       <div class="search-container">
         <form action="" class="search-form">
             <input type="search" class="search-input" name="search">
             <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
         </form>
-    </div>
+      </div>
             <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">Doador</th>
-                    <th scope="col">Data</th>
+                    <th scope="col">Nome:</th>
+                    <th scope="col">Telefone: </th>
                   </tr>
                 </thead>
                 <tbody>
-                    {% for doacao in pagination %}
+                    {% for doador in pagination %}
                     <div>
                         <tr>
-                            <td><a href="{% url 'doacoes:doacao_detail' doacao.id %}" style="text-decoration:none; color: light-blue">{{doacao.doador}}</a></td>
-                            <td><a href="{% url 'doacoes:doacao_detail' doacao.id %}" style="text-decoration:none; color: light-blue">{{doacao.data_doacao}}</a></td>
+                            <td><a href="{% url 'doacoes:doadores_detail' doador.id %}" style="text-decoration:none; color: light-blue">{{doador.nome}}</a></td>
+                            <td><a href="{% url 'doacoes:doadores_detail' doador.id %}" style="text-decoration:none; color: light-blue">{{doador.celular}}</a></td>
                         </tr> 
                     </div>
                     {% endfor %}
                 </tbody>
-              </table>   
+              </table>    
 </html>
 {% endblock contentpaginator %}
 

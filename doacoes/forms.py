@@ -9,6 +9,11 @@ class DoacaoForm(forms.ModelForm):
         fields = '__all__'
         exclude = ['data_doacao']
 
+class DoadorForm(forms.ModelForm):
+    class Meta:
+        model = Doador
+        fields = '__all__'
+
 class ItensForm(forms.ModelForm):
     class Meta:
         model = ItemDoacao
