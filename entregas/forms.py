@@ -7,6 +7,22 @@ class EntregaForm(forms.ModelForm):
     class Meta:
         model = Entrega
         fields = '__all__'
+        exclude = ['familia',]
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+                HTML('<h1>Data:</h1>'),
+            Row(
+                Div(
+                'data_entrega',
+                css_class='form-row form-div-info'
+                ),
+            ),
+                HTML('<div class="form-buttons"><button class="form-button" type="submit">Cadastrar nova entrega</button></div>'),
+        )
 
 class ItensForm(forms.ModelForm):
     item = forms.ModelChoiceField(
@@ -37,9 +53,13 @@ class ItensForm(forms.ModelForm):
             Row(
                 Div(
                     'item',
-                    HTML('<span id="unidades">QTD em estoque: N/A</span>'),
-                    css_class='form-row form-div-info'
+                    css_class='form-row form-div-ajax'
                 ),
+                Div(
+                    HTML('<span id="unidades">QTD em estoque: N/A</span>'),
+                    css_class='form-row form-div-ajax'
+                ),
+                css_class='form-row-ajax'
             ),
             HTML('<h1>Quantidade: </h1>'),
             Row(

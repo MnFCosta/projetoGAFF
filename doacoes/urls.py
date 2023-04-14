@@ -10,7 +10,5 @@ urlpatterns = [
     path('doacoes/<int:id>/', views.doacaoDetail, name="doacao_detail"),
     path('cadastro_doacao', views.cadastroDoacao, name="cadastro_doacao"),
     path('cadastro_itens/<int:id>', views.itensDoacao, name="cadastro_itens")
-    
-
 ]
 

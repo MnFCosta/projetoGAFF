@@ -39,11 +39,14 @@ def visitaDetail(request, id):
         "is_detail_page": True,
     })
 
-def cadastroVisita(request):
+def cadastroVisita(request, id):
+    familia = Familia.objects.get(id=id
+    )
     if request.method == 'POST':
         form = VisitaForm(request.POST)
+        print(form)
         if form.is_valid():
-            nova_visita = Visita(familia=form.cleaned_data.get("familia"),
+            nova_visita = Visita(familia=familia,
                                             data=form.cleaned_data.get("data"),
                                             pedidos=form.cleaned_data.get("pedidos"),
                                             observacao=form.cleaned_data.get("observacao"),
@@ -53,11 +56,11 @@ def cadastroVisita(request):
             return redirect("visitas:visita")
         else:   
             messages.error(request, "Dados inválidos!")
-            return redirect("visitas:cadastro_visita")
+            return redirect(f"/familias/{id}")
         
     else:
         form = VisitaForm()
-    return render(request, "visitas/pages/cadastro_visita.html", {'form': form})
+    return render(request, "visitas/pages/cadastro_visita.html", {'form': form, 'familia': familia})
 
 def participantesVisita(request, id):
     visita = Visita.objects.get(id=id)

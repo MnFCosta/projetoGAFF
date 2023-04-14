@@ -193,6 +193,7 @@ button {
     border: 3px solid black;
     background-color: var(--color-primary-form);
     margin-top: 20px;
+    margin-bottom: 20px;
     padding: 20px;
 }
 
@@ -238,23 +239,43 @@ button {
     /* padding: 20px; */
 }
 
+.form-row-ajax{
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.form-row .form-div-ajax {
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding: 20px;
+    display: inline-block;
+}
 
 .form-div-info .form-group{
     margin-bottom: 20px;
-    margin-left: 20px;
     padding: 20px;
 }
 
 .form-div-endereco .form-group{
     margin-bottom: 20px;
-    margin-left: 20px;
     padding: 20px;
 }
 
 .form-div-credenciais .form-group{
     margin-bottom: 20px;
-    margin-left: 20px;
     padding: 20px;
+}
+
+.form-div-observacao .form-group{
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
+    
+}
+
+.form-group textarea{
+    width: 1050px;
+    border: 2px solid black;
 }
 
 .form-control{

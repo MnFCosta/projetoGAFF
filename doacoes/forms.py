@@ -38,9 +38,13 @@ class ItensForm(forms.ModelForm):
             Row(
                 Div(
                     'item',
-                    HTML('<span id="unidades">QTD em estoque: N/A</span>'),
-                    css_class='form-row form-div-info'
+                    css_class='form-row form-div-ajax'
                 ),
+                Div(
+                    HTML('<span id="unidades">QTD em estoque: N/A</span>'),
+                    css_class='form-row form-div-ajax'
+                ),
+                css_class='form-row-ajax'
             ),
             HTML('<h1>Quantidade: </h1>'),
             Row(

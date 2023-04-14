@@ -6,6 +6,8 @@
             <div class="new-button">
                 <a href="{% url 'familias:cadastro' familia.id%}">Novo Membro</a>
                 <a href="{% url 'familias:renda' familia.id%}">Nova Renda Familiar</a>
+                <a href="{% url 'visitas:cadastro_visita' familia.id %}">Nova Visita</a>
+                <a href="{% url 'entregas:cadastro_entregas' familia.id %}">Nova Entrega</a>
             </div>
             {% if familia.componentes.exists%}
             <h1>Componentes:</h1>

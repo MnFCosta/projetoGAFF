@@ -27,23 +27,24 @@ def entregas(request):
     return render(request, "entregas/pages/entregas.html", context)
 
 
-def cadastroEntrega(request):
+def cadastroEntrega(request, id):
+    familia = Familia.objects.get(id=id)
     if request.method == 'POST':
         form = EntregaForm(request.POST)
         if form.is_valid():
             nova_entrega = Entrega(data_entrega=form.cleaned_data.get("data_entrega"),
-                                 familia=form.cleaned_data.get("familia"),
+                                 familia=familia,
                                                 )
             nova_entrega.save()
             messages.success(request, "Entrega Criada, adicione items!")
             return redirect(f"/cadastro_itens_entrega/{nova_entrega.id}") 
         else:   
             messages.error(request, "Dados inválidos!")
-            return redirect("entregas:cadastro_entregas")
+            return redirect("entregas:entregas")
         
     else:
         form = EntregaForm()
-    return render(request, "entregas/pages/cadastro_entregas.html", {'form': form})
+    return render(request, "entregas/pages/cadastro_entregas.html", {'form': form, 'familia': familia})
 
 def entregaDetail(request, id):
     entrega = get_object_or_404(Entrega,
