@@ -28,7 +28,7 @@ def cadastroDoador(request):
     if request.method == 'POST':
         form = DoadorForm(request.POST)
         if form.is_valid():
-            novo_doador = Doador(nome=form.cleaned_data.get("data_entrega"),
+            novo_doador = Doador(nome=form.cleaned_data.get("nome"),
                                  celular=form.cleaned_data.get("celular"),
                                  bairro=form.cleaned_data.get("bairro"),
                                  rua=form.cleaned_data.get("rua"),
@@ -41,11 +41,12 @@ def cadastroDoador(request):
             return redirect("doacoes:doadores") 
         else:   
             messages.error(request, "Dados inválidos!")
+
             return redirect("doacoes:cadastro_doador")
         
     else:
         form = DoadorForm()
-    return render(request, "entregas/pages/cadastro_entregas.html", {'form': form})
+    return render(request, "doacoes/pages/cadastro_doador.html", {'form': form})
 
 def doadores(request):
     doadores = Doador.objects.order_by("-id")

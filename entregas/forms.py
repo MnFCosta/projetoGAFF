@@ -68,7 +68,7 @@ class ItensForm(forms.ModelForm):
                     css_class='form-row form-div-endereco'
                 ),
             ),
-            HTML('<div class="form-buttons"><button class="form-button" type="submit">Criar Perfil</button></div>'),
+            HTML('<div class="form-buttons"><button class="form-button" type="submit">Adicionar item a entrega</button></div>'),
         )
 
         self.helper.form_tag = False

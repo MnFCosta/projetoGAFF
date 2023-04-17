@@ -93,7 +93,7 @@ class FamiliaForm(forms.ModelForm):
                 css_class='form-row form-div-observacao'
                 ),
             ),
-                HTML('<div class="form-buttons"><button class="form-button" type="submit">Criar Perfil</button></div>'),
+                HTML('<div class="form-buttons"><button class="form-button" type="submit">Criar nova familia</button></div>'),
         )
         
     """ #override no metodo padrão save para poder tratar um multiselectfield

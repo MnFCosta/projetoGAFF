@@ -36,7 +36,7 @@ class VisitaForm(forms.ModelForm):
                 css_class='form-row form-div-observacao'
                 ),
             ),
-                HTML('<div class="form-buttons"><button class="form-button" type="submit">Criar Perfil</button></div>'),
+                HTML('<div class="form-buttons"><button class="form-button" type="submit">Criar nova visita</button></div>'),
         )
 
 class ParticipantesForm(forms.ModelForm):
