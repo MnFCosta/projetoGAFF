@@ -40,7 +40,29 @@ class VisitaForm(forms.ModelForm):
         )
 
 class ParticipantesForm(forms.ModelForm):
-    participantes = forms.ModelMultipleChoiceField(queryset=User.objects.all(),widget=forms.SelectMultiple)
+    participantes = forms.ModelMultipleChoiceField(label="",queryset=User.objects.all(), widget=forms.CheckboxSelectMultiple)
+    
     class Meta:
         model = VisitaParticipantes
         exclude = ['visita']
+    
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+           
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            HTML('<h1>Participantes:</h1>'),
+            Row(
+                Div(
+                    Field('participantes'),
+                    css_class='form-row form-div-info'
+                ),
+            ),
+            HTML('<div class="form-buttons"><button class="form-button" type="submit">Adicionar participantes a visita</button></div>')
+        )
+        
+    
+
+   

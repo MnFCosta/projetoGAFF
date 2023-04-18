@@ -107,6 +107,43 @@ button {
     padding: var(--spacing-gutter-medium);
 }
 
+#div_id_participantes{
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: var(--color-white);
+    color: black;
+    overflow: auto;
+    width: fit-content;
+    width: 1087px;
+}
+
+
+.custom-control-label{
+    border: 2px solid black; 
+    border-radius: 8px;
+    width: 100%;
+    padding: var(--spacing-gutter-small);
+    margin-left: -10px;
+    margin-bottom: 10px;
+    transition: all 0.4s ease;  
+    
+
+}
+
+.custom-control-label:hover{
+    background-color: var(--color-primary-form);
+    font-size: 40px;
+}
+
+.custom-control-label::before{
+    border: 2px solid black;
+    top: 25px;
+    left: 1000px;
+    width: 20px;
+    height: 20px;
+    
+}
+
 .main-header-container{
     background: var(--color-primary);
     display: flex;

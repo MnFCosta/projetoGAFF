@@ -3,7 +3,6 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib import messages
 from .forms import *
 from .models import *
-from utils.utils import checar_repeticao
 
 # Create your views here.
 def visitas(request):
@@ -64,32 +63,34 @@ def cadastroVisita(request, id):
 
 def participantesVisita(request, id):
     visita = Visita.objects.get(id=id)
-    participantes = VisitaParticipantes.objects.filter(visita_id=id)
+    participantes = VisitaParticipantes.objects.filter(visita_id=visita.id).values_list('participantes__id', flat=True)
+    form = ParticipantesForm()
+    form.fields['participantes'].queryset = User.objects.exclude(id__in=participantes)
+    if len(form.fields['participantes'].queryset) == 0:
+                messages.error(request, "Não há mais participantes para adicionar!")
+                return redirect(f"/visita/{visita.id}/")
 
-    participam = VisitaParticipantes.objects.none()
-    for participante in participantes:
-        var = participante.participantes.all()
-        participam = participam | var
+
     if request.method == 'POST':
         form = ParticipantesForm(request.POST)
         if form.is_valid():
-            
-            novos=form.cleaned_data.get("participantes")    
-
-            if checar_repeticao(participam,novos) == True:
-                 messages.error(request, "Os mesmos participantes já foram adicionados anteriormente!")
-            else:
-                novos_participantes = VisitaParticipantes(visita=visita)
-                novos_participantes.save()
-                novos_participantes.participantes.set(novos)
-                messages.success(request, "Participantes adicionados!")
+            novos = form.cleaned_data.get("participantes")
+            novos_participantes = VisitaParticipantes(visita=visita)
+            novos_participantes.save()
+            novos_participantes.participantes.set(novos)
+            messages.success(request, "Participantes adicionados!")
 
             return redirect(f"/visita/{visita.id}/")
-        else:   
+        else:
             messages.error(request, "Dados inválidos!")
             return redirect("visitas:visita")
         
     else:
-        form = ParticipantesForm()
-    return render(request, "visitas/pages/cadastro_participantes.html", {'form': form, 'visita': visita})
+        search_query = request.GET.get('search')
+        if search_query:
+            form.fields['participantes'].queryset = User.objects.filter(email__icontains=search_query).exclude(id__in=participantes)
+            if len(form.fields['participantes'].queryset) == 0:
+                messages.error(request, "O participante em questão não foi encontrado ou já foi adicionado!")
+                return redirect(f"/visita/{visita.id}/")
+        return render(request, "visitas/pages/cadastro_participantes.html", {'form': form, 'visita': visita})
 
