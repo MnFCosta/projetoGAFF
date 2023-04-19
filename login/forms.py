@@ -29,6 +29,7 @@ class RegisterForm(forms.Form):
     senha = forms.CharField(label='Sua senha:', widget=forms.PasswordInput())
     senha_confirmar = forms.CharField(label='Confirme sua senha:', widget=forms.PasswordInput())
 
+    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

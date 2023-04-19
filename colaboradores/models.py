@@ -28,7 +28,7 @@ class CustomUserManager(UserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     nome = models.CharField(max_length=100)
     email = models.EmailField(blank=True, default='', unique=True)
-    celular = models.CharField(max_length=45, unique=True)
+    celular = models.CharField(max_length=45)
     rua = models.CharField(max_length=200)
     numero = models.CharField(max_length=30)
     bairro = models.CharField(max_length=200)
