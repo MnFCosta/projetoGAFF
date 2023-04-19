@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, get_list_or_404, render, redirect
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Q
 from django.contrib import messages
 from .forms import *
 from .models import *
@@ -7,6 +8,15 @@ from .models import *
 # Create your views here.
 def familias(request):
     familias = Familia.objects.order_by("-id")
+
+
+    search_query = request.GET.get('search')
+    if search_query:
+        familias = Familia.objects.filter(Q(nome__icontains=search_query))
+        if len(familias) == 0:
+            messages.error(request, "A familia em questão não foi encontrado !")
+            familias = Familia.objects.order_by("-id")
+
     paginator = Paginator(familias, 21)
     page_number = request.GET.get('page')
 

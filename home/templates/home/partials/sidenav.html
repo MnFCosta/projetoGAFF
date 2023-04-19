@@ -11,10 +11,11 @@
     <div>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'home:home' %}">Inicio</a>
+                <a class="nav-link" href="{% url 'home:home' %}"><i class="fa-solid fa-house"></i></a>
             </li>
+            <span>USUARIOS</span>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'colaboradores:colaboradores' %}">Colaboradores cadastrados</a>
+                <a class="nav-link" href="{% url 'colaboradores:colaboradores' %}">Colaboradores</a>
             </li> 
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'familias:familias' %}">Famílias</a>
@@ -22,6 +23,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'doacoes:doadores' %}">Doadores</a>
             </li> 
+            <span>AÇÕES</span>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'visitas:visita' %}">Visitas</a>
             </li> 
@@ -31,11 +33,13 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'doacoes:doacoes' %}">Doações</a>
             </li> 
+            
+            <span>ESTOQUE</span>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'estoque:estoque' %}">Estoque</a>
             </li> 
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'estoque:movimentacoes' %}">Movimentações de Estoque</a>
+                <a class="nav-link" href="{% url 'estoque:movimentacoes' %}">Movimentações</a>
             </li> 
         </ul>
     </div>

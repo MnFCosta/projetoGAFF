@@ -383,6 +383,13 @@ button {
 
 .offcanvas-body{
     background-color: var(--color-white);
+    text-align: center;
+    color: var(--color-black);
+}
+
+
+.offcanvas-body span{
+    margin: 10px;
 }
 
 /* Header */

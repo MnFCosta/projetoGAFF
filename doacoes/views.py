@@ -5,10 +5,19 @@ from .models import *
 from estoque.models import *
 from .forms import *
 from django.contrib.contenttypes.models import ContentType
+from django.db.models import Q
 
 # Create your views here.
 def doacoes(request):
     doacoes = Doacao.objects.order_by("-id")
+
+    search_query = request.GET.get('search')
+    if search_query:
+        doacoes = Doacao.objects.filter(Q(doador_nome__icontains=search_query))
+        if len(doacoes) == 0:
+            messages.error(request, "O doador em questão não foi encontrado !")
+            doacoes = Doacao.objects.order_by("-id")
+
     paginator = Paginator(doacoes, 21)
     page_number = request.GET.get('page')
 
@@ -50,6 +59,13 @@ def cadastroDoador(request):
 
 def doadores(request):
     doadores = Doador.objects.order_by("-id")
+    search_query = request.GET.get('search')
+    if search_query:
+        doadores = Doador.objects.filter(Q(nome__icontains=search_query))
+        if len(doadores) == 0:
+            messages.error(request, "O doador em questão não foi encontrado !")
+            doadores = Doador.objects.order_by("-id")
+
     paginator = Paginator(doadores, 21)
     page_number = request.GET.get('page')
 
