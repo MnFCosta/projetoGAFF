@@ -63,4 +63,4 @@ class RegisterForm(forms.Form):
                 ),
             ),
                 HTML('<div class="form-buttons"><button class="form-button" type="submit">Criar Perfil</button></div>'),
-        )
+        )   

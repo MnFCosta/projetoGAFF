@@ -1,6 +1,8 @@
--Sistema de permissões
--Cadastro de pessoas
--Sistema de familias
--Sistema de estoque
--Sistema de montagem de cestas
--Sistema de entregas
+-Estilizar páginas detail
+-Estilizar formulários restantes
+-Alterar doações de entregas de gramas para unidades
+
+
+
+
+

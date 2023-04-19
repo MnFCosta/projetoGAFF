@@ -7,3 +7,12 @@
             {% endfor %}
         </div>
 {% endif %}
+
+<script>
+    setTimeout(function() {
+        var messageList = document.querySelectorAll('.message');
+        messageList.forEach(function(message) {
+            message.remove();
+        });
+    }, 2000); 
+</script>   

@@ -1,17 +1,20 @@
 {% extends 'global/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="main-content main-content-list container">
-        <div class="no-content-container">
-            <h1>Doacao de {{doacao.doador}}</h1>
+<div class="container-detail">
+            <h2>Doacao de {{doacao.doador}}</h2>
+            <h1>Itens doados</h1>
+            <div class="new-button">
+                <a href="{% url 'doacoes:cadastro_itens' doacao.id %}">Cadastre novos itens</a>
+            </div>
             {% if itens.exists%}
-            <h2>Itens doados</h2>
             {% for item in itens %}
-                <span>{{item.item}}</span> <span>{{item.quantidade}}g</span><br>
+            {% if item.item.multiplicador > 1 %}
+                <span>{{item.item}}: {{item.quantidade}}g</span><br>
+            {% else %}
+                <span>{{item.item}}: {{item.quantidade}} items</span><br>
+            {% endif %}
             {% endfor %}
             {% endif %} 
-            <a href="{% url 'doacoes:cadastro_itens' doacao.id %}" style="text-decoration:none; color: light-blue">Cadastre novos itens</a>
-
-        </div>
 </div>
 {% endblock content %}

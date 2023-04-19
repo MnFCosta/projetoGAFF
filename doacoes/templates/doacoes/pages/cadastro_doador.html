@@ -2,14 +2,11 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="main-content main-content-list container">
-        <div class="no-content-container">
-            <h1>Nova Doacão</h1>
-            <form class="form" action="/cadastro_doacao" method='post'>
+        <div class="form-container">
+            <form action="/cadastro_doador/" method='post'>
                 {% csrf_token %}               
-                {{ form | crispy }}
-                <button type = 'submit'>Criar</button>
+                {% crispy form %}
             </form>
         </div>
 </div>
 {% endblock content %}
-

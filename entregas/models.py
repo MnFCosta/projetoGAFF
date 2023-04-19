@@ -49,10 +49,11 @@ class Item(models.Model):
 class ItemEntrega(models.Model):
     entrega = models.ForeignKey(Entrega, verbose_name="Entrega", on_delete=CASCADE)
     item = models.ForeignKey(Item, verbose_name="Item da entrega", on_delete=CASCADE)
-    quantidade = models.DecimalField(max_digits=20, decimal_places=2)
+    quantidade = models.DecimalField(max_digits=20, decimal_places=0)
     
     def __str__(self):
         return self.item.nome
+
 
     class Meta:
         verbose_name = "Item da entrega"

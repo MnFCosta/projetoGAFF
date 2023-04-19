@@ -2,14 +2,50 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="main-content main-content-list container">
-        <div class="no-content-container">
+        <div class="form-container">
             <h1>Adicionando itens a entrega de {{entrega.familia}} do dia {{entrega.data_entrega}}</h1>
-            <form class="form" action="/cadastro_itens_entrega/{{entrega.id}}" method='post'>
+            <form action="/cadastro_itens_entrega/{{entrega.id}}" method='post'>
                 {% csrf_token %}               
-                {{ form | crispy }}
-                <button type = 'submit'>Criar</button>
-            </form>
+                {% crispy form %}
+            </form>    
         </div>
 </div>
+<script>
+    function updateMaxValue() {
+        const unidadesSpan = document.getElementById('unidades');
+        const unidadesRegex = /QTD em estoque: (\d+)/;
+        const unidadesMatch = unidadesRegex.exec(unidadesSpan.textContent);
+        const unidades = unidadesMatch ? parseInt(unidadesMatch[1]) : 0;
+        const quantidadeInput = document.getElementById('quantidade-input');
+        quantidadeInput.setAttribute('max', unidades);
+        quantidadeInput.setAttribute('min', 0);
+        quantidadeInput.value = 0; // Set the value to 0
+      }
+      
+      updateMaxValue(); // Call the function when the page loads
+      
+      // Listen for changes to the unidadesSpan element
+      const unidadesSpan = document.getElementById('unidades');
+      const observer = new MutationObserver(updateMaxValue);
+      observer.observe(unidadesSpan, { childList: true });
+        
+
+    $(document).ready(function() {
+        $('#item-select').change(function() {
+          var item_id = $(this).val();
+          $.ajax({
+            url: '{% url "entregas:get_unidades" %}',
+            data: {
+              'item_id': item_id
+            },
+            success: function(data) {
+              $('#unidades').text(function( index ) {
+                return "QTD em estoque: " + ( data.unidades);
+              });
+            }
+          });
+        });
+      });
+</script>
 
 {% endblock content %}

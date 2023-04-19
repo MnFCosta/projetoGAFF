@@ -33,7 +33,7 @@ class EntregaItensAdmin(admin.ModelAdmin):
     quantidade_display.short_description = 'Quantidade' # type: ignore
 
     def entrega_data(self, obj):
-        return obj.entrega.data_entrega  # assuming the `Cliente` model has a `nome` field
+        return obj.entrega.data_entrega  
     
     entrega_data.short_description = 'Data da Entrega' # type: ignore
 
