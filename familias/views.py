@@ -14,7 +14,7 @@ def familias(request):
     if search_query:
         familias = Familia.objects.filter(Q(nome__icontains=search_query))
         if len(familias) == 0:
-            messages.error(request, "A familia em questão não foi encontrado !")
+            messages.error(request, "A familia em questão não foi encontrada !")
             familias = Familia.objects.order_by("-id")
 
     paginator = Paginator(familias, 21)

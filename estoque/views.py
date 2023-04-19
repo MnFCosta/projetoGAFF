@@ -4,10 +4,20 @@ from .forms import *
 from django.contrib import messages
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import Movimentacao
+from django.db.models import Q
 
 # Create your views here.
 def estoque(request):
     itens = Item.objects.order_by("-id")
+
+    
+    search_query = request.GET.get('search')
+    if search_query:
+        itens = Item.objects.filter(Q(nome__icontains=search_query))
+        if len(itens) == 0:
+            messages.error(request, "O item em questão não foi encontrado !")
+            itens = Item.objects.order_by("-id")
+
     paginator = Paginator(itens, 21)
     page_number = request.GET.get('page')
 
@@ -43,6 +53,15 @@ def cadastroItem(request):
 
 def movimentacoes(request):
     movimentacoes = Movimentacao.objects.order_by("-id")
+
+    from django.db.models import Q
+    search_query = request.GET.get('search')
+    if search_query:
+        movimentacoes = Movimentacao.objects.filter(Q(item__nome__icontains=search_query))
+        if len(movimentacoes) == 0:
+            messages.error(request, "A movimentação em questão não foi encontrada !")
+            movimentacoes = Movimentacao.objects.order_by("-id")
+
     paginator = Paginator(movimentacoes, 22)
     page_number = request.GET.get('page')
 

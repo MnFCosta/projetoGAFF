@@ -5,12 +5,21 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from estoque.models import Movimentacao
 from django.http import JsonResponse
+from django.db.models import Q
 from .models import *
 from .forms import *
 
 # Create your views here.
 def entregas(request):
     entregas = Entrega.objects.order_by("-id")
+    
+    search_query = request.GET.get('search')
+    if search_query:
+        entregas = Entrega.objects.filter(Q(familia__nome__icontains=search_query))
+        if len(entregas) == 0:
+            messages.error(request, "A entrega em questão não foi encontrada !")
+            entregas = Entrega.objects.order_by("-id")
+    
     paginator = Paginator(entregas, 21)
     page_number = request.GET.get('page')
 

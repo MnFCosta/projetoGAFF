@@ -1,5 +1,6 @@
 from django.shortcuts import get_list_or_404, get_object_or_404, render, redirect
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Q
 from django.contrib import messages
 from .forms import *
 from .models import *
@@ -7,6 +8,14 @@ from .models import *
 # Create your views here.
 def visitas(request):
     visitas = Visita.objects.order_by("-id")
+
+    search_query = request.GET.get('search')
+    if search_query:
+        visitas = Visita.objects.filter(Q(familia__nome__icontains=search_query))
+        if len(visitas) == 0:
+            messages.error(request, "A visita em questão não foi encontrada !")
+            visitas = Visita.objects.order_by("-id")
+
     paginator = Paginator(visitas, 21)
     page_number = request.GET.get('page')
 

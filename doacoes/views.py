@@ -13,9 +13,9 @@ def doacoes(request):
 
     search_query = request.GET.get('search')
     if search_query:
-        doacoes = Doacao.objects.filter(Q(doador_nome__icontains=search_query))
+        doacoes = Doacao.objects.filter(Q(doador__nome__icontains=search_query))
         if len(doacoes) == 0:
-            messages.error(request, "O doador em questão não foi encontrado !")
+            messages.error(request, "A doação em questão não foi encontrada !")
             doacoes = Doacao.objects.order_by("-id")
 
     paginator = Paginator(doacoes, 21)
