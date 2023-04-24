@@ -9,7 +9,7 @@
 <body>
     {% include 'home/partials/header.html'%}
     {% include 'home/partials/messages.html' %}
-    {% if pagination %}
+    {% if list_page %}
         <div class="container-lista">
             {% block contentpaginator %}
             {% endblock %}        

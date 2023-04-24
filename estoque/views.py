@@ -29,6 +29,7 @@ def estoque(request):
         current_page = paginator.get_page(paginator.num_pages)
     context = {
         'pagination': current_page, 
+        'list_page': True,
     } 
     
     return render(request, "estoque/pages/itens.html", context)
@@ -73,6 +74,7 @@ def movimentacoes(request):
         current_page = paginator.get_page(paginator.num_pages)
     context = {
         'pagination': current_page,
+        'list_page': True,
     } 
     
     return render(request, "estoque/pages/movimentacoes.html", context)

@@ -29,6 +29,7 @@ def doacoes(request):
         current_page = paginator.get_page(paginator.num_pages)
     context = {
         'pagination': current_page,
+        'list_page': True,
     } 
     
     return render(request, "doacoes/pages/doacoes.html", context)
@@ -77,6 +78,7 @@ def doadores(request):
         current_page = paginator.get_page(paginator.num_pages)
     context = {
         'pagination': current_page,
+        'list_page': True,
     } 
     
     return render(request, "doacoes/pages/doadores.html", context)

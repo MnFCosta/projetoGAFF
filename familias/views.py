@@ -28,6 +28,7 @@ def familias(request):
         current_page = paginator.get_page(paginator.num_pages)
     context = {
         'pagination': current_page,
+        'list_page': True,
     } 
     
     return render(request, "familias/pages/familias.html", context)
