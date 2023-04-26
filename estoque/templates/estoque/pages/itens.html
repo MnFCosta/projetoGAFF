@@ -25,13 +25,13 @@
                     {% for item in pagination %}
                     <div>
                         <tr>
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{item.nome}}</a></td>
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{item.unidade}}</a></td>
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{item.multiplicador |floatformat:"0" }}x</a></td>
+                            <td><a href="{% url 'estoque:detail_item' item.id %}" style="text-decoration:none; color: light-blue">{{item.nome}}</a></td>
+                            <td>{{item.unidade}}</td>
+                            <td>{{item.multiplicador |floatformat:"0" }}x</td>
                             {% if item.multiplicador > 1 %}
-                                <td><a href="#" style="text-decoration:none; color: light-blue">{{item.estoque_atual |floatformat:"0" }}g</a></td>
+                                <td>{{item.estoque_atual |floatformat:"0" }}g</td>
                             {% else %}
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{item.estoque_atual |floatformat:"0" }} items</a></td>
+                            <td>{{item.estoque_atual |floatformat:"0" }} items</td>
                             {% endif %}
                         </tr> 
                     </div>

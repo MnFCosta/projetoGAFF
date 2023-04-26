@@ -5,12 +5,12 @@
             <h2>Visita a {{visita.familia}} | Data: {{visita.data}}</h2> 
             <h1>Participantes: </h1>
             <div class="new-button"> 
-                <a href="{% url 'visitas:cadastro_participantes' visita.id %}">Cadastre novos participantes</a>
+                <a href="{% url 'visitas:cadastro_participantes' visita.id %}">Adicione novos participantes</a>
             </div>
             {% if colaboradores.exists%}
             {% for participante in colaboradores %}
                 {% for i in participante.participantes.all %}
-                    <span>{{i.nome}}</span><br>
+                    <span><a class="componentes-link"href="{% url 'colaboradores:colaborador_detail' i.id%}">{{i.nome}}</a></span><br>
                 {% endfor %}
             {% endfor %}
             {% endif %} 

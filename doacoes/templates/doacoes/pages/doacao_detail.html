@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container-detail">
-            <h2>Doacao de {{doacao.doador}}</h2>
+            <h2>Doação de {{doacao.doador}}</h2>
             <h1>Itens doados</h1>
             <div class="new-button">
                 <a href="{% url 'doacoes:cadastro_itens' doacao.id %}">Cadastre novos itens</a>

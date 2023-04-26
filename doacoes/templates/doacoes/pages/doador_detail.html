@@ -6,5 +6,32 @@
             <div class="new-button">
                 <a href="{% url 'doacoes:cadastro_doacao' doador.id%}">Nova Doacão</a>
             </div>
+            <h2>Contato: </h2>
+            <span>Celular: {{doador.celular}}</span><br>
+            <h2>Endereço: </h2>
+            <span>{{doador.rua}} {{doador.bairro}} {{doador.numero}} {{doador.cidade}} {{doador.unidade_federativa}}</span><br>
+            <h2>Doações deste doador: </h2>
+
+         
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Nº</th>
+                    <th scope="col">Data</th>
+                  </tr>
+                </thead>
+                    <tbody>
+                        {% for doacao in pagination %}
+                        <div>
+                        <tr>
+                            <td class = "num-list"><a href="{% url 'doacoes:doacao_detail' doacao.id %}" style="text-decoration:none; color: light-blue">{{forloop.revcounter}}</a></td>
+                            <td><a href="{% url 'doacoes:doacao_detail' doacao.id %}" style="text-decoration:none; color: light-blue">{{doacao.data_doacao}}</a></td>
+                        </tr> 
+                        {% endfor %}
+                        </div>
+
+                    </tbody>
+                </table>   
+                {% include 'home/partials/paginator.html'%}    
 </div>
 {% endblock content %}

@@ -24,26 +24,26 @@
                     {% for movimentacao in pagination %}
                     <div>
                         <tr>
-                            <td><a href="#" style="text-decoration:none; color: light-blue">
+                            <td>
                               {% if movimentacao.tipo.model == "itemdoacao" %}
                                 +
                               {% else %}
                                 -
                               {% endif %}
                               {{movimentacao.item}}
-                            </a></td>
+                            </td>
                             {% if movimentacao.item.multiplicador > 1 %}
-                                  <td><a href="#" style="text-decoration:none; color: light-blue">{{movimentacao.quantidade |floatformat:"0"}}g</a></td>
+                                  <td>{{movimentacao.quantidade |floatformat:"0"}}g</td>
                             {% else %}
-                                  <td><a href="#" style="text-decoration:none; color: light-blue">{{movimentacao.quantidade |floatformat:"0"}} itens</a></td>
+                                  <td>{{movimentacao.quantidade |floatformat:"0"}} itens</td>
                             {% endif %}
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{movimentacao.data_movimento}}</a></td>
+                            <td>{{movimentacao.data_movimento}}</td>
                             {% if movimentacao.tipo.model == "itemdoacao" %}
-                              <td><a href="#" style="text-decoration:none; color: light-blue">Doação</a></td>
+                              <td>Doação</td>
                             {% else %}
-                            <td><a href="#" style="text-decoration:none; color: light-blue">Entrega</a></td>
+                            <td>Entrega</td>
                             {% endif %}
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{movimentacao.por}}</a></td>
+                            <td>{{movimentacao.por}}</td>
                         </tr> 
                     </div>
                     {% endfor %}

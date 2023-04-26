@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import CASCADE
 from entregas.models import Item
+from django.core.validators import MinValueValidator
 
 # Create your models here.
 
@@ -35,7 +36,7 @@ class Doacao(models.Model):
 class ItemDoacao(models.Model):
     doacao = models.ForeignKey(Doacao, verbose_name="Doação", on_delete=CASCADE)
     item = models.ForeignKey(Item, verbose_name="Item da doação", on_delete=CASCADE)
-    quantidade = models.DecimalField(max_digits=20, decimal_places=0)
+    quantidade = models.DecimalField(max_digits=20, decimal_places=0, validators=[MinValueValidator(1)])
     
     def __str__(self):
         return self.item.nome

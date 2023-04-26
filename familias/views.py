@@ -93,7 +93,7 @@ def cadastroRenda(request,id):
             messages.success(request, "Renda Cadastrada!")
             return redirect(f"/familias/{id}")
         else:   
-            messages.error(request, "Dados inválidos!")
+            messages.error(request, "Dados inválidos, renda não cadastrada!")
             return redirect(f"/familias/{id}")
         
     else:
@@ -113,6 +113,17 @@ def familiaDetail(request, id):
     return render(request, 'familias/pages/familia_detail.html', context={
         "familia": familia,
         "renda": renda,
+        "is_detail_page": True,
+
+    })
+
+def componenteDetail(request, id):
+    componente = get_object_or_404(componenteFamilia,
+        pk=id
+    )
+
+    return render(request, 'familias/pages/componente_detail.html', context={
+        "componente": componente,
         "is_detail_page": True,
 
     })

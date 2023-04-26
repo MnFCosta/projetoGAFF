@@ -111,9 +111,23 @@ def doadoresDetail(request, id):
         pk=id
     )
 
+    doacoes = Doacao.objects.filter(doador=id).order_by("-id")
+
+    paginator = Paginator(doacoes, 15)
+    page_number = request.GET.get('page')
+
+    try:
+        current_page = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        current_page = paginator.get_page(1)
+    except EmptyPage:
+        current_page = paginator.get_page(paginator.num_pages)
+    
+
     return render(request, 'doacoes/pages/doador_detail.html', context={
         "doador": doador,
         "is_detail_page": True,
+        'pagination': current_page,
     })
 
 def itensDoacao(request, id):
@@ -162,8 +176,8 @@ def itensDoacao(request, id):
 
             return redirect(f"/doacoes/{doacao.id}/")
         else:   
-            messages.error(request, "Dados inválidos!")
-            return redirect("doacao:doacao")
+            messages.error(request, "Dados inválidos, itens não foram adicionados!")
+            return redirect(f"/doacoes/{doacao.id}/")
         
     else:
         form = ItensForm()

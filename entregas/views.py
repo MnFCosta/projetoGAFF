@@ -81,7 +81,7 @@ def itensEntrega(request, id):
         var = item.item.nome
         items_adicionados.append(var)
     if request.method == 'POST':
-        form = ItensForm(request.POST)
+        form = ItensForm(request.POST) 
         if form.is_valid():
             novos=form.cleaned_data.get("item") 
             if (f'{novos}' in items_adicionados):
@@ -120,8 +120,8 @@ def itensEntrega(request, id):
                     messages.error(request, f"A quantidade solicitada ({qtd_solicitada}g) é maior do que se há disponível em estoque ({qtd_estoque}g)")
             return redirect(f"/entregas/{entrega.id}")
         else:   
-            messages.error(request, "Dados inválidos!")
-            return redirect("entregas:entregas")
+            messages.error(request, "Dados inválidos, itens não foram adicionados!")
+            return redirect(f"/entregas/{entrega.id}")
         
     else:
         form = ItensForm()

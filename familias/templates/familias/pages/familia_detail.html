@@ -10,15 +10,15 @@
                 <a href="{% url 'entregas:cadastro_entregas' familia.id %}">Nova Entrega</a>
             </div>
             {% if familia.componentes.exists%}
-            <h1>Componentes:</h1>
+            <h2>Componentes:</h2>
 
             {% for i in familia.componentes.all %}
-                <span>{{i.nome}}</span><br>
+                <span><a  class="componentes-link" href="{% url 'familias:componente_detail' i.id %}">{{i.nome}} | {{i.papel}}</a></span><br>
             {% endfor %}
 
             {% endif %} 
             {% if renda.exists%}
-            <h1>Rendas da Familia:</h1>
+            <h2>Rendas da Familia:</h2>
             {% for i in renda%}
                 <span> Origem: {{i.origem_renda}} | Valor: R$ {{i.valor}}</span><br>
             {% endfor %}

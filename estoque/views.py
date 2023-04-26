@@ -52,6 +52,11 @@ def cadastroItem(request):
         form = ItemForm()
     return render(request, "estoque/pages/cadastro_item.html", {'form': form})
 
+def detailItem(request,id):
+    item = Item.objects.get(id=id)
+
+    return render(request, "estoque/pages/item_detail.html", {'item': item, "is_detail_page": True,})
+
 def movimentacoes(request):
     movimentacoes = Movimentacao.objects.order_by("-id")
 
