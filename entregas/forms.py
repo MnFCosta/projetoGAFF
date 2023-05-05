@@ -18,7 +18,7 @@ class EntregaForm(forms.ModelForm):
             Row(
                 Div(
                 'data_entrega',
-                css_class='form-row form-div-info'
+                css_class='form-row form-single form-div-info'
                 ),
             ),
                 HTML('<div class="form-buttons"><button class="form-button" type="submit">Cadastrar nova entrega</button></div>'),
@@ -26,6 +26,7 @@ class EntregaForm(forms.ModelForm):
 
 class ItensForm(forms.ModelForm):
     item = forms.ModelChoiceField(
+        label='',
         queryset=Item.objects.all(),
         widget=forms.Select(attrs={'id': 'item-select'}),
         initial=None
@@ -35,6 +36,9 @@ class ItensForm(forms.ModelForm):
         model = ItemEntrega
         fields = '__all__'
         exclude = ['entrega']
+        labels = {
+           'quantidade': " "
+        }
 
     def clean_quantidade(self):
         quantidade = self.cleaned_data['quantidade']
@@ -46,7 +50,7 @@ class ItensForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         self.fields['quantidade'].widget.attrs['id'] = 'quantidade-input'
-
+        
         self.helper = FormHelper()
         self.helper.layout = Layout(
             HTML('<h1>Item: </h1>'),

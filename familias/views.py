@@ -128,3 +128,55 @@ def componenteDetail(request, id):
         "is_detail_page": True,
 
     })
+
+
+def familiaEdit(request, id):
+    familia = get_object_or_404(Familia,
+        pk=id
+    )
+    if request.method == "POST":
+        form = FamiliaEditForm(request.POST)
+        if form.is_valid():
+            familia.celular = form.cleaned_data['celular']
+            familia.moradia = form.cleaned_data['moradia']
+            familia.casa_de = form.cleaned_data['casa_de']
+            familia.condicoes_casa = form.cleaned_data['condicoes_casa']
+            familia.aluguel = form.cleaned_data['aluguel']
+            familia.rua = form.cleaned_data['rua']
+            familia.bairro = form.cleaned_data['bairro']
+            familia.numero = form.cleaned_data['numero']
+            familia.cidade = form.cleaned_data['cidade']
+            familia.unidade_federativa = form.cleaned_data['unidade_federativa']
+            familia.latitude = form.cleaned_data['latitude']
+            familia.longitude = form.cleaned_data['longitude']
+            familia.cep = form.cleaned_data['cep']
+            familia.observacao = form.cleaned_data['observacao']
+            familia.save()
+            messages.success(request, "Dados atualizados com sucesso!")
+            return redirect(f"/familias/{id}")
+        else:
+            messages.error(request, "Dados inválidos, tente novamente!")
+            return redirect(f"/familia_editar/{id}") 
+    else:
+        form = FamiliaEditForm(initial={
+        'celular': familia.celular,
+        'moradia': familia.moradia,
+        'casa_de': familia.casa_de,
+        'condicoes_casa': familia.condicoes_casa,
+        'aluguel': familia.aluguel,
+        'rua': familia.rua,
+        'bairro': familia.bairro,
+        'numero': familia.numero,
+        'cidade': familia.cidade,
+        'unidade_federativa': familia.unidade_federativa,
+        'latitude': familia.latitude,
+        'longitude': familia.longitude,
+        'cep': familia.cep,
+        'observacao': familia.observacao,
+    })
+
+    return render(request, 'familias/pages/familia_edit.html', context={
+        "form": form,
+        "familia": familia,
+        "is_detail_page": True,
+    })

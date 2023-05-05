@@ -48,8 +48,12 @@ class ItensForm(forms.ModelForm):
         model = ItemDoacao
         fields = '__all__'
         exclude = ['doacao']
+        labels = {
+            'quantidade': " ",
+        }
 
     item = forms.ModelChoiceField(
+        label='',
         queryset=Item.objects.all(),
         widget=forms.Select(attrs={'id': 'item-select'}),
         initial=None

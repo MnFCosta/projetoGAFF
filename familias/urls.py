@@ -12,6 +12,7 @@ urlpatterns = [
     path('renda/<int:id>', views.cadastroRenda, name="renda"),
     path('familias/<int:id>', views.familiaDetail, name="familia_detail"),
     path('componente/<int:id>', views.componenteDetail, name="componente_detail"),
+    path('familia_editar/<int:id>', views.familiaEdit, name="familias_editar"),
 
 ]
 

@@ -1,0 +1,14 @@
+{% extends 'global/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="main-content main-content-list container">
+        <form class="form-container" action="{% url 'familias:familias_editar' familia.id %}" method='post'>
+            <div class="form-title">
+                <h1>Editando dados da familia {{familia.nome}}</h1>
+            </div>
+            {% csrf_token %}
+            {% crispy form %}
+            
+        </form>
+        </div>
+{% endblock content %}

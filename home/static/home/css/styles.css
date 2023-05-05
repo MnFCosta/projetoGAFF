@@ -285,7 +285,7 @@ button {
 
 .form-row .form-div-ajax {
     margin-bottom: 20px;
-    margin-left: 20px;
+    /* margin-left: 20px; */
     padding: 20px;
     display: inline-block;
 }
@@ -822,4 +822,21 @@ button {
 
 .componentes-link:hover{
     text-decoration: none;
+}
+
+.custom-select{
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: white;
+    width: 140px;
+    height: 40px;
+    color: black;
+}
+
+#unidades{
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 6px;
+    position: relative;
+    top: 1px;
 }
