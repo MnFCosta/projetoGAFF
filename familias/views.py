@@ -65,6 +65,7 @@ def cadastroComponente(request, id):
 def cadastroFamilia(request):
     if request.method == 'POST':
         form = FamiliaForm(request.POST)
+        print(form.errors)
         if form.is_valid():
             instance = form.save(commit=False)
             instance.realizado_por = request.user  

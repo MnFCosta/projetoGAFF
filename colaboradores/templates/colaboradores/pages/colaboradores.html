@@ -19,7 +19,6 @@
                       <th scope="col">Nome</th>
                       <th scope="col">Contato</th>
                       <th scope="col">Endereço</th>
-                      <th scope="col">Teste</th>
                       {% comment %} <th scope="col">Deletar</th> {% endcomment %}
                     </tr>
                   </thead>
@@ -31,7 +30,6 @@
                               <td><a href="{% url 'colaboradores:colaborador_detail' users.id %}">{{users.celular}}</a></td>
                               <td><a href="{% url 'colaboradores:colaborador_detail' users.id %}">{{users.rua}} 
                                 {{users.bairro}} {{users.cidade}}-{{users.unidade_federativa | upper}}</a></td>
-                                <td><a href="{% url 'colaboradores:colaborador_detail' users.id %}">{{users.nome}}</a></td>  
                               {% comment %} <td class = "td-delete"><a href="{% url 'colaboradores:colaborador_detail' users.id %}"><i class="fa-solid fa-trash"></i></a></td>   {% endcomment %}
                           </tr> 
                       </div>

@@ -41,10 +41,21 @@ class FamiliaForm(forms.ModelForm):
         model = Familia
         fields = '__all__'
         exclude = ['componentes', 'realizado_por',]
+        widgets = {
+            'aluguel': forms.TextInput(attrs={'placeholder': 'R$ 0,00'})
+        }
+        labels = {
+            'aluguel': 'Valor do aluguel (opcional)',
+            'numero': 'Numero da casa',
+            'casa_de': 'Material da moradia:',
+            'condicoes_casa': 'Condições da moradia:',
+            'observacao': ''
+        }
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
+        self.fields['aluguel'].required = False
+        self.fields['data_cadastro'].widget = forms.HiddenInput()
         self.helper = FormHelper()
         self.helper.layout = Layout(
                 HTML('<h1>Informações da familia:</h1>'),
@@ -52,6 +63,7 @@ class FamiliaForm(forms.ModelForm):
                 Div(
                 'nome',
                 'celular',
+                'data_cadastro',
                 
                 css_class='form-row form-div-info'
                 ),
@@ -95,19 +107,6 @@ class FamiliaForm(forms.ModelForm):
             ),
                 HTML('<div class="form-buttons"><button class="form-button" type="submit">Criar nova familia</button></div>'),
         )
-        
-    """ #override no metodo padrão save para poder tratar um multiselectfield
-    def save(self, commit=True):
-        #chama o método save padrão para criar uma instancia do model
-        #porém commit=False para que a instancia nao seja salva na db
-        instance = super().save(commit=False)
-        if commit:
-            instance.save()  # salva a instancia na db com valores para que ela tenha um id 
-            #(necessário para salvar multiselectfield)
-        instance.componentes.set(self.cleaned_data['composicao']) #coloca os dados do formulário no atributo componentes do model
-        if commit:
-            instance.save() #salva a instancia com todos os dados na db
-        return instance """
     
 class RendaForm(forms.ModelForm):
     class Meta:

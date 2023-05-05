@@ -22,6 +22,17 @@
             {% for i in renda%}
                 <span> Origem: {{i.origem_renda}} | Valor: R$ {{i.valor}}</span><br>
             {% endfor %}
-            {% endif %} 
+            {% endif %}
+            <h2>Situação da moradia:</h2> 
+                <span>
+                    Tipo de moradia: {{familia.moradia}} <br>
+                    Material: {{familia.casa_de}} <br>
+                    Condição da moradia: {{familia.condicoes_casa}} <br>
+                    {% if familia.aluguel %}
+                        Valor do aluguel: R${{familia.aluguel}}
+                    {% endif %}
+                </span><br>
+            <h2>Observações:</h2>
+                <span>{{familia.observacao}}</span>
 </div>
 {% endblock content %}
