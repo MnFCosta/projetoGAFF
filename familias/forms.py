@@ -201,3 +201,56 @@ class FamiliaEditForm(forms.ModelForm):
             ),
                 HTML('<div class="form-buttons"><button class="form-button" type="submit">Atualizar familia</button></div>'),
         )
+class ComponenteEditForm(forms.ModelForm):
+    class Meta:
+        model = componenteFamilia
+        fields = '__all__'
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+                HTML('<h1>Informações da pessoa:</h1>'),
+            Row(
+                Div(
+                'nome',
+                'cpf',
+                'rg',
+                Field('papel'),
+                'nascimento',
+                
+                css_class='form-row form-div-info'
+                ),
+            ),
+                HTML('<h1>Informação Vestimentas:</h1>'),
+            Row(
+                Div(
+                'NR_roupa',    
+                'NR_calcado',
+                css_class='form-row form-div-info'
+                ),
+            ),
+                HTML('<div class="form-buttons"><button class="form-button" type="submit">Atualizar componente familiar</button></div>'),
+        )
+class RendaEditForm(forms.ModelForm):
+    class Meta:
+        model = RendaFamiliar
+        fields = '__all__'
+        exclude = ['familia',]
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+                HTML('<h1>Renda:</h1>'),
+            Row(
+                Div(
+                'origem_renda',
+                'valor', 
+                css_class='form-row form-div-info'
+                ),
+            ),
+                HTML('<div class="form-buttons"><button class="form-button" type="submit">Atualizar renda familiar</button></div>'),
+        )

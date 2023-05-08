@@ -14,26 +14,105 @@
             <h2>Componentes:</h2>
 
             {% for i in familia.componentes.all %}
-                <span><a  class="componentes-link" href="{% url 'familias:componente_detail' i.id %}">{{i.nome}} | {{i.papel}}</a></span><br>
+                <span>{{i.nome}} | {{i.papel}}
+                    <div class="trash-edit">
+                        <a href="{% url 'familias:componente_detail' i.id %}"><i class="fa-regular fa-pen-to-square ml-2 edit"></i></a>
+                        <button type="button" class="trash" data-bs-toggle="modal" data-bs-target="#ModalFamilia" data-nome="{{i.nome}}" data-id="{{i.id}}" >
+                            <i class="fa-solid fa-trash ml-3 trash"></i>
+                        </button>
+                    </div>
+                </span><br>
             {% endfor %}
 
             {% endif %} 
             {% if renda.exists%}
             <h2>Rendas da Familia:</h2>
             {% for i in renda%}
-                <span> Origem: {{i.origem_renda}} | Valor: R$ {{i.valor}}</span><br>
+                <span> Origem: {{i.origem_renda}} | Valor: R$ {{i.valor}}
+                    <div class="trash-edit">
+                        <a href="{% url 'familias:renda_editar' i.id %}"><i class="fa-regular fa-pen-to-square ml-2 edit"></i></a>
+                        <button type="button" class="trash" data-bs-toggle="modal" data-bs-target="#exampleModal" data-nome="{{i.origem_renda}}" data-id="{{i.id}}" >
+                            <i class="fa-solid fa-trash ml-3 trash"></i>
+                        </button>
+                    </div>
+                </span><br>
             {% endfor %}
             {% endif %}
             <h2>Situação da moradia:</h2> 
                 <span>
-                    Tipo de moradia: {{familia.moradia}} <br>
-                    Material: {{familia.casa_de}} <br>
-                    Condição da moradia: {{familia.condicoes_casa}} <br>
+                    {% if familia.moradia %}
+                        Tipo de moradia: {{familia.moradia}} <br>
+                    {% else %}
+                        Tipo de moradia: Não informada! <br>
+                    {% endif %}
+                    {% if familia.casa_de %}
+                        Material: {{familia.casa_de}} <br>
+                    {% else %}
+                        Material: Não informado! <br>
+                    {% endif %}
+                    {% if familia.condicoes_casa %}
+                        Condição da moradia: {{familia.condicoes_casa}} <br>
+                    {% else %}
+                        Condição da moradia: Não informada! <br>
+                    {% endif %}
                     {% if familia.aluguel %}
                         Valor do aluguel: R${{familia.aluguel}}
                     {% endif %}
                 </span><br>
             <h2>Observações:</h2>
                 <span>{{familia.observacao}}</span>
-</div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog center-modal">
+                  <div class="modal-content">
+                    <div class="modal-header text-center">
+                      <h5 class="modal-title w-100" id="exampleModalLabel">ATENÇÃO!</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <a id = "delete_link" class="btn btn-danger" style="width: 70px; height: 40px;" ><i class="fa-solid fa-check mt-2 " style="font-size:20px"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="ModalFamilia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog center-modal">
+                  <div class="modal-content">
+                    <div class="modal-header text-center">
+                      <h5 class="modal-title w-100" id="exampleModalLabel">ATENÇÃO!</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <a id = "delete_link" class="btn btn-danger" style="width: 70px; height: 40px;" ><i class="fa-solid fa-check mt-2 " style="font-size:20px"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <script>
+                $('#exampleModal').on('show.bs.modal', function (event) {
+                    var button = $(event.relatedTarget) 
+                    var id = button.data('id')
+                    var nome = button.data('nome')  
+                    var modal = $(this)
+                    modal.find('.modal-body').text('A renda ' + nome + ' será permanentemente removida, você quer mesmo fazer isso?')
+                    modal.find('#delete_link').attr('href', '/remove_renda/' + id)
+                })
+
+                $('#ModalFamilia').on('show.bs.modal', function (event) {
+                    var button = $(event.relatedTarget) 
+                    var id = button.data('id')
+                    var nome = button.data('nome')  
+                    var modal = $(this)
+                    modal.find('.modal-body').text('O componente ' + nome + ' será permanentemente removido da familia, você quer mesmo fazer isso?')
+                    modal.find('#delete_link').attr('href', '/remove_componente/' + id)
+                })
+            </script>
 {% endblock content %}

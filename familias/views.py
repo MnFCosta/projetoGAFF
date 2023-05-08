@@ -180,3 +180,100 @@ def familiaEdit(request, id):
         "familia": familia,
         "is_detail_page": True,
     })
+
+
+def componenteEdit(request, id):
+    componente = get_object_or_404(componenteFamilia,
+        pk=id
+    )
+
+    familia = get_object_or_404(Familia, componentes=id)
+
+    if request.method == "POST":
+        form = ComponenteEditForm(request.POST)
+        if form.is_valid():
+            componente.nome = form.cleaned_data['nome']
+            componente.cpf = form.cleaned_data['cpf']
+            componente.rg = form.cleaned_data['rg']
+            componente.papel = form.cleaned_data['papel']
+            componente.nascimento = form.cleaned_data['nascimento']
+            componente.NR_calcado = form.cleaned_data['NR_calcado']
+            componente.NR_roupa = form.cleaned_data['NR_roupa']
+            componente.save()
+            messages.success(request, "Dados atualizados com sucesso!")
+            return redirect(f"/familias/{familia.id}")
+        else:
+            messages.error(request, "Dados inválidos, tente novamente!")
+            return redirect(f"/componente_editar/{id}") 
+    else:
+        form = ComponenteEditForm(initial={
+        'nome': componente.nome,
+        'cpf': componente.cpf,
+        'rg': componente.rg,
+        'papel': componente.papel,
+        'nascimento': componente.nascimento,
+        'NR_calcado': componente.NR_calcado,
+        'NR_roupa': componente.NR_roupa,
+    })
+
+    return render(request, 'familias/pages/componente_edit.html', context={
+        "form": form,
+        "componente": componente,
+        "is_detail_page": True,
+    })
+
+def rendaEdit(request, id):
+    renda = get_object_or_404(RendaFamiliar,
+        pk=id
+    )
+
+    id_familia=renda.familia.id
+
+    if request.method == "POST":
+        form = RendaEditForm(request.POST)
+        if form.is_valid():
+            renda.origem_renda = form.cleaned_data['origem_renda']
+            renda.valor = form.cleaned_data['valor']
+            renda.save()
+            messages.success(request, "Dados atualizados com sucesso!")
+            return redirect(f"/familias/{id_familia}")
+        else:
+            messages.error(request, "Dados inválidos, tente novamente!")
+            return redirect(f"/renda_editar/{id}") 
+    else:
+        form = RendaEditForm(initial={
+        'origem_renda': renda.origem_renda,
+        'valor': renda.valor,
+    })
+
+    return render(request, 'familias/pages/renda_edit.html', context={
+        "form": form,
+        "renda": renda,
+        "is_detail_page": True,
+    })
+
+
+def removeRenda(request, id):
+    renda = get_object_or_404(RendaFamiliar,
+        pk=id
+    )
+    id_familia=renda.familia.id
+
+    renda.delete()
+    messages.success(request, "Renda apagada com sucesso!")
+    return redirect(f"/familias/{id_familia}")
+
+def removeComponente(request, id):
+    componente = get_object_or_404(componenteFamilia,
+        pk=id
+    )
+    familia = get_object_or_404(Familia, componentes=id)
+
+    componente.delete()
+    messages.success(request, "Componente apagado com sucesso!")
+    return redirect(f"/familias/{familia.id}")
+  
+    
+
+
+    

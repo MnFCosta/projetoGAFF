@@ -196,7 +196,20 @@ button {
     border-radius: 8px;
     background-color: var(--color-white);
     padding-left: 10px;
-    display: block;
+    display: flex;
+    justify-content: space-between;
+}
+
+.trash-edit{
+    margin-right: 10px;
+}
+
+.trash-edit .edit:hover{
+    color: blue;
+}
+
+.trash-edit .trash:hover{
+    color: red;
 }
 
 .container-detail h1{
@@ -840,3 +853,33 @@ button {
     position: relative;
     top: 1px;
 }
+
+
+.center-modal {
+    position: absolute;
+    left: 33%;
+    top: 20%;
+    transform: translate(-50%, -50%);
+  }
+
+.modal-header{
+    background-color: var(--color-white);
+    text-align: center;
+}
+
+.modal-title{
+    color: red;
+    font-size: 50px;
+    
+}
+
+.modal-body{
+    color: red;
+    white-space: nowrap;
+}
+
+.modal-content{
+    width: fit-content;
+}
+
+
