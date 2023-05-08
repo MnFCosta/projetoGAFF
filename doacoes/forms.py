@@ -95,3 +95,38 @@ class ItensForm(forms.ModelForm):
         )
 
         self.helper.form_tag = False
+
+class DoadorEditForm(forms.ModelForm):
+    class Meta:
+        model = Doador
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field_name, field in self.fields.items():
+            field.required = False
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            HTML('<h1>Contato: </h1>'),
+            Row(
+                Div(
+                    'celular',
+                    css_class='form-row form-div-info'
+                ),
+            ),
+            HTML('<h1>Endereço: </h1>'),
+            Row(
+                Div(
+                    'rua',
+                    'bairro',
+                    'numero',
+                    'cidade',
+                    'unidade_federativa',
+                    css_class='form-row form-div-info'
+                ),
+            ),
+            HTML('<div class="form-buttons"><button class="form-button" type="submit">Atualizar doador</button></div>'),
+        )
+
+        self.helper.form_tag = False

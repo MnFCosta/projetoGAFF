@@ -5,11 +5,12 @@
             <h2>Nome: {{doador.nome}}</h2>
             <div class="new-button">
                 <a href="{% url 'doacoes:cadastro_doacao' doador.id%}">Nova Doacão</a>
+                <a href="{% url 'doacoes:doador_editar' doador.id%}">Editar Doador</a>
             </div>
             <h2>Contato: </h2>
             <span>Celular: {{doador.celular}}</span><br>
             <h2>Endereço: </h2>
-            <span>{{doador.rua}} {{doador.bairro}} {{doador.numero}} {{doador.cidade}} {{doador.unidade_federativa}}</span><br>
+            <span>{{doador.rua}} {{doador.bairro}} {{doador.numero}}, {{doador.cidade}} - {{doador.unidade_federativa}}</span><br>
             <h2>Doações deste doador: </h2>
 
          

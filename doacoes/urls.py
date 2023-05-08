@@ -12,6 +12,7 @@ urlpatterns = [
     path('doadores/<int:id>', views.doadoresDetail, name="doadores_detail"), 
     path('cadastro_doador/', views.cadastroDoador, name="cadastro_doador"),
     path('cadastro_doacao/<int:id>/', views.cadastroDoacao, name="cadastro_doacao"),
-    path('cadastro_itens/<int:id>', views.itensDoacao, name="cadastro_itens")
+    path('cadastro_itens/<int:id>', views.itensDoacao, name="cadastro_itens"),
+    path('editar_doador/<int:id>', views.doadorEdit, name="doador_editar")
 ]
 

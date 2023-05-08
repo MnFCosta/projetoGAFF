@@ -3,9 +3,9 @@
 {% block content %}
 <div class="d-flex justify-content-center align-items-center" style="height:1000px;">
     <div class="main-content main-content-list container">
-        <form class="form-container" action="{% url 'colaboradores:colaborador_editar' colaboradores.id %}" method='post'>
+        <form class="form-container" action="{% url 'doacoes:doador_editar' doador.id %}" method='post'>
             <div class="form-title">
-                <h1>Editando dados do colaborador {{colaboradores.nome}}</h1>
+                <h1>Editando dados do doador {{doador.nome}}</h1>
             </div>
             {% csrf_token %}
             {% crispy form %}

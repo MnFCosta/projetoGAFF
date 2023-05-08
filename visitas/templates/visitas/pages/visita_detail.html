@@ -6,11 +6,18 @@
             <h1>Participantes: </h1>
             <div class="new-button"> 
                 <a href="{% url 'visitas:cadastro_participantes' visita.id %}">Adicione novos participantes</a>
+                <a href="{% url 'visitas:visita_editar' visita.id %}">Editar Visita</a>
             </div>
             {% if colaboradores.exists%}
             {% for participante in colaboradores %}
                 {% for i in participante.participantes.all %}
-                    <span><a class="componentes-link"href="{% url 'colaboradores:colaborador_detail' i.id%}">{{i.nome}}</a></span><br>
+                    <span><a class="componentes-link"href="{% url 'colaboradores:colaborador_detail' i.id%}">{{i.nome}}</a>
+                        <div class="trash-edit">
+                            <button type="button" class="trash" data-bs-toggle="modal" data-bs-target="#ModalParticipante" data-visita="{{visita.id}}" data-nome="{{i.nome}}" data-id="{{i.id}}" >
+                                <i class="fa-solid fa-trash ml-3 trash"></i>
+                            </button>
+                        </div>
+                    </span><br>
                 {% endfor %}
             {% endfor %}
             {% endif %} 
@@ -22,5 +29,33 @@
             <div class="text-detail">
                 <h1><p>{{visita.observacao}}</p></h1>
             </div>
+
+            <div class="modal fade" id="ModalParticipante" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog center-modal">
+                  <div class="modal-content">
+                    <div class="modal-header text-center">
+                      <h5 class="modal-title w-100" id="exampleModalLabel">ATENÇÃO!</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <a id = "delete_link" class="btn btn-danger" style="width: 70px; height: 40px;" ><i class="fa-solid fa-check mt-2 " style="font-size:20px"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <script>
+                $('#ModalParticipante').on('show.bs.modal', function (event) {
+                    var button = $(event.relatedTarget) 
+                    var id = button.data('id')
+                    var nome = button.data('nome')
+                    var visita_id = button.data('visita')   
+                    var modal = $(this)
+                    modal.find('.modal-body').text('O participante ' + nome + ' será removido da visita, você quer mesmo fazer isso?')
+                    modal.find('#delete_link').attr('href', '/visita_remove/' + visita_id + "/" + id)
+                })
+            </script>
 </div>
 {% endblock content %}
