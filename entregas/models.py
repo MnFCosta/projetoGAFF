@@ -1,6 +1,7 @@
 from django.db import models
 from familias.models import *
 from django.db.models import F, Func, IntegerField
+from django.core.validators import MinValueValidator
 import math
 
 
@@ -49,7 +50,7 @@ class Item(models.Model):
 class ItemEntrega(models.Model):
     entrega = models.ForeignKey(Entrega, verbose_name="Entrega", on_delete=CASCADE)
     item = models.ForeignKey(Item, verbose_name="Item da entrega", on_delete=CASCADE)
-    quantidade = models.DecimalField(max_digits=20, decimal_places=0)
+    quantidade = models.DecimalField(max_digits=20, decimal_places=0,  validators=[MinValueValidator(1)])
     
     def __str__(self):
         return self.item.nome

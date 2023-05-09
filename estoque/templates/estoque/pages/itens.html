@@ -19,25 +19,53 @@
                     <th scope="col">Unidades disponíveis para entrega</th>
                     <th scope="col">Multiplicador</th>
                     <th scope="col">Quantidade total em estoque</th>
+                    <th scope="col">Quantidade recebida este ano</th>
+                    <th scope="col">Quantidade entregue este ano</th>
                   </tr>
                 </thead>
                 <tbody>
                     {% for item in pagination %}
                     <div>
                         <tr>
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{item.nome}}</a></td>
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{item.unidade}}</a></td>
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{item.multiplicador |floatformat:"0" }}x</a></td>
+                            <td><a href="{% url 'estoque:detail_item' item.id %}" style="text-decoration:none; color: light-blue">{{item.nome}}</a></td>
+                            <td>{{item.unidade}}</td>
+                            <td>{{item.multiplicador |floatformat:"0" }}x</td>
                             {% if item.multiplicador > 1 %}
-                                <td><a href="#" style="text-decoration:none; color: light-blue">{{item.estoque_atual |floatformat:"0" }}g</a></td>
+                                <td>{{item.estoque_atual |floatformat:"0" }}g</td>
                             {% else %}
-                            <td><a href="#" style="text-decoration:none; color: light-blue">{{item.estoque_atual |floatformat:"0" }} items</a></td>
+                            <td>{{item.estoque_atual |floatformat:"0" }} items</td>
                             {% endif %}
+                            <td>
+                            {% for item_quantidade_nome, quantidade in quantidades_por_item.items %}
+                            {% if item_quantidade_nome == item.nome %}
+                                  {% if item.multiplicador > 1 %}
+                                        {{quantidade |floatformat:"0" }}g
+                                  {% else %}
+                                        {{quantidade |floatformat:"0" }} items
+                                  {% endif %}
+                            {% endif %}
+                            {% endfor %}
+                            </td>
+                            <td>
+                              {% for item_quantidade_nome, quantidade in quantidades_por_item_entrega.items %}
+                              {% if item_quantidade_nome == item.nome %}
+                                    {% if item.multiplicador > 1 %}
+                                          {{quantidade |floatformat:"0" }}g
+                                    {% else %}
+                                          {{quantidade |floatformat:"0" }} items
+                                    {% endif %}
+                              {% endif %}
+                              {% endfor %}
+                              </td>
                         </tr> 
                     </div>
                     {% endfor %}
                 </tbody>
               </table>
+              {% for qtd_item in quantidade_por_item %}
+                            <p>{{qtd_item}}</p>
+                            
+              {% endfor %}   
 </html>
 {% endblock contentpaginator %}
 

@@ -1,6 +1,8 @@
 from django.db import models
 from django.db.models import CASCADE
+from django.forms import ValidationError
 from django.utils import timezone
+from django.core.validators import MinValueValidator
 
 ESCOLHAS_PAPEL = (
         ('Pai', 'Pai'),
@@ -44,7 +46,7 @@ class Familia(models.Model):
     moradia = models.CharField(max_length=45) 
     casa_de = models.CharField(max_length=45) 
     condicoes_casa = models.CharField(max_length=45,) 
-    aluguel = models.DecimalField(max_digits=20, decimal_places=2) 
+    aluguel = models.DecimalField(max_digits=20, decimal_places=2, validators=[MinValueValidator(0)], blank=True, null=True) 
     data_cadastro = models.DateTimeField(default=timezone.now) 
     realizado_por = models.CharField(max_length=100) 
     observacao = models.TextField() 
@@ -55,7 +57,7 @@ class Familia(models.Model):
 class RendaFamiliar(models.Model):
     familia = models.ForeignKey(Familia, verbose_name="Renda da Familia", on_delete=CASCADE)
     origem_renda = models.CharField(max_length=100)
-    valor = models.DecimalField(max_digits=20, decimal_places=2)
+    valor = models.DecimalField(max_digits=20, decimal_places=2, validators=[MinValueValidator(1)])
 
     class Meta:
         verbose_name = "Renda da Familia"

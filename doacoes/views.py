@@ -29,6 +29,7 @@ def doacoes(request):
         current_page = paginator.get_page(paginator.num_pages)
     context = {
         'pagination': current_page,
+        'list_page': True,
     } 
     
     return render(request, "doacoes/pages/doacoes.html", context)
@@ -77,6 +78,7 @@ def doadores(request):
         current_page = paginator.get_page(paginator.num_pages)
     context = {
         'pagination': current_page,
+        'list_page': True,
     } 
     
     return render(request, "doacoes/pages/doadores.html", context)
@@ -109,9 +111,23 @@ def doadoresDetail(request, id):
         pk=id
     )
 
+    doacoes = Doacao.objects.filter(doador=id).order_by("-id")
+
+    paginator = Paginator(doacoes, 15)
+    page_number = request.GET.get('page')
+
+    try:
+        current_page = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        current_page = paginator.get_page(1)
+    except EmptyPage:
+        current_page = paginator.get_page(paginator.num_pages)
+    
+
     return render(request, 'doacoes/pages/doador_detail.html', context={
         "doador": doador,
         "is_detail_page": True,
+        'pagination': current_page,
     })
 
 def itensDoacao(request, id):
@@ -160,9 +176,46 @@ def itensDoacao(request, id):
 
             return redirect(f"/doacoes/{doacao.id}/")
         else:   
-            messages.error(request, "Dados inválidos!")
-            return redirect("doacao:doacao")
+            messages.error(request, "Dados inválidos, itens não foram adicionados!")
+            return redirect(f"/doacoes/{doacao.id}/")
         
     else:
         form = ItensForm()
     return render(request, "doacoes/pages/cadastro_itens.html", {'form': form, 'doacao': doacao})
+
+def doadorEdit(request, id):
+    doador = get_object_or_404(Doador,
+        pk=id
+    )
+ 
+    if request.method == "POST":
+        form = DoadorEditForm(request.POST)
+        print(form.errors)
+        if form.is_valid():
+            doador.celular = form.cleaned_data['celular']
+            doador.rua = form.cleaned_data['rua']
+            doador.bairro = form.cleaned_data['bairro']
+            doador.numero = form.cleaned_data['numero']
+            doador.cidade = form.cleaned_data['cidade']
+            doador.unidade_federativa = form.cleaned_data['unidade_federativa']
+            doador.save()
+            messages.success(request, "Dados atualizados com sucesso!")
+            return redirect(f"/doadores/{id}")
+        else:
+            messages.error(request, "Dados inválidos, tente novamente!")
+            return redirect(f"/editar_doador/{id}") 
+    else:
+        form = DoadorEditForm(initial={
+        'celular': doador.celular,
+        'rua': doador.rua,
+        'bairro': doador.bairro,
+        'numero': doador.numero,
+        'cidade': doador.cidade,
+        'unidade_federativa': doador.unidade_federativa,
+    })
+
+    return render(request, 'doacoes/pages/doador_edit.html', context={
+        "form": form,
+        "doador": doador,
+        "is_detail_page": True,
+    })

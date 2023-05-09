@@ -1,0 +1,19 @@
+{% extends 'global/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container-detail">
+     <h1>Componente: {{componente.nome}}</h1>
+     <div class="new-button">
+          <a href="{% url 'familias:componente_editar' componente.id %}">Atualizar dados do componente</a>
+     </div>
+     <h2>Dados Pessoais: </h2>
+     <span>RG: {{componente.rg}}</span><br>
+     <span>CPF: {{componente.cpf}}</span><br>
+     <span>Nascimento: {{componente.nascimento}}</span><br>
+     <span>Papel na família: {{componente.papel}}</span><br>
+
+     <h2>Tamanho de vestimentas: </h2>
+     <span>Roupa: {{componente.NR_roupa}}</span><br>
+     <span>Calçado: {{componente.NR_calcado}}</span>  
+</div>
+{% endblock content %}

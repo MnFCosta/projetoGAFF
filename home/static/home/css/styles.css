@@ -171,6 +171,8 @@ button {
     margin-bottom: 20px;
 }
 
+
+
 .container-detail{
     position: relative;
     border-radius: 10px;
@@ -194,7 +196,20 @@ button {
     border-radius: 8px;
     background-color: var(--color-white);
     padding-left: 10px;
-    display: block;
+    display: flex;
+    justify-content: space-between;
+}
+
+.trash-edit{
+    margin-right: 10px;
+}
+
+.trash-edit .edit:hover{
+    color: blue;
+}
+
+.trash-edit .trash:hover{
+    color: red;
 }
 
 .container-detail h1{
@@ -283,7 +298,7 @@ button {
 
 .form-row .form-div-ajax {
     margin-bottom: 20px;
-    margin-left: 20px;
+    /* margin-left: 20px; */
     padding: 20px;
     display: inline-block;
 }
@@ -460,6 +475,7 @@ button {
     border-radius: 8px;
     padding: 10px;
     background-color: white;
+    margin-right: 5px;
 }
 
 
@@ -472,6 +488,8 @@ button {
     grid-template-columns: repeat(auto-fit,minmax(340px,1fr));
     gap: var(--spacing-gutter-large)
 }
+
+
 
 /* .recipe{
     background: var(--color-white);  
@@ -623,6 +641,11 @@ button {
     border-right: 2px solid black;
 }
 
+.table .num-list{
+    width: 40px;
+    text-align: center;
+}
+
 .table th{
     background-color: rgb(180, 221, 255);
     border: 2px solid black;
@@ -632,7 +655,6 @@ button {
 .table .td-delete{
     background-color: red;
     text-align: center;
-    border: 2px solid black;
     width: 100px;
     height: 45px;
 }
@@ -806,3 +828,58 @@ button {
 .link:hover {
     color: var(--color-white);
 }
+
+.componentes-link{
+    color: black;
+}
+
+.componentes-link:hover{
+    text-decoration: none;
+}
+
+.custom-select{
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: white;
+    width: 140px;
+    height: 40px;
+    color: black;
+}
+
+#unidades{
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 6px;
+    position: relative;
+    top: 1px;
+}
+
+
+.center-modal {
+    position: absolute;
+    left: 33%;
+    top: 20%;
+    transform: translate(-50%, -50%);
+  }
+
+.modal-header{
+    background-color: var(--color-white);
+    text-align: center;
+}
+
+.modal-title{
+    color: red;
+    font-size: 50px;
+    
+}
+
+.modal-body{
+    color: red;
+    white-space: nowrap;
+}
+
+.modal-content{
+    width: fit-content;
+}
+
+

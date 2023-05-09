@@ -2,11 +2,15 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container-detail">
-     <h1>Informações:</h1>
-     <span>Nome Completo: {{colaboradores.nome}}</span><br>
+     <h1>Colaborador: {{colaboradores.nome}}</h1>
+     <div class="new-button">
+          <a href="{% url 'colaboradores:colaborador_editar' colaboradores.id %}">Atualizar dados do colaborador</a>
+     </div>
+     <h2>Contato: </h2>
      <span>Email: {{colaboradores.email}}</span><br>
-     <span>Telefone para contato: {{colaboradores.celular}}</span><br>
+     <span>Telefone: {{colaboradores.celular}}</span><br>
      <span>Endereço: {{colaboradores.rua}} {{colaboradores.bairro}} {{colaboradores.cidade}} - {{colaboradores.unidade_federativa}}</span><br>
+     <h2>Informações de cadastro: </h2>
      <span>Cadastrado em: {{colaboradores.data_de_ingresso}}</span><br>
      <span>Ultimo login em: {{colaboradores.last_login|default_if_none:"Nunca"}}</span>  
 </div>

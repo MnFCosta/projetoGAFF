@@ -1,0 +1,16 @@
+{% extends 'global/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="height:1000px;">
+    <div class="main-content main-content-list container">
+        <form class="form-container" action="{% url 'colaboradores:colaborador_editar' colaboradores.id %}" method='post'>
+            <div class="form-title">
+                <h1>Editando dados do colaborador {{colaboradores.nome}}</h1>
+            </div>
+            {% csrf_token %}
+            {% crispy form %}
+            
+        </form>
+        </div>
+    </div>
+{% endblock content %}

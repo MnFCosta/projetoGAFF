@@ -1,0 +1,23 @@
+{% extends 'global/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container-detail">
+     <h1>Item: {{item.nome}}</h1>
+
+     <h2>Dados do item: </h2>
+     <span>
+        {% if item.multiplicador > 1 %}
+            Estoque atual: {{item.estoque_atual |floatformat:"0" }}g
+        {% else %}
+            Estoque atual: {{item.estoque_atual |floatformat:"0" }} items
+        {% endif %}
+     </span><br>
+     <span>Unidades disponíveis atualmente: {{item.unidade}}</span><br>
+     <span>Multiplicador do item (Quantidade necessária para uma unidade): {{item.multiplicador |floatformat:"0" }}x</span><br>
+
+     <h2>Observação sobre o item: </h2>
+     <div class="text-detail">
+        <h1><p>{{item.observacao}}</p></h1>
+    </div>
+</div>
+{% endblock content %}
