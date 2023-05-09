@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from entregas.models import *
+from doacoes.models import *
 from .forms import *
 from django.contrib import messages
+from datetime import datetime
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import Movimentacao
 from django.db.models import Q
@@ -9,6 +11,28 @@ from django.db.models import Q
 # Create your views here.
 def estoque(request):
     itens = Item.objects.order_by("-id")
+    current_year = datetime.now().year
+    item_doacoes = ItemDoacao.objects.filter(doacao__data_doacao__year=current_year)
+    item_entregues = ItemEntrega.objects.filter(entrega__data_entrega__year=current_year)
+    print(item_entregues)
+
+    quantidades_por_item = {item.nome: 0 for item in itens}
+    quantidades_por_item_entrega = {item.nome: 0 for item in itens}
+    print(quantidades_por_item)
+    print(quantidades_por_item_entrega)
+
+    for item_doacao in item_doacoes:
+        item_nome = item_doacao.item.nome
+        quantidade = item_doacao.quantidade
+        quantidades_por_item[item_nome] += quantidade
+    
+    for item_entregues in item_entregues:
+        item_nome = item_entregues.item.nome
+        quantidade = item_entregues.quantidade
+        quantidades_por_item_entrega[item_nome] += quantidade
+
+    print(quantidades_por_item)
+    print(quantidades_por_item_entrega)
 
     
     search_query = request.GET.get('search')
@@ -29,6 +53,8 @@ def estoque(request):
         current_page = paginator.get_page(paginator.num_pages)
     context = {
         'pagination': current_page, 
+        'quantidades_por_item': quantidades_por_item,
+        'quantidades_por_item_entrega': quantidades_por_item_entrega,
         'list_page': True,
     } 
     

@@ -9,7 +9,34 @@
         <div class="no-content-container">
             <h1> {{ user.first_name | upper }} {{ user.last_name | upper}}</h1>
         </div>
-    {% endif %}
-        
+    {% endif %} 
+{% block contentpaginator %}
+<h1 style="margin-bottom:10px;">Visitas do Colaborador</h1>
+<div class="search-container">
+  <form action="" class="search-form">
+      <input type="search" class="search-input" name="search">
+      <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+  </form>
+</div>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Para a familia: </th>
+                <th scope="col">Data</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for visitas in pagination %}
+                <div>
+                    <tr>
+                        <td><a href="{% url 'visitas:visita_detail' visitas.id %}" style="text-decoration:none; color: light-blue">{{visitas.familia}}</a></td>
+                        <td><a href="{% url 'visitas:visita_detail' visitas.id %}" style="text-decoration:none; color: light-blue">{{visitas.data}}</a></td>
+                    </tr> 
+                </div>
+                {% endfor %}
+            </tbody>
+          </table>
+</html>
+{% endblock contentpaginator %}
 </div>
 {% endblock content %}

@@ -25,10 +25,7 @@ def signin(request):
                 else:
                     fname = user.nome 
                     lname = ""
-                return render(request, 'home/pages/home.html', context={
-                    'fname': fname,
-                    'lname': lname,
-                })
+                return redirect('home:home')
             else:
                 messages.error(request, "Usuário ou senha incorretos!")
                 return redirect("login:signin")  
