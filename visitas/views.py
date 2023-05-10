@@ -151,4 +151,4 @@ def removeParticipante(request, id, id_visita):
 
 
     messages.success(request, "Participante removido com sucesso!")
-    return redirect(f"/visita/19")
+    return redirect(f"/visita/{id_visita}")
