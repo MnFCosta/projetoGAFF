@@ -1,7 +1,7 @@
--Estilizar páginas detail
--Estilizar formulários restantes
--Alterar doações de entregas de gramas para unidades
-
+-trocar campo de tipo de moradia
+-trocar campo de data para um calendario
+-nome ao invés de email nos participantes de visita
+-trocar select field de item nas doações e entregas para um search field usando o nome e código de barras como filtro
 
 
 
