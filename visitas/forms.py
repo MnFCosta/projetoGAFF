@@ -1,6 +1,7 @@
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, HTML, Row, Column, Div, Submit
+from django.forms import DateInput
 from .models import *
 
 class VisitaForm(forms.ModelForm):
@@ -8,11 +9,15 @@ class VisitaForm(forms.ModelForm):
         model = Visita
         fields = '__all__'
         exclude = ['familia',]
+        widgets = {
+            'data': DateInput(attrs={'type': 'date'}),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.helper = FormHelper()
+        
         self.helper.layout = Layout(
                 HTML('<h1>Informações visita:</h1>'),
             Row(
@@ -49,7 +54,7 @@ class ParticipantesForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
+        self.fields['participantes'].label_from_instance = lambda obj: obj.nome
            
         self.helper = FormHelper()
         self.helper.layout = Layout(
@@ -69,6 +74,9 @@ class VisitaEditForm(forms.ModelForm):
         model = Visita
         fields = '__all__'
         exclude = ['familia',]
+        widgets = {
+            'data': DateInput(attrs={'type': 'date'}),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

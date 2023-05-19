@@ -12,6 +12,7 @@ class Visita(models.Model):
     class Meta:
         verbose_name = "Visita"
         verbose_name_plural = "Visitas"
+        
 
     def __str__(self):
         data_formatada = self.data.strftime("%d-%m-%Y")

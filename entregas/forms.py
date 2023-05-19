@@ -1,6 +1,7 @@
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, HTML, Row, Column, Div, Submit
+from django.forms import DateInput
 from .models import *
 
 class EntregaForm(forms.ModelForm):
@@ -8,6 +9,9 @@ class EntregaForm(forms.ModelForm):
         model = Entrega
         fields = '__all__'
         exclude = ['familia',]
+        widgets = {
+            'data_entrega': DateInput(attrs={'type': 'date'}),
+        }
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

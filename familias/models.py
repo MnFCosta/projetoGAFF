@@ -10,6 +10,22 @@ ESCOLHAS_PAPEL = (
         ('Filho/Filha', 'Filho/Filha'),
 )
 
+ESCOLHAS_MORADIA = (
+        ('Casa', 'Casa'),
+        
+)
+
+ESCOLHAS_MATERIAL = (
+        ('Madeira', 'Madeira'),
+        
+)
+
+ESCOLHAS_CONDICOES = (
+        ('Boas', 'Boas'),
+        ('Ruins', 'Ruins'),
+        
+)
+
 # Create your models here.
 class componenteFamilia(models.Model):
     nome = models.CharField(max_length=200, default=None)
@@ -43,9 +59,21 @@ class Familia(models.Model):
     longitude = models.CharField(max_length=100) 
     cep = models.CharField(max_length=20, verbose_name="CEP") 
     celular = models.CharField(max_length=45) 
-    moradia = models.CharField(max_length=45) 
-    casa_de = models.CharField(max_length=45) 
-    condicoes_casa = models.CharField(max_length=45,) 
+    moradia = models.CharField(
+        max_length=45,
+        choices=ESCOLHAS_MORADIA,
+        default='Casa',
+    )
+    casa_de = models.CharField(
+        max_length=45,
+        choices=ESCOLHAS_MATERIAL,
+        default='Casa',
+    )
+    condicoes_casa = models.CharField(
+        max_length=45,
+        choices=ESCOLHAS_CONDICOES,
+        default='Casa',
+    )
     aluguel = models.DecimalField(max_digits=20, decimal_places=2, validators=[MinValueValidator(0)], blank=True, null=True) 
     data_cadastro = models.DateTimeField(default=timezone.now) 
     realizado_por = models.CharField(max_length=100) 

@@ -99,7 +99,7 @@ def participantesVisita(request, id):
     else:
         search_query = request.GET.get('search')
         if search_query:
-            form.fields['participantes'].queryset = User.objects.filter(email__icontains=search_query).exclude(id__in=participantes)
+            form.fields['participantes'].queryset = User.objects.filter(nome__icontains=search_query).exclude(id__in=participantes)
             if len(form.fields['participantes'].queryset) == 0:
                 messages.error(request, "O participante em questão não foi encontrado ou já foi adicionado!")
                 return redirect(f"/visita/{visita.id}/")
