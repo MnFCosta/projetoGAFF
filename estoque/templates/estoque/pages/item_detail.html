@@ -5,6 +5,7 @@
      <h1>Item: {{item.nome}}</h1>
 
      <h2>Dados do item: </h2>
+     <span>Código de barras: {{item.codigo_barras}}</span><br>
      <span>
         {% if item.multiplicador > 1 %}
             Estoque atual: {{item.estoque_atual |floatformat:"0" }}g

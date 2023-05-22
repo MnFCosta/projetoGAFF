@@ -1,6 +1,7 @@
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, HTML, Row, Column, Div, Submit
+from django_select2.forms import Select2Widget
 from .models import *
 
 class DoacaoForm(forms.ModelForm):
@@ -55,7 +56,7 @@ class ItensForm(forms.ModelForm):
     item = forms.ModelChoiceField(
         label='',
         queryset=Item.objects.all(),
-        widget=forms.Select(attrs={'id': 'item-select'}),
+        widget=Select2Widget(attrs={'id': 'item-select'}),
         initial=None
     )
 

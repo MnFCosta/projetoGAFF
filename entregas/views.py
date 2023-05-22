@@ -139,3 +139,4 @@ def get_unidades(request):
         item = Item.objects.get(id=item_id)
         unidade = item.unidade
         return JsonResponse({'unidades': unidade})
+    

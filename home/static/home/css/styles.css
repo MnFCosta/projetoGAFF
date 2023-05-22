@@ -879,7 +879,26 @@ button {
 }
 
 .modal-content{
-    width: fit-content;
+    width: fit-content
 }
+
+.select2-container--default .select2-selection--single{
+    border: 2px solid black !important;
+    border-radius: 8px !important;
+    background-color: white !important;
+    width: 140px !important; 
+    height: 40px !important;
+    color: black !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+    margin-top: 4px;
+}
+
+.select2-container--open .select2-dropdown--below{
+    width: 400px !important;
+}
+
+
 
 

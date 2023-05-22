@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django_select2 import urls as select2_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('select2/', include(select2_urls)),
     path('', include('home.urls')),
     path('', include('login.urls')),
     path('', include('familias.urls')),

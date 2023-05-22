@@ -40,7 +40,7 @@ class Item(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.nome
+        return f"{self.nome} - {self.codigo_barras}" 
     
     class Meta:
         verbose_name = "Item"
