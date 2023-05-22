@@ -11,18 +11,24 @@ ESCOLHAS_PAPEL = (
 )
 
 ESCOLHAS_MORADIA = (
-        ('Casa', 'Casa'),
+        ('Própria', 'Própria'),
+        ('Alugada', 'Alugada'),
         
 )
 
 ESCOLHAS_MATERIAL = (
+        ('Alvenaria', 'Alvenaria'),
         ('Madeira', 'Madeira'),
+        ('Mista', 'Mista'),
+        ('Barraco', 'Barraco'),
         
 )
 
 ESCOLHAS_CONDICOES = (
-        ('Boas', 'Boas'),
-        ('Ruins', 'Ruins'),
+        ('Excelente', 'Excelente'),
+        ('Boa', 'Boa'),
+        ('Ruim', 'Ruim'),
+        ('Péssima', 'Péssima'),
         
 )
 
