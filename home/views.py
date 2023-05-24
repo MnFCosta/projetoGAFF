@@ -13,7 +13,6 @@ def view(request):
     colaborador = request.user.id
     participantes = VisitaParticipantes.objects.filter(Q(participantes=colaborador))
     for participantes in participantes:
-            print(participantes.visita)
             visitas.append(participantes.visita)
 
     search_query = request.GET.get('search')

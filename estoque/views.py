@@ -14,12 +14,9 @@ def estoque(request):
     current_year = datetime.now().year
     item_doacoes = ItemDoacao.objects.filter(doacao__data_doacao__year=current_year)
     item_entregues = ItemEntrega.objects.filter(entrega__data_entrega__year=current_year)
-    print(item_entregues)
 
     quantidades_por_item = {item.nome: 0 for item in itens}
     quantidades_por_item_entrega = {item.nome: 0 for item in itens}
-    print(quantidades_por_item)
-    print(quantidades_por_item_entrega)
 
     for item_doacao in item_doacoes:
         item_nome = item_doacao.item.nome
@@ -31,10 +28,6 @@ def estoque(request):
         quantidade = item_entregues.quantidade
         quantidades_por_item_entrega[item_nome] += quantidade
 
-    print(quantidades_por_item)
-    print(quantidades_por_item_entrega)
-
-    
     search_query = request.GET.get('search')
     if search_query:
         itens = Item.objects.filter(Q(nome__icontains=search_query))

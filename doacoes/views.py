@@ -142,8 +142,6 @@ def itensDoacao(request, id):
         form = ItensForm(request.POST)
         if form.is_valid():
             novos=form.cleaned_data.get("item") 
-            print(novos.id) 
-            print(items_adicionados)
             if (f'{novos}' in items_adicionados):
                 atualizar_valor = Item.objects.get(id=novos.id)
                 atualizar_valor_item = ItemDoacao.objects.get(doacao_id=id, item=novos)
@@ -190,7 +188,7 @@ def doadorEdit(request, id):
  
     if request.method == "POST":
         form = DoadorEditForm(request.POST)
-        print(form.errors)
+       
         if form.is_valid():
             doador.celular = form.cleaned_data['celular']
             doador.rua = form.cleaned_data['rua']

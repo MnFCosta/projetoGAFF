@@ -73,7 +73,6 @@ def cadastroVisita(request, id):
 def participantesVisita(request, id):
     visita = Visita.objects.get(id=id)
     participantes = VisitaParticipantes.objects.filter(visita_id=visita.id).values_list('participantes__id', flat=True)
-    print(participantes)
     form = ParticipantesForm()
     form.fields['participantes'].queryset = User.objects.exclude(id__in=participantes)
     if participantes != None:
@@ -112,7 +111,7 @@ def visitaEdit(request, id):
  
     if request.method == "POST":
         form = VisitaEditForm(request.POST)
-        print(form.errors)
+
         if form.is_valid():
             visita.data = form.cleaned_data['data']
             visita.pedidos = form.cleaned_data['pedidos']

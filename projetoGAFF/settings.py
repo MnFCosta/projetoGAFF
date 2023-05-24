@@ -92,11 +92,11 @@ WSGI_APPLICATION = 'projetoGAFF.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'gaff',
+        'NAME': 'gaff', #adicione aqui o nome da tabela do mySQL
         'HOST': '127.0.0.1',
         'PORT': '3306',
-        'USER': 'root',
-        'PASSWORD': 'info2k21',
+        'USER': 'root', #adicione aqui o nome do usuário do mySQL (por padrão é root)
+        'PASSWORD': '', #adicione aqui a senha do mySQL (caso não tenha apenas deixe em branco)
     }
 }
 

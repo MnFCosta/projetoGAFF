@@ -1,8 +1,0 @@
--trocar campo de tipo de moradia, feito
--trocar campo de data para um calendario, feito
--nome ao invés de email nos participantes de visita, feito
--trocar select field de item nas doações e entregas para um search field usando o nome e código de barras como filtro, feito
-
-
-
-
