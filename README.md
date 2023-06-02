@@ -38,13 +38,13 @@ DATABASES = {
 
 Passo 6:
 
-Crie as migrações de banco necessárias com o comando: py (python3 para linux/mac) manage.py makemigrations
+Crie as migrações de banco necessárias com o comando: (python3 para linux/mac) py manage.py makemigrations
 
-Caso o comando makemigrations retorne "no changes detected" mande as migrações para o banco com o comando: py (python3 para linux/mac) manage.py migrate  
+Caso o comando makemigrations retorne "no changes detected" mande as migrações para o banco com o comando: (python3 para linux/mac) py manage.py migrate  
 
 Passo 7 (Este passo será feito todas vez que o sistema precise ser iniciado novamente):
 
-Caso as migrações enviadas retornem OK, o sistema está configurado e já pode ser utilizado,  utilize o comando py (python3 para linux/mac) manage.py runserver para iniciar um servidor local
+Caso as migrações enviadas retornem OK, o sistema está configurado e já pode ser utilizado,  utilize o comando (python3 para linux/mac) py manage.py runserver para iniciar um servidor local
 
  Acesse a  URL: http://127.0.0.1:8000/ para utilizar o sistema, caso tenha uma conta cadastrada, faça o login, caso não cadastre-se na opção "Não possui uma conta? Cadastre-se aqui!"
 
