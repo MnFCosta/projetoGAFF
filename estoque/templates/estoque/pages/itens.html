@@ -33,7 +33,7 @@
                             {% if item.multiplicador > 1 %}
                                 <td>{{item.estoque_atual |floatformat:"0" }}g</td>
                             {% else %}
-                            <td>{{item.estoque_atual |floatformat:"0" }} items</td>
+                            <td>{{item.estoque_atual |floatformat:"0" }} itens</td>
                             {% endif %}
                             <td>
                             {% for item_quantidade_nome, quantidade in quantidades_por_item.items %}
@@ -41,7 +41,7 @@
                                   {% if item.multiplicador > 1 %}
                                         {{quantidade |floatformat:"0" }}g
                                   {% else %}
-                                        {{quantidade |floatformat:"0" }} items
+                                        {{quantidade |floatformat:"0" }} itens
                                   {% endif %}
                             {% endif %}
                             {% endfor %}
@@ -52,7 +52,7 @@
                                     {% if item.multiplicador > 1 %}
                                           {{quantidade |floatformat:"0" }}g
                                     {% else %}
-                                          {{quantidade |floatformat:"0" }} items
+                                          {{quantidade |floatformat:"0" }} itens
                                     {% endif %}
                               {% endif %}
                               {% endfor %}
